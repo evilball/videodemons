@@ -1,0 +1,308 @@
+<!-- INCLUDE mcp_header.html -->
+
+<form name="mcp" id="mcp" method="post" action="{S_MCP_ACTION}">
+
+<table class="tablebg" width="100%" cellspacing="1">
+<!-- IF S_CAN_SPLIT -->
+	<tr>
+		<th colspan="3" nowrap="nowrap">{L_SPLIT_TOPIC}</th>
+	</tr>
+	<tr>
+		<td class="row2" colspan="3" align="center"><span class="gensmall">{L_SPLIT_TOPIC_EXPLAIN}</span></td>
+	</tr>
+	<tr>
+		<td class="row1" nowrap="nowrap"><span class="gen">{L_SPLIT_SUBJECT}</span></td>
+		<td class="row2" colspan="2"><input class="post" style="width: 350px" type="text" size="35" maxlength="{SUBJECT_TEXTLENGTH2}" name="subject" value="{SPLIT_SUBJECT}" /></td>
+	</tr>
+	<tr>
+		<td class="row1" nowrap="nowrap"><span class="gen">{L_SPLIT_FORUM}</span></td>
+		<td class="row2" colspan="2"><select name="to_forum_id">{S_FORUM_SELECT}</select></td>
+	</tr>
+
+	<!-- IF S_SHOW_TOPIC_ICONS -->
+		<tr>
+			<td class="row1"><span class="gen">{L_TOPIC_ICON}</span></td>
+			<td class="row2" colspan="2">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td><span class="genmed nowrap"><input type="radio" class="radio" name="icon" value="0"<!-- IF not S_TOPIC_ICON --> checked="checked"<!-- ENDIF --> />{L_NO_TOPIC_ICON}</span> <!-- BEGIN topic_icon --><span class="nowrap"><input type="radio" class="radio" name="icon" value="{topic_icon.ICON_ID}"<!-- IF topic_icon.S_CHECKED --> checked="checked"<!-- ENDIF --> /><img src="{topic_icon.ICON_IMG}" width="{topic_icon.ICON_WIDTH}" height="{topic_icon.ICON_HEIGHT}" alt="" title="" hspace="2" vspace="2" /></span> <!-- END topic_icon --></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+	<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF S_CAN_MERGE -->
+	<tr>
+		<th colspan="3" nowrap="nowrap">{L_MERGE_POSTS}</th>
+	</tr>
+	<tr>
+		<td class="row2" colspan="3" align="center"><span class="gensmall">{L_MERGE_TOPIC_EXPLAIN}</span></td>
+	</tr>
+	<tr>
+		<td class="row1" nowrap="nowrap"><span class="gen">{L_MERGE_TOPIC_ID}</span></td>
+		<td class="row2" colspan="2"><input class="post" type="text" size="6" name="to_topic_id" value="{TO_TOPIC_ID}" /> <a href="{U_SELECT_TOPIC}">{L_SELECT_TOPIC}</a></td>
+	</tr>
+	<!-- IF TO_TOPIC_INFO -->
+		<tr>
+			<td class="row3" colspan="3" align="center"><b class="gen">{TO_TOPIC_INFO}</b></td>
+		</tr>
+	<!-- ENDIF -->
+<!-- ENDIF -->
+<tr>
+	<th colspan="3" nowrap="nowrap">{L_DISPLAY_OPTIONS}</th>
+</tr>
+<tr>
+	<td class="row1" nowrap="nowrap"><span class="gen">{L_POSTS_PER_PAGE}</span><br /><span class="gensmall">{L_POSTS_PER_PAGE_EXPLAIN}</span></td>
+	<td class="row2" colspan="2"><input class="post" type="text" name="posts_per_page" size="6" value="{POSTS_PER_PAGE}" /></td>
+</tr>
+<tr>
+	<td class="cat" colspan="3" align="center"><span class="gensmall">{L_DISPLAY_POSTS}:</span> {S_SELECT_SORT_DAYS}&nbsp;<span class="gensmall">{L_SORT_BY}</span> {S_SELECT_SORT_KEY} {S_SELECT_SORT_DIR}&nbsp;<input class="btnlite" type="submit" name="sort" value="{L_GO}" /></td>
+</tr>
+<tr>
+	<th nowrap="nowrap" colspan="3">{L_TOPIC_REVIEW}: {TOPIC_TITLE}</th>
+</tr>
+<tr>
+	<td class="row3" colspan="3" align="center"><span class="gensmall">{RETURN_TOPIC}</span></td>
+</tr>
+<!-- BEGIN postrow -->
+
+	<!-- IF postrow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+
+		<td align="center"><b class="postauthor">{postrow.POST_AUTHOR_FULL}</b></td>
+		<td width="100%">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr valign="top">
+				<td class="gensmall" nowrap="nowrap">&nbsp;<b>{L_POST_SUBJECT}:</b>&nbsp;</td>
+				<td class="gensmall" width="100%">{postrow.POST_SUBJECT}</td>
+			</tr>
+			</table>
+		</td>
+		<td width="5%" align="center"><a href="{postrow.U_POST_DETAILS}">{INFO_IMG}</a></td>
+	</tr>
+
+	<!-- IF postrow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+
+		<td width="100%" valign="top" colspan="2">
+			<table width="100%" cellspacing="0" cellpadding="2" border="0">
+			<tr>
+				<td valign="top">
+					<div class="postbody">
+
+						<!-- IF postrow.S_HAS_TRACKER_POSTER or postrow.S_HAS_TRACKER_SCREENSHOT -->
+						<div style="float:right;margin:0px 0px 10px 10px;">
+							<div class="tabber" id="tabber1">
+								<ul class="c">
+									<!-- IF postrow.S_HAS_TRACKER_POSTER --><li style="margin-left:0px;">{L_ATTACHMENTS_POSTER}</li><!-- ENDIF -->
+									<!-- IF postrow.S_HAS_TRACKER_SCREENSHOT --><li style="margin-left:0px;">{L_ATTACHMENTS_SCREENSHOT}</li><!-- ENDIF -->
+								</ul>
+								<!-- IF postrow.S_HAS_TRACKER_POSTER -->
+								<div class="t">
+									<div class="poster_sl">
+										<div id="sliderPoster" style="margin:0px auto;width:{POSTERS_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+											<ul style="margin-left:-5px;">
+											<!-- BEGIN torrent_poster_fields -->
+												<li style="margin:0px;width:{POSTERS_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+													<a href="{postrow.torrent_poster_fields.POSTER_LINK}" rel="prettyPhotoPosters<!-- IF postrow.TRACKER_POSTERS_COUNT -->[0]<!-- ENDIF -->"><img <!-- IF postrow.torrent_poster_fields.POSTER_WH_WIDTH -->width="{postrow.torrent_poster_fields.POSTER_WH_WIDTH}"<!-- ELSE -->height="{postrow.torrent_poster_fields.POSTER_WH_HEIGHT}"<!-- ENDIF --> src="{postrow.torrent_poster_fields.POSTER_SRC}" alt="" /></a>
+													<!-- IF postrow.torrent_poster_fields.POSTER_FORUM -->
+													<br /><a href="{postrow.torrent_poster_fields.POSTER_LINK}" title="{postrow.torrent_poster_fields.POSTER_FILENAME}">{postrow.torrent_poster_fields.POSTER_SHORTNAME}</a>
+													<br  />[ {L_TORRENT_SIZE} <b>{postrow.torrent_poster_fields.POSTER_FILESIZE}</b> {postrow.torrent_poster_fields.POSTER_SIZE_LANG} / {L_TORRENT_VIEWED} <b>{postrow.torrent_poster_fields.POSTER_DOWNLOADED}</b> ]
+													<!-- IF postrow.torrent_poster_fields.POSTER_COMMENT --><br />({L_FILE_COMMENT}: {postrow.torrent_poster_fields.POSTER_COMMENT})<!-- ENDIF -->
+													<!-- ENDIF -->
+												</li>
+											<!-- END torrent_poster_fields -->
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- ENDIF -->
+								<!-- IF postrow.S_HAS_TRACKER_SCREENSHOT -->
+								<div class="t">
+									<div class="screenshot_sl">
+										<div id="sliderScreen" style="margin:0px auto;width:{SCREENSHOTS_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+											<ul style="margin-left:-5px;">
+											<!-- BEGIN torrent_screenshot_fields -->
+												<li style="margin:0px;width:{SCREENSHOTS_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+													<a href="{postrow.torrent_screenshot_fields.SCREENSHOT_LINK}" rel="prettyPhotoSscreenshots<!-- IF postrow.TRACKER_SCREENSHOTS_COUNT -->[0]<!-- ENDIF -->"><img <!-- IF postrow.torrent_screenshot_fields.SCREENSHOT_WH_WIDTH -->width="{postrow.torrent_screenshot_fields.SCREENSHOT_WH_WIDTH}"<!-- ELSE -->height="{postrow.torrent_screenshot_fields.SCREENSHOT_WH_HEIGHT}"<!-- ENDIF --> src="{postrow.torrent_screenshot_fields.SCREENSHOT_SRC}" alt="" /></a>
+													<!-- IF postrow.torrent_screenshot_fields.SCREENSHOT_FORUM -->
+													<br /><a href="{postrow.torrent_screenshot_fields.SCREENSHOT_LINK}" title="{postrow.torrent_screenshot_fields.SCREENSHOT_FILENAME}">{postrow.torrent_screenshot_fields.SCREENSHOT_SHORTNAME}</a>
+													<br  />[ {L_TORRENT_SIZE} <b>{postrow.torrent_screenshot_fields.SCREENSHOT_FILESIZE}</b> / {L_TORRENT_VIEWED} <b>{postrow.torrent_screenshot_fields.SCREENSHOT_DOWNLOADED}</b> ]
+													<!-- IF postrow.torrent_screenshot_fields.SCREENSHOT_COMMENT --><br />({L_FILE_COMMENT}: {postrow.torrent_screenshot_fields.SCREENSHOT_COMMENT})<!-- ENDIF -->
+													<!-- ENDIF -->
+												</li>
+											<!-- END torrent_screenshot_fields -->
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- ENDIF -->
+							</div>
+						</div>
+						<!-- ENDIF -->
+
+					{postrow.MESSAGE}</div>
+					<!-- IF postrow.S_HAS_ATTACHMENTS -->
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">{L_ATTACHMENTS}: </b></td>
+						</tr>
+						<!-- BEGIN attachment -->
+							<tr>
+								<!-- IF postrow.attachment.S_ROW_COUNT is even --><td class="row2"><!-- ELSE --><td class="row1"><!-- ENDIF -->{postrow.attachment.DISPLAY_ATTACHMENT}</td>
+							</tr>
+						<!-- END attachment -->
+						</table>
+					<!-- ENDIF -->
+
+				</td>
+			</tr>
+			<tr>
+				<td valign="bottom">
+					<table width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr valign="middle">
+						<td width="100%">
+							<!-- IF postrow.S_POST_UNAPPROVED and postrow.U_MCP_APPROVE --><span class="postapprove">{UNAPPROVED_IMG} <a href="{postrow.U_MCP_APPROVE}">{L_POST_UNAPPROVED}</a></span><br /><!-- ENDIF -->
+							<!-- IF postrow.S_POST_REPORTED and postrow.U_MCP_REPORT --><span class="postreported">{REPORTED_IMG} <a href="{postrow.U_MCP_REPORT}">{L_POST_REPORTED}</a></span><!-- ENDIF -->
+						</td>
+						<td width="10" nowrap="nowrap">{postrow.MINI_POST_IMG}</td>
+						<td class="gensmall" nowrap="nowrap"><b>{L_POSTED}:</b> {postrow.POST_DATE}</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+		</td>
+		<td width="5%" align="center"><input type="checkbox" class="radio" name="post_id_list[]" value="{postrow.POST_ID}"<!-- IF postrow.S_CHECKED --> checked="checked"<!-- ENDIF --> /></td>
+	</tr>
+
+
+<!-- IF postrow.S_FIRST_ROW -->
+<!-- IF postrow.S_HAS_TRACKER_TORRENT or postrow.TORRENT_INFO_STAT -->
+<tr>
+	<td colspan="3" class="row1">
+	<table style="width:100%;margin:5px 0px;" cellspacing="1">
+		<tr class="row1">
+			<td valign="top" width="100%">
+				<div class="tabber" id="tabber2">
+					<ul class="c">
+						<!-- IF postrow.S_HAS_TRACKER_TORRENT --><li style="margin-left:0px;">{L_ATTACHMENTS_TORRENT}</li><!-- ENDIF -->
+					</ul>
+					<!-- IF postrow.S_HAS_TRACKER_TORRENT or postrow.TORRENT_INFO_STAT -->
+					<div class="t">
+						<div class="torrent_sl" style="line-height:1.3em;">
+							<!-- IF postrow.S_TORRENT_TOP_NOTICE -->
+							<div class="myblock" style="text-align:center;width:auto;">
+								<div class="inner"><span class="mycorners-top"><span></span></span>
+									{postrow.S_TORRENT_TOP_NOTICE}
+								<span class="mycorners-bottom"><span></span></span></div>
+							</div>
+							<!-- ENDIF -->
+							<table width="100%"><tr>
+							<!-- IF postrow.TORRENT_INFO_STAT --><td valign="top" style="line-height:1em;" width="70%">
+								<table width="100%">
+									<tr>
+										<td><b>{L_TORRENT_AUTHOR}</b>: {postrow.TS_AUTHOR}</td>
+										<td><b>{L_TORRENT_HASH}</b>: <!-- IF postrow.TS_HASH -->{postrow.TS_HASH2}<!-- ELSE -->---<!-- ENDIF --></td>
+									</tr>
+									<tr>
+										<td><b>{L_TORRENT_ADDED}</b>: <span class="my_tt" title="{postrow.TS_ADDED_LEFT} {L_TORRENT_LAST_TIME}">{postrow.TS_ADDED}</span></td>
+										<td><b>{L_TORRENT_PRIVATE}</b>: <!-- IF postrow.TS_PRIVATE -->{L_TORRENT_PRIVATE_YES}<!-- ELSE -->{L_TORRENT_PRIVATE_NO}<!-- ENDIF --></td>
+									</tr>
+									<tr>
+										<td><div id="c_tstatus" style="float:left;"><b>{L_TORRENT_STATUS}</b>: <!-- IF postrow.TS_TSTATUS -->{postrow.TS_TSTATUS}</div><!-- ELSE -->---<!-- ENDIF --></td>
+										<td><b>{L_TORRENT_SIZE}</b>: {postrow.TS_SIZE} ({postrow.TS_SIZE2} {L_BYTES})</td>
+									</tr>
+									<tr>
+										<td><div id="c_ustatus" style="float:left;"><b>{L_TORRENT_STATUS_USER}</b>: <!-- IF postrow.TS_USTATUS -->{postrow.TS_USTATUS} ({postrow.TS_USTATUS_DATE})</div><!-- ELSE -->---<!-- ENDIF --></td>
+										<td><b>{L_TORRENT_COMPLETED}</b>: <span class="complet">{postrow.TS_COMPLETED}</span> ({L_TORRENT_PERCENT}: <!-- IF postrow.TS_SPERCENT_WO_REM --><a href="javascript:;" title="{L_WO_REM_PEERS}" class="my_tt">{postrow.TS_SPERCENT}</a><!-- ELSE -->{postrow.TS_SPERCENT}<!-- ENDIF -->%)</td>
+									</tr>
+									<tr>
+										<td><div id="c_treason" style="float:left;"><b>{L_TORRENT_STATUS_REASON}</b>: <!-- IF postrow.TS_REASON -->{postrow.TS_REASON}</div><!-- ELSE -->---<!-- ENDIF --> </td>
+										<td><b>{L_TORRENT_HEALTH}</b>: {postrow.TS_HEALTH}% <!-- IF postrow.TS_SEEDREQ -->({L_REQUEST_SEEDS_NEXT}: {postrow.TS_SEEDREQ})<!-- ENDIF --></td>
+									</tr>
+									<tr>
+										<td><b>{L_TORRENT_SEEDERS}</b>: <span class="seed">{postrow.TS_SEEDERS}</span></td>
+										<td><b>{L_TORRENT_LEECHERS}</b>: <span class="leech">{postrow.TS_LEECHERS}</span></td>
+									</tr>
+									<tr>
+										<td><b>{L_TORRENT_SSPEED}</b>: <span class="seed">{postrow.TS_SSPEED}</span></td>
+										<td><b>{L_TORRENT_LSPEED}</b>: <span class="leech">{postrow.TS_LSPEED}</span></td>
+									</tr>
+									<tr>
+										<td><b>{L_TORRENT_LASTSEED}</b>: <span class="seed"><!-- IF postrow.TS_LSEED -->{postrow.TS_LSEED} {L_TORRENT_LAST_TIME}<!-- ELSE -->{L_NO}<!-- ENDIF --></span></td>
+										<td><b>{L_TORRENT_LASTLEECH}</b>: <span class="leech"><!-- IF postrow.TS_LLEECH -->{postrow.TS_LLEECH} {L_TORRENT_LAST_TIME}<!-- ELSE -->{L_NO}<!-- ENDIF --></span></td>
+									</tr>
+								</table>
+							</td>
+							<!-- ENDIF -->
+							<!-- IF postrow.S_HAS_TRACKER_TORRENT -->
+							<td align="center" style="line-height:1.3em;"<!-- IF postrow.TORRENT_INFO_STAT --> width="30%"<!-- ENDIF -->>
+								<!-- IF postrow.S_HAS_TRACKER_TORRENT -->
+									<!-- BEGIN torrent_fields -->
+										<!-- IF postrow.FORUM_IMAGE --><img src="{postrow.FORUM_IMAGE}" alt="{FORUM_NAME}" title="{FORUM_NAME}" /> <!-- ENDIF -->
+										<!-- IF postrow.torrent_fields.TORRENT_BONUS --><img src="{postrow.torrent_fields.TORRENT_BONUS_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_BONUS_TEXT}"  title="{postrow.torrent_fields.TORRENT_BONUS_TEXT}"/> <!-- ENDIF -->
+										<!-- IF postrow.torrent_fields.TORRENT_FREE --><img src="{postrow.torrent_fields.TORRENT_FREE_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_FREE_TEXT}"  title="{postrow.torrent_fields.TORRENT_FREE_TEXT}"/> <!-- ENDIF -->
+										<!-- IF postrow.torrent_fields.TORRENT_FORB --><img src="{postrow.torrent_fields.TORRENT_FORB_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_FORB_TEXT}"  title="{postrow.torrent_fields.TORRENT_FORB_TEXT}"/> <!-- ENDIF -->
+										<!-- IF postrow.torrent_fields.TORRENT_REQ_UPLOAD --><img src="{postrow.torrent_fields.TORRENT_REQ_UPLOAD_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_REQ_UPLOAD_TEXT}"  title="{postrow.torrent_fields.TORRENT_REQ_UPLOAD_TEXT}"/> <!-- ENDIF -->
+										<!-- IF postrow.torrent_fields.TORRENT_REQ_RATIO --><img src="{postrow.torrent_fields.TORRENT_REQ_RATIO_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_REQ_RATIO_TEXT}"  title="{postrow.torrent_fields.TORRENT_REQ_RATIO_TEXT}"/> <!-- ENDIF -->
+										<!-- IF postrow.torrent_fields.TORRENT_WAIT --><img src="{postrow.torrent_fields.TORRENT_WAIT_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_WAIT_TEXT}"  title="{postrow.torrent_fields.TORRENT_WAIT_TEXT}"/> <!-- ENDIF -->
+										<!-- IF postrow.torrent_fields.TORRENT_LINK -->
+											<a href="{postrow.torrent_fields.TORRENT_SRC_LINK}" title="{L_DOWNLOAD_TORRENT}"><img src="{postrow.torrent_fields.TORRENT_DOWNLOAD_SRC_IMG}" alt="{L_DOWNLOAD_TORRENT}" /></a>
+										<!-- IF postrow.torrent_fields.TORRENT_MAGNET_LINK --><a href="{postrow.torrent_fields.TORRENT_MAGNET_LINK}" title="{L_TORRENT_MAGNET_LINK}"><img src="{postrow.torrent_fields.TORRENT_MAGNET_SRC_IMG}" alt="{L_TORRENT_MAGNET_LINK}" /></a> <!-- ENDIF -->
+										<!-- ENDIF -->
+										<br /><!-- IF postrow.torrent_fields.TORRENT_LINK --><a href="{postrow.torrent_fields.TORRENT_SRC_LINK}" title="{postrow.torrent_fields.TORRENT_FILENAME}">{L_DOWNLOAD_TORRENT}</a><!-- ELSE -->{postrow.torrent_fields.TORRENT_SHORTNAME}<!-- ENDIF -->
+										<br  />[ {L_TORRENT_SIZE} <b>{postrow.torrent_fields.TORRENT_FILESIZE}</b> / {L_TORRENT_VIEWED} <b>{postrow.torrent_fields.TORRENT_DOWNLOADED}</b> ]
+										<!-- IF postrow.torrent_fields.TORRENT_COMMENT --><br />({L_FILE_COMMENT}: {postrow.torrent_fields.TORRENT_COMMENT})<!-- ENDIF -->
+									<!-- END torrent_fields -->
+								<!-- ENDIF -->
+							</td><!-- ENDIF --></tr>
+							</table>
+							<!-- IF postrow.S_TORRENT_BOTTOM_NOTICE -->
+							<div class="myblock" style="text-align:center;width:auto;">
+								<div class="inner"><span class="mycorners-top"><span></span></span>
+									{postrow.S_TORRENT_BOTTOM_NOTICE}
+								<span class="mycorners-bottom"><span></span></span></div>
+							</div>
+							<!-- ENDIF -->
+						</div>
+					</div>
+					<!-- ENDIF -->
+				</div>
+			</td>
+		</tr>
+	</table>
+	</td>
+</tr>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+
+	<tr>
+		<td class="row3" colspan="3" height="1"><img src="images/spacer.gif" width="1" height="1" alt="" /></td>
+	</tr>
+<!-- END postrow -->
+<tr>
+	<td class="cat" colspan="3" align="center"><select name="action"><option value="" selected="selected">{L_SELECT_ACTION}</option>
+		<!-- IF S_CAN_APPROVE --><option value="approve">{L_APPROVE_POSTS}</option><!-- ENDIF -->
+		<!-- IF S_CAN_LOCK --><option value="lock_post">{L_LOCK_POST_POSTS} [ {L_LOCK_POST_EXPLAIN} ]</option><option value="unlock_post">{L_UNLOCK_POST_POSTS}</option><!-- ENDIF -->
+		<!-- IF S_CAN_DELETE --><option value="delete_post">{L_DELETE_POSTS}</option><!-- ENDIF -->
+		<!-- IF S_CAN_MERGE --><option value="merge_posts"<!-- IF ACTION eq 'merge' --> selected="selected"<!-- ENDIF -->>{L_MERGE_POSTS}</option><!-- ENDIF -->
+		<!-- IF S_CAN_SPLIT --><option value="split_all"<!-- IF ACTION eq 'split' --> selected="selected"<!-- ENDIF -->>{L_SPLIT_POSTS}</option><option value="split_beyond">{L_SPLIT_AFTER}</option><!-- ENDIF -->
+		<!-- IF S_CAN_SYNC --><option value="resync">{L_RESYNC}</option><!-- ENDIF -->
+	</select>&nbsp;<input class="btnmain" type="submit" name="mcp_topic_submit" value="{L_SUBMIT}" /></td>
+</tr>
+</table>
+{S_HIDDEN_FIELDS}
+{S_FORM_TOKEN}
+</form>
+
+<table width="100%" cellspacing="2" cellpadding="2" border="0" align="center">
+<tr>
+	<td align="{S_CONTENT_FLOW_END}" valign="top" nowrap="nowrap"><b class="gensmall"><a href="#" onclick="marklist('mcp', '', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('mcp', '', false); return false;">{L_UNMARK_ALL}</a></b></td>
+</tr>
+</table>
+
+<!-- INCLUDE mcp_footer.html -->

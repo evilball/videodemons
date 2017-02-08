@@ -1,0 +1,10 @@
+{$C_BLOCK_H_L}<!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{$TITLE}</a><!-- ELSE -->{$TITLE}<!-- ENDIF -->{$C_BLOCK_H_R}
+	<ul class="topiclist bg1">
+		<li><dl>
+			<dd style="border-left:0px">
+				<p style="margin: 0 5px 0 5px;">{TOTAL_USERS_ONLINE} (<!-- IF not S_USER_LOGGED_IN and CGP_ENABLED -->{L_ONLINE_EXPLAIN_CGP}: {CURRENT_TIME_CGP} ({S_TIMEZONE})<!-- ELSE -->{L_ONLINE_EXPLAIN}<!-- ENDIF -->)<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
+				<!-- IF PORTAL_LEGEND --><br /><em>{L_LEGEND}: {PORTAL_LEGEND}</em><!-- ENDIF --></p>
+			</dd>
+		</dl></li>
+	</ul>
+{$C_BLOCK_F_L}{$C_BLOCK_F_R}

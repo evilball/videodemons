@@ -1,0 +1,50 @@
+
+<!-- IF S_VIEW_RTRACKER or S_NEW_RTRACKER -->
+	<!-- IF S_VIEW_RTRACKER -->
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" name="add_new" value="{L_ADD}" />
+	</fieldset>
+	<!-- ENDIF -->
+	<table cellspacing="1">
+	<!-- IF S_NEW_RTRACKER -->
+	<thead>
+	<tr>
+		<th colspan="5">{L_ADD}</th>
+	</tr>
+	</thead>
+	<!-- ENDIF -->
+	<thead>
+	<tr>
+		<th>{L_ZONE_RTRACK_URL}</th>
+		<th>{L_TYPE}</th>
+		<th>{L_RTRACK_FORB}</th>
+		<th>{L_RTRACK_ENABLED} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('acp_board', 'rtrack_enabled', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('acp_board', 'rtrack_enabled', false); return false;">-</a>]</th>
+		<!-- IF not S_NEW_RTRACKER --><th>{L_DELETE} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('acp_board', 'rtrack_delete', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('acp_board', 'rtrack_delete', false); return false;">-</a>]</th><!-- ENDIF -->
+	</tr>
+	</thead>
+	<tbody>
+	<!-- IF .rtracks -->
+	<!-- BEGIN rtracks -->
+		<!-- IF rtracks.ENABLED == '' and rtracks.URL --><tr class="row3"><!-- ELSE --><!-- IF rtracks.S_ROW_COUNT is even --><tr class="row1"<!-- IF rtracks.S_FORB --> style="background-color:#FFBFBF;"<!-- ENDIF -->><!-- ELSE --><tr class="row2"<!-- IF rtracks.S_FORB --> style="background-color:#FFBFBF;"<!-- ENDIF -->><!-- ENDIF --><!-- ENDIF -->
+			<td><input type="text" name="rtrack_url[{rtracks.COUNT}]" size="40" value="{rtracks.URL}" title="" /></td>
+			<td>{rtracks.TYPE}</td>
+			<td>{rtracks.FORB}</td>
+			<td><input class="radio" type="checkbox" name="rtrack_enabled[{rtracks.COUNT}]" value="1"{rtracks.ENABLED} title="" /></td>
+			<!-- IF not S_NEW_RTRACKER --><td><input class="radio" type="checkbox" name="rtrack_delete[{rtracks.COUNT}]" value="1" /></td><!-- ENDIF -->
+		</tr>
+		<!-- IF rtracks.STAT -->
+		<!-- IF rtracks.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td colspan="5"><div>{rtracks.STAT}</div></td>
+		</tr>
+		<!-- ENDIF -->
+	<!-- END rtracks -->
+	<!-- ELSE -->
+	<tr>
+		<td colspan="5" style="text-align:center;">{L_NO_DATA}</td>
+	</tr>
+	<!-- ENDIF -->
+	</tbody>
+	</table>
+<!-- ENDIF -->
+
+{S_HIDDEN_FIELDS}

@@ -1,0 +1,488 @@
+<table cellspacing="1">
+	<tr>
+		<th style="text-align:center;"><a <!-- IF S_VIEW_ACHEATS_TORR -->style="color:#FFFFFF;" <!-- ENDIF -->href="{VIEW_ACHEAT2}">{L_VIEW_ACHEAT2}</a></th>
+		<th style="text-align:center;"><a <!-- IF S_VIEW_ACHEATS_USER -->style="color:#FFFFFF;" <!-- ENDIF -->href="{VIEW_ACHEAT3}">{L_VIEW_ACHEAT3}</a></th>
+	</tr>
+</table>
+<!-- IF S_VIEW_ACHEATS_TORR or S_VIEW_ACHEATS_USER  -->
+<script type="text/javascript">
+// <![CDATA[
+	function e_acheat_opt(id, e)
+	{
+		if(document.getElementById(e).checked)
+		{
+			document.getElementById(id).style.display='';
+		}
+		else
+		{
+			document.getElementById(id).style.display='none';
+		}
+	}
+// ]]>
+</script>
+<!-- ENDIF -->
+
+<!-- IF S_VIEW_ACHEATS_TORR -->
+<table cellspacing="1">
+	<tr>
+		<td>
+			{L_ACHEAT_UPLOADED}&nbsp;<select name="uploaded_ml" style="float:right;">{UPLOADED_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="uploaded" value="{UPLOADED}" />&nbsp;<select name="upv">{UPV}</select>&nbsp;[{UPLOADEDV}]
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_DOWNLOADED}&nbsp;<select name="downloaded_ml" style="float:right;">{DOWNLOADED_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="downloaded" value="{DOWNLOADED}" />&nbsp;<select name="downv">{DOWNV}</select>&nbsp;[{DOWNLOADEDV}]
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_TORRENTID}
+		</td>
+		<td>
+			<input type="text" name="torrentid" value="{TORRENTID}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_COMPLETED}&nbsp;<select name="completed_ml" style="float:right;">{COMPLETED_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="completed" value="{COMPLETED}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_SDIFF}&nbsp;<select name="diff_ml" style="float:right;">{DIFF_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="diff" value="{DIFF}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_START}
+		</td>
+		<td>
+			<input type="text" name="start" value="{START}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_END}
+		</td>
+		<td>
+			<input type="text" name="end" value="{END}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_SORT}&nbsp;<select style="float:right;" name="order">{ORDER}</select>
+		</td>
+		<td>
+			{ACHEAT_SORT}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="row1">
+			{L_ACHEAT_SHOW}
+		</td>
+	</tr>
+	<tr>
+		<td class="row2">
+			{L_ACHEAT_INCUNAMES}&nbsp;<input id="c_user_opt" onclick="javascript:e_acheat_opt('user_opt', 'c_user_opt');" type="checkbox" class="radio" name="incuname" value="1"{INCUNAME} />
+		</td>
+		<td>
+			{L_ACHEAT_INCTORRENT}&nbsp;<input type="checkbox" class="radio" name="inctorrent" value="1"{INCTORRENT} />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" id="user_opt"<!-- IF not INCUNAME --> style="display:none;"<!-- ENDIF -->>
+			<table cellpadding="0" cellspacing="0" style="border:0;">
+			<tr>
+				<td class="row2" colspan="2">
+					{L_ACHEAT_INCUNAMES}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_USERID}
+				</td>
+				<td>
+					<input type="text" name="userid" value="{USERID}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_UMAX}
+				</td>
+				<td>
+					<input type="text" name="umax" value="{UMAX}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_TRATIO}&nbsp;<select name="tratio_ml" style="float:right;">{TRATIO_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="tratio" value="{TRATIO}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_URATIO}&nbsp;<select name="uratio_ml" style="float:right;">{URATIO_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="uratio" value="{URATIO}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_URRATIO}&nbsp;<select name="urratio_ml" style="float:right;">{URRATIO_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="urratio" value="{URRATIO}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_UBONUS}&nbsp;<select name="ubonus_ml" style="float:right;">{UBONUS_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="ubonus" value="{UBONUS}" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					{L_ACHEAT_UUPLOADED}&nbsp;<select name="uuploaded_ml" style="float:right;">{UUPLOADED_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="uuploaded" value="{UUPLOADED}" />&nbsp;<select name="uupv">{UUPV}</select>&nbsp;[{UUPLOADEDV}]
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					{L_ACHEAT_UDOWNLOADED}&nbsp;<select name="udownloaded_ml" style="float:right;">{UDOWNLOADED_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="udownloaded" value="{UDOWNLOADED}" />&nbsp;<select name="udownv">{UDOWNV}</select>&nbsp;[{UDOWNLOADEDV}]
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_URDOWNLOADED}&nbsp;<select name="urdownloaded_ml" style="float:right;">{URDOWNLOADED_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="urdownloaded" value="{URDOWNLOADED}" />&nbsp;<select name="urdownv">{URDOWNV}</select>&nbsp;[{URDOWNLOADEDV}]
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_UDATEFROM}
+				</td>
+				<td>
+					<input type="text" name="udatefrom" value="{UDATEFROM}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_UDATETO}
+				</td>
+				<td>
+					<input type="text" name="udateto" value="{UDATETO}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_SORT}&nbsp;<select style="float:right;" name="order2">{ORDER2}</select>
+				</td>
+				<td>
+					{ACHEAT_SORT2}
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:center;">
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />&nbsp;<input class="button1" type="submit" id="submit" name="submit_acheats_torr" value="{L_SUBMIT}" />
+		</td>
+	</tr>
+</table>
+{S_HIDDEN_FIELDS}
+{S_FORM_TOKEN}
+
+<!-- IF .acheats -->
+<table cellspacing="1">
+	<tr>
+		<!-- IF INCTORRENT --><th><span title="{L_ACHEAT_HTORR}">{L_ACHEAT_TORR}</span></th><!-- ENDIF -->
+		<th style="text-align:center;"><span title="{L_ACHEAT_HUPS}">{L_ACHEAT_UPS}</span> | <span title="{L_ACHEAT_HDLS}">{L_ACHEAT_DLS}</span></th>
+		<th style="text-align:center;"><span title="{L_ACHEAT_HCOMPL}">{L_ACHEAT_COMPL}</span></th>
+		<th style="text-align:center;"><span title="{L_ACHEAT_HDIFF}">{L_ACHEAT_DIFF}</span></th>
+	</tr>
+<!-- BEGIN acheats -->
+	<!-- IF acheats.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<!-- IF INCTORRENT --><td style="vertical-align:top;">{acheats.SUBJECT}</td><!-- ENDIF -->
+		<td style="text-align:center;vertical-align:top;">{acheats.UPLOADED} | {acheats.DOWNLOADED}</td>
+		<td style="text-align:center;vertical-align:top;"><b>{acheats.COMPL}</b></td>
+		<td style="text-align:center;vertical-align:top;"><b>{acheats.DIFF}</b></td>
+	</tr>
+	<tr class="row1">
+		<!-- IF INCUNAME --><td colspan="<!-- IF INCTORRENT -->4<!-- ELSE -->3<!-- ENDIF -->" style="text-align:left;">{acheats.USERS}</td><!-- ENDIF -->
+	</tr>
+<!-- END acheats -->
+</table>
+<!-- IF INCUNAME -->
+<table cellspacing="1">
+	<tr>
+		<td style="width:65%;vertical-align:top;">{L_ACHEAT_HLP2}</td>
+		<td style="vertical-align:top;">{ACHEAT_USTATS}</td>
+	</tr>
+</table>
+<!-- ENDIF -->
+<!-- ELSE -->
+	<div class="error" style="text-align:center;">{L_NO_DATA}</div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF S_VIEW_ACHEATS_USER -->
+<table cellspacing="1">
+	<tr>
+		<td>
+			{L_ACHEAT_USERID}
+		</td>
+		<td>
+			<input type="text" name="userid" value="{USERID}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_URATIO}&nbsp;<select name="uratio_ml" style="float:right;">{URATIO_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="uratio" value="{URATIO}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_URRATIO}&nbsp;<select name="urratio_ml" style="float:right;">{URRATIO_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="urratio" value="{URRATIO}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_UBONUS}&nbsp;<select name="ubonus_ml" style="float:right;">{UBONUS_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="ubonus" value="{UBONUS}" />
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			{L_ACHEAT_UUPLOADED}&nbsp;<select name="uuploaded_ml" style="float:right;">{UUPLOADED_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="uuploaded" value="{UUPLOADED}" />&nbsp;<select name="uupv">{UUPV}</select>&nbsp;[{UUPLOADEDV}]
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			{L_ACHEAT_UDOWNLOADED}&nbsp;<select name="udownloaded_ml" style="float:right;">{UDOWNLOADED_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="udownloaded" value="{UDOWNLOADED}" />&nbsp;<select name="udownv">{UDOWNV}</select>&nbsp;[{UDOWNLOADEDV}]
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_URDOWNLOADED}&nbsp;<select name="urdownloaded_ml" style="float:right;">{URDOWNLOADED_ML}</select>
+		</td>
+		<td>
+			<input type="text" name="urdownloaded" value="{URDOWNLOADED}" />&nbsp;<select name="urdownv">{URDOWNV}</select>&nbsp;[{URDOWNLOADEDV}]
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_UDATEFROM}
+		</td>
+		<td>
+			<input type="text" name="udatefrom" value="{UDATEFROM}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_UDATETO}
+		</td>
+		<td>
+			<input type="text" name="udateto" value="{UDATETO}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_START}
+		</td>
+		<td>
+			<input type="text" name="start" value="{START}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_END}
+		</td>
+		<td>
+			<input type="text" name="end" value="{END}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{L_ACHEAT_SORT}&nbsp;<select style="float:right;" name="order">{ORDER}</select>
+		</td>
+		<td>
+			{ACHEAT_SORT}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="row1">
+			{L_ACHEAT_SHOW}
+		</td>
+	</tr>
+	<tr>
+		<td class="row2">
+			{L_ACHEAT_INCTNAMES}&nbsp;<input id="c_torrent_opt" onclick="javascript:e_acheat_opt('torrent_opt', 'c_torrent_opt');" type="checkbox" class="radio" name="inctorrent" value="1"{INCTORRENT} />
+		</td>
+		<td>
+			&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" id="torrent_opt"<!-- IF not INCTORRENT --> style="display:none;"<!-- ENDIF -->>
+			<table cellpadding="0" cellspacing="0" style="border:0;">
+			<tr>
+				<td class="row2" colspan="2">
+					{L_ACHEAT_INCTNAMES}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_TORRENTID}
+				</td>
+				<td>
+					<input type="text" name="torrentid" value="{TORRENTID}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_TMAX}
+				</td>
+				<td>
+					<input type="text" name="tmax" value="{TMAX}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_UPLOADED}&nbsp;<select name="uploaded_ml" style="float:right;">{UPLOADED_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="uploaded" value="{UPLOADED}" />&nbsp;<select name="upv">{UPV}</select>&nbsp;[{UPLOADEDV}]
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_DOWNLOADED}&nbsp;<select name="downloaded_ml" style="float:right;">{DOWNLOADED_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="downloaded" value="{DOWNLOADED}" />&nbsp;<select name="downv">{DOWNV}</select>&nbsp;[{DOWNLOADEDV}]
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_TCOMPLETED}&nbsp;<select name="completed_ml" style="float:right;">{COMPLETED_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="completed" value="{COMPLETED}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_TRATIO}&nbsp;<select name="tratio_ml" style="float:right;">{TRATIO_ML}</select>
+				</td>
+				<td>
+					<input type="text" name="tratio" value="{TRATIO}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_UCOMPLETED}
+				</td>
+				<td>
+					{UCOMPLETED}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{L_ACHEAT_SORT}&nbsp;<select style="float:right;" name="order2">{ORDER2}</select>
+				</td>
+				<td>
+					{ACHEAT_SORT2}
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:center;">
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />&nbsp;<input class="button1" type="submit" id="submit" name="submit_acheats_user" value="{L_SUBMIT}" />
+		</td>
+	</tr>
+</table>
+{S_HIDDEN_FIELDS}
+{S_FORM_TOKEN}
+
+<!-- IF .acheats -->
+<table cellspacing="1">
+	<tr>
+		<th style="text-align:center;"><span title="{L_ACHEAT_HUNAME}">{L_ACHEAT_UNAME}</span></th>
+		<th style="text-align:center;"><span title="{L_ACHEAT_HURAT}">{L_ACHEAT_URAT}</span> | <span title="{L_ACHEAT_HURRAT}">{L_ACHEAT_URRAT}</span></th>
+		<th style="text-align:center;"><span title="{L_ACHEAT_HUUP}">{L_ACHEAT_UUP}</span> | <span title="{L_ACHEAT_HUDL}">{L_ACHEAT_UDL}</span></th>
+		<th style="text-align:center;"><span title="{L_ACHEAT_HURDL}">{L_ACHEAT_URDL}</span></th>
+		<th style="text-align:center;"><span title="{L_ACHEAT_HUBON1}">{L_ACHEAT_UBON1}</span> | <span title="{L_ACHEAT_HUBON2}">{L_ACHEAT_UBON2}</span></th>
+	</tr>
+<!-- BEGIN acheats -->
+	<!-- IF acheats.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td style="text-align:left;vertical-align:top;">{acheats.USERNAME}</td>
+		<td style="text-align:center;vertical-align:top;"><b>{acheats.URATIO}</b>/{acheats.URRATIO}</td>
+		<td style="text-align:center;vertical-align:top;">{acheats.UUPLOADED}/{acheats.UDOWNLOADED}</td>
+		<td style="text-align:center;vertical-align:top;">{acheats.URDOWNLOADED}</td>
+		<td style="text-align:center;vertical-align:top;">{acheats.UBONUS1}</td>
+	</tr>
+	<!-- IF INCTORRENT -->
+	<tr class="row1">
+		<td style="text-align:left;" colspan="5">{acheats.TORRENTS}</td>
+	</tr>
+	<!-- ENDIF -->
+<!-- END acheats -->
+</table>
+<!-- IF INCTORRENT -->
+<table cellspacing="1">
+	<tr>
+		<td style="width:50%;vertical-align:top;">{L_ACHEAT_HLP3}</td>
+	</tr>
+</table>
+<!-- ENDIF -->
+<!-- ELSE -->
+	<div class="error" style="text-align:center;">{L_NO_DATA}</div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+

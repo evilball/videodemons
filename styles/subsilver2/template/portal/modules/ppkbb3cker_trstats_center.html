@@ -1,0 +1,9 @@
+{$LR_BLOCK_H_L}<!-- IF $S_BLOCK_ICON --><img src="{$IMAGE_SRC}" width="{$IMAGE_WIDTH}" height="{$IMAGE_HEIGHT}" alt="" />&nbsp;<!-- ENDIF -->{$TITLE}{$LR_BLOCK_H_R}
+<table class="tablebg" cellspacing="1" width="100%">
+	<tr class="row1">
+		<td>
+			{TOTAL_SIZE} | {TOTAL_TORRENTS} | {TOTAL_COMMENTS} | {TOTAL_PEERS} | {TOTAL_SEED} | {TOTAL_LEECH}<br />{TOTAL_UP} | {TOTAL_DOWN} | {TOTAL_SUP} | {TOTAL_SDOWN}<br />{TOTAL_TDOWN} | {TOTAL_TUP} | {TOTAL_UDOWN} | {TOTAL_UUP}<br />{TOTAL_SPEEDUP} | {TOTAL_SPEEDDOWN}<!-- IF S_TINFO_THANKS or S_TINFO_SEEDREQUEST --><br /><!-- ENDIF --><!-- IF S_TINFO_THANKS -->{TOTAL_THANKS}<!-- ENDIF --><!-- IF S_TINFO_SEEDREQUEST --><!-- IF S_TINFO_THANKS --> | <!-- ENDIF -->{TOTAL_SEEDREQ}<!-- ENDIF -->
+		</td>
+	</tr>
+</table>
+{$LR_BLOCK_F_L}{$LR_BLOCK_F_R}

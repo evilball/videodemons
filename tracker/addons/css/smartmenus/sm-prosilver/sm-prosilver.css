@@ -1,0 +1,315 @@
+/*
+---------------------------------------------------------------
+  Note that styles you apply to the main menu items are inherited by the sub menus items too.
+  If you'd like to avoid this, you could use child selectors (not supported by IE6) - for example:
+  .sm-prosilver > li > a { ... } instead of .sm-prosilver a { ... }
+---------------------------------------------------------------*/
+
+
+/* Menu box
+===================*/
+
+	.sm-prosilver {
+		padding:0 10px;
+		background:#CADCEB;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+	}
+	.sm-prosilver-vertical {
+		padding:10px 0;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+	}
+	.sm-prosilver ul {
+		border:1px solid #bbb;
+		padding:5px 0;
+		background:#ECF1F3;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+		-moz-box-shadow:0 5px 9px rgba(0,0,0,0.2);
+		-webkit-box-shadow:0 5px 9px rgba(0,0,0,0.2);
+		box-shadow:0 5px 9px rgba(0,0,0,0.2);
+	}
+	/* first sub level carets */
+	.sm-prosilver > li > ul:before {
+		content:'';
+		position:absolute;
+		top:-18px;
+		left:30px;
+		width:0;
+		height:0;
+		overflow:hidden;
+		border-width:9px; /* tweak size of the arrow */
+		border-style:dashed dashed solid dashed;
+		border-color:transparent transparent #bbb transparent;
+	}
+	.sm-prosilver > li > ul:after {
+		content:'';
+		position:absolute;
+		top:-16px;
+		left:31px;
+		width:0;
+		height:0;
+		overflow:hidden;
+		border-width:8px;
+		border-style:dashed dashed solid dashed;
+		border-color:transparent transparent #ECF1F3 transparent;
+	}
+	/* no carets for vertical main */
+	.sm-prosilver-vertical > li > ul:before, .sm-prosilver-vertical > li > ul:after {
+		display:none;
+	}
+
+
+/* Menu items
+===================*/
+
+	.sm-prosilver a {
+		padding:12px;
+		color:#105289;
+		font-size:1.0em;
+		line-height:1.0em;
+		font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;
+		text-decoration:none;
+	}
+	.sm-prosilver a:hover, .sm-prosilver a:focus, .sm-prosilver a:active,
+	.sm-prosilver a.highlighted {
+		color:#D23600;
+	}
+	.sm-prosilver-vertical a:hover, .sm-prosilver-vertical a:focus, .sm-prosilver-vertical a:active,
+	.sm-prosilver-vertical a.highlighted {
+		background:#ECF1F3;
+	}
+	.sm-prosilver a.has-submenu {
+		padding-right:25px;
+	}
+	.sm-prosilver-vertical a,
+ 	.sm-prosilver ul a {
+		padding:10px 20px;
+	}
+	.sm-prosilver-vertical a.has-submenu,
+ 	.sm-prosilver ul a.has-submenu {
+		padding-right:40px;
+	}
+	.sm-prosilver ul a {
+		font-size:0.9em;
+	}
+	.sm-prosilver ul a:hover, .sm-prosilver ul a:focus, .sm-prosilver ul a:active,
+	.sm-prosilver ul a.highlighted {
+		color:#D23600;
+		background:#CADCEB;
+	}
+	/* current items - add the class manually to some item or check the "markCurrentItem" script option */
+	.sm-prosilver a.current, .sm-prosilver a.current:hover, .sm-prosilver a.current:focus, .sm-prosilver a.current:active {
+		color:#D23600;
+	}
+
+
+/* Sub menu indicators
+===================*/
+
+	.sm-prosilver a span.sub-arrow {
+		position:absolute;
+		right:12px;
+		top:50%;
+		margin-top:-3px;
+		/* we will use one-side border to create a triangle so that we don't use a real background image, of course, you can use a real image if you like too */
+		width:0;
+		height:0;
+		overflow:hidden;
+		border-width:4px; /* tweak size of the arrow */
+		border-style:solid dashed dashed dashed;
+		border-color:#105289 transparent transparent transparent;
+	}
+	.sm-prosilver-vertical a span.sub-arrow,
+ 	.sm-prosilver ul a span.sub-arrow {
+		right:15px;
+		top:50%;
+		margin-top:-5px;
+		border-width:5px;
+		border-style:dashed dashed dashed solid;
+		border-color:transparent transparent transparent #105289;
+	}
+
+
+/* Scrolling arrows containers for tall sub menus - test sub menu: "Sub test" -> "more..." -> "more..." in the default download package
+===================*/
+
+	.sm-prosilver span.scroll-up, .sm-prosilver span.scroll-down {
+		position:absolute;
+		display:none;
+		visibility:hidden;
+		overflow:hidden;
+		background:#ECF1F3;
+		height:20px;
+		/* width and position will be automatically set by the script */
+	}
+	.sm-prosilver span.scroll-up:hover, .sm-prosilver span.scroll-down:hover {
+		background:#CADCEB;
+	}
+	.sm-prosilver span.scroll-up-arrow, .sm-prosilver span.scroll-down-arrow {
+		position:absolute;
+		top:0;
+		left:50%;
+		margin-left:-6px;
+		/* we will use one-side border to create a triangle so that we don't use a real background image, of course, you can use a real image if you like too */
+		width:0;
+		height:0;
+		overflow:hidden;
+		border-width:6px; /* tweak size of the arrow */
+		border-style:dashed dashed solid dashed;
+		border-color:transparent transparent #105289 transparent;
+	}
+	.sm-prosilver span.scroll-up:hover span.scroll-up-arrow {
+		border-color:transparent transparent #D23600 transparent;
+	}
+	.sm-prosilver span.scroll-down-arrow {
+		top:8px;
+		border-style:solid dashed dashed dashed;
+		border-color:#105289 transparent transparent transparent;
+	}
+	.sm-prosilver span.scroll-down:hover span.scroll-down-arrow {
+		border-color:#D23600 transparent transparent transparent;
+	}
+
+
+/*
+---------------------------------------------------------------
+  Responsiveness
+  These will make the sub menus collapsible when the screen width is too small.
+---------------------------------------------------------------*/
+
+
+/* decrease horizontal main menu items left/right padding to avoid wrapping */
+@media screen and (max-width: 850px) {
+	.sm-prosilver:not(.sm-prosilver-vertical) > li > a {
+		padding-left:8px;
+		padding-right:8px;
+	}
+	.sm-prosilver:not(.sm-prosilver-vertical) > li > a.has-submenu {
+		padding-right:25px;
+	}
+}
+@media screen and (max-width: 750px) {
+	.sm-prosilver:not(.sm-prosilver-vertical) > li > a {
+		padding-left:3px;
+		padding-right:3px;
+	}
+	.sm-prosilver:not(.sm-prosilver-vertical) > li > a.has-submenu {
+		padding-right:25px;
+	}
+}
+
+
+@media screen and (max-width: 700px) {
+
+	/* The following will make the sub menus collapsible for small screen devices (it's not recommended editing these) */
+	ul.sm-prosilver{width:auto !important;}
+	ul.sm-prosilver ul{display:none;position:static !important;top:auto !important;left:auto !important;margin-left:0 !important;margin-top:0 !important;width:auto !important;min-width:0 !important;max-width:none !important;}
+	ul.sm-prosilver>li{float:none;}
+	ul.sm-prosilver>li>a,ul.sm-prosilver ul.sm-nowrap>li>a{white-space:normal;}
+	ul.sm-prosilver iframe{display:none;}
+
+	/* Uncomment this rule to disable completely the sub menus for small screen devices */
+	/*.sm-prosilver ul, .sm-prosilver span.sub-arrow, .sm-prosilver iframe {
+		display:none !important;
+	}*/
+
+
+/* Menu box
+===================*/
+
+	.sm-prosilver {
+		padding:0;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+	}
+	.sm-prosilver ul {
+		border:0;
+		padding:0;
+		/* darken the background of the sub menus */
+		background:rgba(130,130,130,0.1);
+		-moz-border-radius:0;
+		-webkit-border-radius:0;
+		border-radius:0;
+		-moz-box-shadow:none;
+		-webkit-box-shadow:none;
+		box-shadow:none;
+	}
+	/* no carets */
+	.sm-prosilver > li > ul:before, .sm-prosilver > li > ul:after {
+		display:none;
+	}
+
+
+/* Menu items
+===================*/
+
+	.sm-prosilver a {
+		padding:13px 5px 13px 28px !important;
+		color:#105289 !important;
+		background:transparent !important;
+	}
+	.sm-prosilver a.current {
+		color:#D23600 !important;
+	}
+	/* add some text indentation for the 2+ level sub menu items */
+	.sm-prosilver ul a {
+		border-left:8px solid transparent;
+	}
+	.sm-prosilver ul ul a {
+		border-left:16px solid transparent;
+	}
+	.sm-prosilver ul ul ul a {
+		border-left:24px solid transparent;
+	}
+	.sm-prosilver ul ul ul ul a {
+		border-left:32px solid transparent;
+	}
+	.sm-prosilver ul ul ul ul ul a {
+		border-left:40px solid transparent;
+	}
+
+
+/* Sub menu indicators
+===================*/
+
+	.sm-prosilver a span.sub-arrow,
+	.sm-prosilver ul a span.sub-arrow {
+		top:50%;
+		margin-top:-9px;
+		right:auto;
+		left:6px;
+		margin-left:0;
+		width:17px;
+		height:17px;
+		font:normal 16px/16px monospace !important;
+		text-align:center;
+		border:0;
+		text-shadow:none;
+		background:rgba(255,255,255,0.6);
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+	}
+	/* Hide sub indicator when item is expanded - we enable the item link when it's expanded */
+	.sm-prosilver a.highlighted span.sub-arrow {
+		display:none !important;
+	}
+
+
+/* Items separators
+===================*/
+
+	.sm-prosilver li {
+		border-top:1px solid rgba(0,0,0,0.05);
+	}
+	.sm-prosilver > li:first-child {
+		border-top:0;
+	}
+
+}

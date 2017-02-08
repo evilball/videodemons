@@ -1,0 +1,173 @@
+
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th>{L_PREVIEW}</th>
+</tr>
+<tr>
+	<td class="row1">{MINI_POST_IMG}<span class="postdetails">{L_POSTED}: {POST_DATE} &nbsp;&nbsp;&nbsp; {L_POST_SUBJECT}: {PREVIEW_SUBJECT}</span></td>
+</tr>
+<!-- IF S_HAS_POLL_OPTIONS -->
+	<tr>
+		<td class="row2" colspan="2" align="center"><br clear="all" />
+			<table cellspacing="0" cellpadding="4" border="0" align="center">
+			<tr>
+				<td align="center"><span class="gen"><b>{POLL_QUESTION}</b></span><br /><span class="gensmall">{L_POLL_LENGTH}</span></td>
+			</tr>
+			<tr>
+				<td align="center">
+					<table cellspacing="0" cellpadding="2" border="0">
+					<!-- BEGIN poll_option -->
+						<tr>
+							<td>
+							<!-- IF S_IS_MULTI_CHOICE -->
+								<input type="checkbox" class="radio" name="vote_id" value="" />
+							<!-- ELSE -->
+								<input type="radio" class="radio" name="vote_id" value="" />
+							<!-- ENDIF -->
+							</td>
+							<td><span class="gen">{poll_option.POLL_OPTION_CAPTION}</span></td>
+						</tr>
+					<!-- END poll_option -->
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><span class="gensmall">{L_MAX_VOTES}</span></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+<!-- ENDIF -->
+<tr>
+	<td class="row1">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><div class="postbody">
+
+					<!-- IF S_HAS_TRACKER_POSTER or S_HAS_TRACKER_SCREENSHOT -->
+					<div style="float:right;margin:0px 0px 10px 10px;">
+						<div class="tabber" id="tabber1">
+							<ul class="c">
+								<!-- IF S_HAS_TRACKER_POSTER --><li style="margin-left:0px;">{L_ATTACHMENTS_POSTER}</li><!-- ENDIF -->
+								<!-- IF S_HAS_TRACKER_SCREENSHOT --><li style="margin-left:0px;">{L_ATTACHMENTS_SCREENSHOT}</li><!-- ENDIF -->
+							</ul>
+							<!-- IF S_HAS_TRACKER_POSTER -->
+							<div class="t">
+								<div class="poster_sl">
+									<div id="sliderPoster" style="margin:0px auto;width:{POSTERS_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+										<ul style="margin-left:-5px;">
+										<!-- BEGIN torrent_poster_fields -->
+											<li style="margin:0px;width:{POSTERS_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+												<a href="{torrent_poster_fields.POSTER_LINK}" rel="prettyPhotoPosters<!-- IF TRACKER_POSTERS_COUNT -->[0]<!-- ENDIF -->"><img <!-- IF torrent_poster_fields.POSTER_WH_WIDTH -->width="{torrent_poster_fields.POSTER_WH_WIDTH}"<!-- ELSE -->height="{torrent_poster_fields.POSTER_WH_HEIGHT}"<!-- ENDIF --> src="{torrent_poster_fields.POSTER_SRC}" alt="" /></a>
+												<!-- IF torrent_poster_fields.POSTER_FORUM -->
+												<br /><a href="{torrent_poster_fields.POSTER_LINK}" title="{torrent_poster_fields.POSTER_FILENAME}">{torrent_poster_fields.POSTER_SHORTNAME}</a>
+												<br  />[ {L_TORRENT_SIZE} <b>{torrent_poster_fields.POSTER_FILESIZE}</b> {torrent_poster_fields.POSTER_SIZE_LANG} / {L_TORRENT_VIEWED} <b>{torrent_poster_fields.POSTER_DOWNLOADED}</b> ]
+												<!-- IF torrent_poster_fields.POSTER_COMMENT --><br />({L_FILE_COMMENT}: {torrent_poster_fields.POSTER_COMMENT})<!-- ENDIF -->
+												<!-- ENDIF -->
+											</li>
+										<!-- END torrent_poster_fields -->
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- ENDIF -->
+							<!-- IF S_HAS_TRACKER_SCREENSHOT -->
+							<div class="t">
+								<div class="screenshot_sl">
+									<div id="sliderScreen" style="margin:0px auto;width:{SCREENSHOTS_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+										<ul style="margin-left:-5px;">
+										<!-- BEGIN torrent_screenshot_fields -->
+											<li style="margin:0px;width:{SCREENSHOTS_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+												<a href="{torrent_screenshot_fields.SCREENSHOT_LINK}" rel="prettyPhotoSscreenshots<!-- IF TRACKER_SCREENSHOTS_COUNT -->[0]<!-- ENDIF -->"><img <!-- IF torrent_screenshot_fields.SCREENSHOT_WH_WIDTH -->width="{torrent_screenshot_fields.SCREENSHOT_WH_WIDTH}"<!-- ELSE -->height="{torrent_screenshot_fields.SCREENSHOT_WH_HEIGHT}"<!-- ENDIF --> src="{torrent_screenshot_fields.SCREENSHOT_SRC}" alt="" /></a>
+												<!-- IF torrent_screenshot_fields.SCREENSHOT_FORUM -->
+												<br /><a href="{torrent_screenshot_fields.SCREENSHOT_LINK}" title="{torrent_screenshot_fields.SCREENSHOT_FILENAME}">{torrent_screenshot_fields.SCREENSHOT_SHORTNAME}</a>
+												<br  />[ {L_TORRENT_SIZE} <b>{torrent_screenshot_fields.SCREENSHOT_FILESIZE}</b> / {L_TORRENT_VIEWED} <b>{torrent_screenshot_fields.SCREENSHOT_DOWNLOADED}</b> ]
+												<!-- IF torrent_screenshot_fields.SCREENSHOT_COMMENT --><br />({L_FILE_COMMENT}: {torrent_screenshot_fields.SCREENSHOT_COMMENT})<!-- ENDIF -->
+												<!-- ENDIF -->
+											</li>
+										<!-- END torrent_screenshot_fields -->
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- ENDIF -->
+						</div>
+					</div>
+					<!-- ENDIF -->
+
+					{PREVIEW_MESSAGE}
+				</div>
+			<!-- IF .attachment -->
+				<br clear="all" /><br />
+
+				<table class="tablebg" width="100%" cellspacing="1">
+				<tr>
+					<td class="row3"><b class="genmed">{L_ATTACHMENTS}: </b></td>
+				</tr>
+				<!-- BEGIN attachment -->
+					<tr>
+						<td class="row2">{attachment.DISPLAY_ATTACHMENT}</td>
+					</tr>
+				<!-- END attachment -->
+				</table>
+			<!-- ENDIF -->
+			<!-- IF PREVIEW_SIGNATURE --><div class="postbody signature"><br />_________________<br />{PREVIEW_SIGNATURE}</div><!-- ENDIF --></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td class="spacer"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+</tr>
+</table>
+
+<!-- IF S_HAS_TRACKER_TORRENT -->
+<div class="panel" id="torrblock">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<table class="tablebg torrblock" style="width:100%;margin:5px 0px;" cellspacing="1">
+		<tr class="row1">
+			<td valign="top" width="100%">
+				<div id="c_set_error" style="text-align:center;color:#FF0000;font-weight:bold;"></div>
+				<div class="tabber" id="tabber2">
+					<ul class="c">
+						<!-- IF S_HAS_TRACKER_TORRENT --><li style="margin-left:0px;">{L_ATTACHMENTS_TORRENT}</li><!-- ENDIF -->
+					</ul>
+					<!-- IF S_HAS_TRACKER_TORRENT -->
+					<div class="t">
+						<div class="torrent_sl" style="line-height:1.3em;">
+							<table width="100%"><tr>
+							<!-- IF S_HAS_TRACKER_TORRENT -->
+							<td align="center" style="line-height:1.3em;"<!-- IF TORRENT_INFO_STAT --> width="30%"<!-- ENDIF -->>
+								<!-- IF S_HAS_TRACKER_TORRENT -->
+									<!-- BEGIN torrent_fields -->
+										<!-- IF FORUM_IMAGE --><img src="{FORUM_IMAGE}" alt="{FORUM_NAME}" title="{FORUM_NAME}" /> <!-- ENDIF -->
+										<!-- IF torrent_fields.TORRENT_BONUS --><img src="{torrent_fields.TORRENT_BONUS_SRC_IMG}" alt="{torrent_fields.TORRENT_BONUS_TEXT}"  title="{torrent_fields.TORRENT_BONUS_TEXT}"/> <!-- ENDIF -->
+										<!-- IF torrent_fields.TORRENT_FREE --><img src="{torrent_fields.TORRENT_FREE_SRC_IMG}" alt="{torrent_fields.TORRENT_FREE_TEXT}"  title="{torrent_fields.TORRENT_FREE_TEXT}"/> <!-- ENDIF -->
+										<!-- IF torrent_fields.TORRENT_UP --><img src="{torrent_fields.TORRENT_UP_SRC_IMG}" alt="{torrent_fields.TORRENT_UP_TEXT}"  title="{torrent_fields.TORRENT_UP_TEXT}"/> <!-- ENDIF -->
+										<!-- IF torrent_fields.TORRENT_FORB --><img src="{torrent_fields.TORRENT_FORB_SRC_IMG}" alt="{torrent_fields.TORRENT_FORB_TEXT}"  title="{torrent_fields.TORRENT_FORB_TEXT}"/> <!-- ENDIF -->
+										<!-- IF torrent_fields.TORRENT_REQ_UPLOAD --><img src="{torrent_fields.TORRENT_REQ_UPLOAD_SRC_IMG}" alt="{torrent_fields.TORRENT_REQ_UPLOAD_TEXT}"  title="{torrent_fields.TORRENT_REQ_UPLOAD_TEXT}"/> <!-- ENDIF -->
+										<!-- IF torrent_fields.TORRENT_REQ_RATIO --><img src="{torrent_fields.TORRENT_REQ_RATIO_SRC_IMG}" alt="{torrent_fields.TORRENT_REQ_RATIO_TEXT}"  title="{torrent_fields.TORRENT_REQ_RATIO_TEXT}"/> <!-- ENDIF -->
+										<!-- IF torrent_fields.TORRENT_WAIT --><img src="{torrent_fields.TORRENT_WAIT_SRC_IMG}" alt="{torrent_fields.TORRENT_WAIT_TEXT}"  title="{torrent_fields.TORRENT_WAIT_TEXT}"/> <!-- ENDIF -->
+										<!-- IF torrent_fields.TORRENT_LINK -->
+											<a href="{torrent_fields.TORRENT_SRC_LINK}" title="{L_DOWNLOAD_TORRENT}"><img src="{torrent_fields.TORRENT_DOWNLOAD_SRC_IMG}" alt="{L_DOWNLOAD_TORRENT}" /></a>
+										<!-- IF torrent_fields.TORRENT_MAGNET_LINK --><a href="{torrent_fields.TORRENT_MAGNET_LINK}" title="{L_TORRENT_MAGNET_LINK}"><img src="{torrent_fields.TORRENT_MAGNET_SRC_IMG}" alt="{L_TORRENT_MAGNET_LINK}" /></a> <!-- ENDIF -->
+										<!-- ENDIF -->
+										<br /><!-- IF torrent_fields.TORRENT_LINK --><a href="{torrent_fields.TORRENT_SRC_LINK}" title="{torrent_fields.TORRENT_FILENAME}">{L_DOWNLOAD_TORRENT}</a><!-- ELSE -->{torrent_fields.TORRENT_SHORTNAME}<!-- ENDIF -->
+										<br  />[ {L_TORRENT_SIZE} <b>{torrent_fields.TORRENT_FILESIZE}</b> / {L_TORRENT_VIEWED} <b>{torrent_fields.TORRENT_DOWNLOADED}</b> ]
+										<!-- IF torrent_fields.TORRENT_COMMENT --><br />({L_FILE_COMMENT}: {torrent_fields.TORRENT_COMMENT})<!-- ENDIF -->
+									<!-- END torrent_fields -->
+								<!-- ENDIF -->
+							</td><!-- ENDIF --></tr>
+							</table>
+						</div>
+					</div>
+					<!-- ENDIF -->
+				</div>
+			</td>
+		</tr>
+	</table>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+
+<br clear="all" />

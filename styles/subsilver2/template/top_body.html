@@ -1,0 +1,199 @@
+<!-- INCLUDE overall_header.html -->
+
+<table width="100%" cellspacing="1">
+	<tr>
+		<td><span class="titles">{L_TRACKER_TOP}</span><br /></td>
+	</tr>
+</table>
+
+<table width="100%" cellspacing="1">
+	<tr>
+		<td class="cat" height="20">{L_TOP_BY_UPLOAD}</td>
+	</tr>
+</table>
+<table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr>
+		<th style="width:30px;">#</th>
+		<th align="left"><b>{L_USERNAME}</b></th>
+		<th><b>{L_TORRENT_INFO_HEADER_UPLOADED}</b></th>
+		<th><b>{L_TORRENT_INFO_HEADER_DOWNLOADED}</b></th>
+		 <!-- IF S_TINFO_BONUS1 --><th><b>{L_TRACKER_USER_BONUS1}</b></th><!-- ENDIF -->
+		<th><b>{L_TORRENT_INFO_HEADER_RATIO}</b></th>
+		<th><b>{L_TRACKER_USER_RRATIO}</b></th>
+	</tr>
+	<!-- BEGIN memberrow1 -->
+	<!-- IF memberrow1.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td align="center">&nbsp;{memberrow1.ROW_NUMBER}&nbsp;</td>
+		<td align="left">{memberrow1.USERNAME}</td>
+		<td align="center">{memberrow1.UP}</td>
+		<td align="center">{memberrow1.DOWN}</td>
+		 <!-- IF S_TINFO_BONUS1 --><td align="center">{memberrow1.BONUS1}</td><!-- ENDIF -->
+		<td align="center">{memberrow1.UP_DOWN_RATIO}</td>
+		<td align="center">{memberrow1.UP_DOWN_RRATIO}</td>
+	</tr>
+	<!-- END memberrow1 -->
+</table>
+<!-- IF not .memberrow1 -->
+	<div style="text-align:center;">{L_NO_DATA}</div>
+<!-- ENDIF -->
+<br />
+
+<table width="100%" cellspacing="1">
+	<tr>
+		<td class="cat" height="20">{L_TOP_BY_RATIO}</td>
+	</tr>
+</table>
+<table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr>
+		<th style="width:30px;">#</th>
+		<th align="left"><b>{L_USERNAME}</b></th>
+		<th><b>{L_TORRENT_INFO_HEADER_UPLOADED}</b></th>
+		<th><b>{L_TORRENT_INFO_HEADER_DOWNLOADED}</b></th>
+		 <!-- IF S_TINFO_BONUS1 --><th><b>{L_TRACKER_USER_BONUS1}</b></th><!-- ENDIF -->
+
+		<th><b>{L_TORRENT_INFO_HEADER_RATIO}</b></th>
+		<th><b>{L_TRACKER_USER_RRATIO}</b></th>
+	</tr>
+	<!-- BEGIN memberrow -->
+	<!-- IF memberrow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td align="center">&nbsp;{memberrow.ROW_NUMBER}&nbsp;</td>
+		<td>{memberrow.USERNAME}</td>
+		<td align="center">{memberrow.UP}</td>
+		<td align="center">{memberrow.DOWN}</td>
+		 <!-- IF S_TINFO_BONUS1 --><td align="center">{memberrow.BONUS1}</td><!-- ENDIF -->
+		<td align="center">{memberrow.UP_DOWN_RATIO}</td>
+		<td align="center">{memberrow.UP_DOWN_RRATIO}</td>
+	</tr>
+	<!-- END memberrow -->
+</table>
+<!-- IF not .memberrow -->
+	<div style="text-align:center;">{L_NO_DATA}</div>
+<!-- ENDIF -->
+<br />
+
+<table width="100%" cellspacing="1">
+	<tr>
+		<td class="cat" height="20">{L_TOP_BY_DOWNSUM}</td>
+	</tr>
+</table>
+<table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr>
+		<th style="width:30px;">#</th>
+		<th align="left"><b>{L_USERNAME}</b></th>
+		<th align="left"><b>{L_JOINED}</b></th>
+		<th><b>{L_TRACKER_USER_TORRENTS}</b></th>
+		<th><b>{L_TORRENT_COMPLETED}</b></th>
+		<th><b>{L_TRACKER_AVG}</b></th>
+	</tr>
+	<!-- BEGIN countrow -->
+	<!-- IF countrow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td align="center">&nbsp;{countrow.ROW_NUMBER}&nbsp;</td>
+		<td>{countrow.USERNAME}</td>
+		<td>{countrow.JOINED}</td>
+		<td align="center">{countrow.RELEASES}</td>
+		<td align="center">{countrow.DL_COUNT}</td>
+		<td align="center">{countrow.DL_AVG}</td>
+	</tr>
+	<!-- END countrow -->
+</table>
+<!-- IF not .countrow -->
+	<div style="text-align:center;">{L_NO_DATA}</div>
+<!-- ENDIF -->
+<br />
+
+<!-- IF TOP_BY_AUTHOR -->
+<table width="100%" cellspacing="1">
+	<tr>
+		<td class="cat" height="20">{L_TOP_BY_AUTHOR}</td>
+	</tr>
+</table>
+<table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr>
+		<th style="width:30px;">#</th>
+		<th align="left"><b>{L_USERNAME}</b></th>
+		<th align="left"><b>{L_JOINED}</b></th>
+		<th><b>{L_TRACKER_USER_TORRENTS}</b></th>
+		<th><b>{L_TORRENT_COMPLETED}</b></th>
+	</tr>
+	<!-- BEGIN releaserow -->
+	<!-- IF releaserow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td align="center">&nbsp;{releaserow.ROW_NUMBER}&nbsp;</td>
+		<td>{releaserow.USERNAME}</td>
+		<td>{releaserow.JOINED}</td>
+		<td align="center">{releaserow.RELEASES}</td>
+		<td align="center">{releaserow.DL_COUNT}</td>
+	</tr>
+	<!-- END releaserow -->
+</table>
+<!-- IF not .releaserow -->
+	<div style="text-align:center;">{L_NO_DATA}</div>
+<!-- ENDIF -->
+<br />
+<!-- ENDIF -->
+
+<a name="bt"></a>
+<table width="100%" cellspacing="1">
+	<tr>
+		<td class="cat" height="20">{L_TOP_BY_TORRENTS}</td><td align="right" class="cat"><strong>{L_TOP_BY}:</strong> <a href="{U_TOP_WEEK}#bt">{L_TOP_WEEK}</a> <a href="{U_TOP_MONTH}#bt">{L_TOP_MONTH}</a> <a href="{U_TOP_ALL}#bt">{L_TOP_ALL}</a></td>
+	</tr>
+</table>
+<table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr>
+		<th style="width:30px;">#</th>
+		<th align="left"><b>{L_AUTHOR}</b></th>
+		<th align="left"><b>{L_TOPIC}</b></th>
+		<th align="left"><b>{L_FORUM}</b></th>
+		<th><b>{L_TORRENT_COMPLETED}</b></th>
+		<th align="left"><b>{L_TORRENT_ADDED}</b></th>
+	</tr>
+	<!-- BEGIN torrentsrow -->
+	<!-- IF torrentsrow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td align="center">&nbsp;{torrentsrow.ROW_NUMBER}&nbsp;</td>
+		<td>{torrentsrow.USERNAME}</td>
+		<td align="left"><a href="{torrentsrow.TOPIC_HREF}">{torrentsrow.TOPIC_TITLE}</a></td>
+		<td><a href="{torrentsrow.FORUM_HREF}">{torrentsrow.FORUM_NAME}</a></td>
+		<td align="center">{torrentsrow.COMPLETE_COUNT}</td>
+		<td>{torrentsrow.REG_TIME}</td>
+	</tr>
+	<!-- END torrentsrow -->
+</table>
+<!-- IF not .torrentsrow -->
+	<div style="text-align:center;">{L_NO_DATA}</div>
+<!-- ENDIF -->
+<br />
+
+
+<!-- IF TOP_BY_THANKS -->
+<a name="bth"></a>
+<table width="100%" cellspacing="1">
+	<tr>
+		<td class="cat" height="20">{L_TOP_BY_THANKS}</td><td align="right" class="cat"><strong>{L_TOP_BY}:</strong> <a href="{U_TOP_WEEK}#bth">{L_TOP_WEEK}</a> <a href="{U_TOP_MONTH}#bth">{L_TOP_MONTH}</a> <a href="{U_TOP_ALL}#bth">{L_TOP_ALL}</a></td>
+	</tr>
+</table>
+<table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr>
+		<th style="width:30px;">#</th>
+		<th align="left"><b>{L_AUTHOR}</b></th>
+		<th align="left"><b>{L_TOPIC}</b></th>
+		<th align="left"><b>{L_FORUM}</b></th>
+		<th><b>{L_TORRENT_THANKS}</b></th>
+		<th align="left"><b>{L_TORRENT_ADDED}</b></th>
+	</tr>
+	<!-- BEGIN thanksrow -->
+	<!-- IF thanksrow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td align="center">&nbsp;{thanksrow.ROW_NUMBER}&nbsp;</td>
+		<td>{thanksrow.USERNAME}</td>
+		<td align="left"><a href="{thanksrow.TOPIC_HREF}">{thanksrow.TOPIC_TITLE}</a></td>
+		<td><a href="{thanksrow.FORUM_HREF}">{thanksrow.FORUM_NAME}</a></td>
+		<td align="center">{thanksrow.THANKS_COUNT}</td>
+		<td>{thanksrow.REG_TIME}</td>
+	</tr>
+	<!-- END thanksrow -->
+</table>
+<!-- IF not .thanksrow -->
+	<div style="text-align:center;">{L_NO_DATA}</div>
+<!-- ENDIF -->
+<br />
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

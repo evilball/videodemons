@@ -1,0 +1,125 @@
+<!-- IF not CHAT_WINDOW -->
+
+<!-- INCLUDE overall_header.html -->
+
+<!-- ELSE -->
+
+<!-- INCLUDE simple_header.html -->
+
+<!-- ENDIF -->
+<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+<!-- IF U_MCP --><p>[&nbsp;<a href="{U_MCP}">{L_MCP}</a>&nbsp;]</p><!-- ENDIF -->
+<h2><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
+
+<!-- IF FORUM_DESC or MODERATORS or U_MCP -->
+<div>
+	<!-- NOTE: remove the style="display: none" when you want to have the forum description on the forum body -->
+	<!-- IF FORUM_DESC --><div style="display: none !important;">{FORUM_DESC}<br /></div><!-- ENDIF -->
+	<!-- IF MODERATORS --><p><strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}</p><!-- ENDIF -->
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_FORUM_RULES -->
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<!-- IF U_FORUM_RULES -->
+			<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+		<!-- ELSE -->
+			<strong>{L_FORUM_RULES}</strong><br />
+			{FORUM_RULES}
+		<!-- ENDIF -->
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_SUBFORUM -->
+	<!-- INCLUDE forumlist_body.html -->
+<!-- ENDIF -->
+
+<!-- IF S_IS_LOCKED -->
+	<div class="topic-actions" <!-- IF S_HAS_SUBFORUM -->style="margin-top: 2em;"<!-- ENDIF -->>
+
+	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
+		<div class="buttons">
+			<div class="locked-icon"><a href="{U_POST_NEW_TOPIC}" title="{L_FORUM_LOCKED}"><span></span>{L_FORUM_LOCKED}</a></div>
+		</div>
+	<!-- ENDIF -->
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_NO_READ_ACCESS -->
+
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<strong>{L_NO_READ_ACCESS}</strong>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+
+		<form action="{S_LOGIN_ACTION}" method="post">
+
+		<div class="panel">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<div class="content">
+				<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
+
+				<fieldset class="fields1">
+				<dl>
+					<dt><label for="username">{L_USERNAME}:</label></dt>
+					<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" /></dd>
+				</dl>
+				<dl>
+					<dt><label for="password">{L_PASSWORD}:</label></dt>
+					<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" /></dd>
+					<!-- IF S_AUTOLOGIN_ENABLED --><dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="3" /> {L_LOG_ME_IN}</label></dd><!-- ENDIF -->
+					<dd><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="4" /> {L_HIDE_ME}</label></dd>
+				</dl>
+				<dl>
+					<dt>&nbsp;</dt>
+					<dd><input type="submit" name="login" tabindex="5" value="{L_LOGIN}" class="button1" /></dd>
+				</dl>
+				{S_LOGIN_REDIRECT}
+				</fieldset>
+			</div>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		</form>
+
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+<!-- IF not S_CHAT_NOTIN or S_READ_MODE -->
+	<!-- INCLUDE viewforum_chat_scripts.html -->
+<!-- ENDIF -->
+
+<!-- INCLUDE chat_body.html -->
+
+<!-- IF not CHAT_WINDOW --><!-- INCLUDE jumpbox.html --><!-- ENDIF -->
+
+
+<!-- IF not CHAT_WINDOW -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<h3><!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --></h3>
+	<p>{LOGGED_IN_USER_LIST}</p>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_POST_INFO -->
+	<h3>{L_FORUM_PERMISSIONS}</h3>
+	<p><!-- BEGIN rules -->{rules.RULE}<br /><!-- END rules --></p>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->
+
+<!-- ELSE -->
+
+<!-- INCLUDE simple_footer.html -->
+
+<!-- ENDIF -->

@@ -1,0 +1,8 @@
+.folded
+{
+	background: transparent url(./../tracker/addons/images/spoiler/icon_plus_1.gif) no-repeat left center;
+}
+.unfolded
+{
+	background: transparent url(./../tracker/addons/images/spoiler/icon_minus_1.gif) no-repeat left center;
+}

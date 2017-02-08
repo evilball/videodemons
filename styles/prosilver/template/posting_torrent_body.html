@@ -1,0 +1,27 @@
+
+<!-- INCLUDE overall_header.html -->
+
+<form action="{S_POST_ACTION}" method="get">
+<div class="panel bg2">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<h3>{UPLOAD_TORRENT}</h3>
+
+		<fieldset class="fields2">
+		<dl style="clear: left;">
+			<dt><b>{L_SELECT_FORUM}</b>:</dt>
+			<dd><select name="f">{S_UPLOAD_TORRENT}</select></dd>
+		</dl>
+		<dl style="clear: left;">
+			<dt>&nbsp;</dt>
+			<dd>
+				<input type="hidden" name="mode" value="post" />
+				<input class="button1" type="submit" value="{L_SUBMIT}" />
+			</dd>
+		</dl>
+		</fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

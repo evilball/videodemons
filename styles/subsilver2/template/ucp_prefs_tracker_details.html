@@ -1,0 +1,73 @@
+<!-- INCLUDE ucp_header.html -->
+
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th colspan="2" valign="middle">{L_TITLE}</th>
+</tr>
+
+<!-- IF ERROR -->
+	<tr>
+		<td class="row3" colspan="2" align="center"><span class="gensmall error">{ERROR}</span></td>
+	</tr>
+<!-- ENDIF -->
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_RECREATE_PASSKEY}: </b><br /><span class="gensmall">{L_RECREATE_PASSKEY_EXPLAIN}</span></td>
+	<td class="row2"><input class="radio" type="checkbox" name="recreate_passkey" value="1" /></td>
+</tr>
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_CLEAR_TRIGHTS}: </b><br /><span class="gensmall">{L_CLEAR_TRIGHTS_EXPLAIN}</span></td>
+	<td class="row2"><input class="radio" type="checkbox" name="clear_trights" value="1" /></td>
+</tr>
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_CLEAR_PEERS}: </b><br /><span class="gensmall">{L_CLEAR_PEERS_EXPLAIN}</span></td>
+	<td class="row2">
+		<select name="clear_peers">
+			<option value="0">{L_NO}</option>
+			<option value="time">{L_CLEAR_PEERS_TIME}</option>
+			<option value="all">{L_CLEAR_PEERS_ALL}</option>
+		</select>
+	</td>
+</tr>
+<!-- IF S_TRBONUS_ENABLED -->
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_COLLECT_TBONUS}: </b><br /><span class="gensmall">{L_COLLECT_TBONUS_EXPLAIN}</span></td>
+	<td class="row2"><input class="radio" type="checkbox" name="collect_tbonus" value="1" /></td>
+</tr>
+<!-- ENDIF -->
+
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_USER_TBONUS_RESET}: </b><br /><span class="gensmall">{L_USER_TBONUS_RESET_EXPLAIN}</span></td>
+	<td class="row2"><input class="radio" type="checkbox" name="reset_bonus" value="1" /></td>
+</tr>
+<!-- IF S_UNREGTORR_ENABLED -->
+	<tr>
+		<td class="row1"><b class="genmed">{L_UNREGTORR}: </b><br />{L_UNREGTORR_EXPLAIN}</td>
+		<td class="row2">
+			<input type="text" class="post" maxlength="255" name="unregtorr_passkey" value="{S_UNREGTORR_ENABLED}" />
+		</td>
+	</tr>
+<!-- ENDIF -->
+	<tr>
+		<td class="row1"><b class="genmed">{L_UTO_PORTAL}: </b><br />{L_UTO_PORTAL_EXPLAIN}</td>
+		<td class="row2">
+			<input class="radio" type="checkbox" name="uto_portal" value="1"<!-- IF S_UTO_PORTAL --> checked="checked"<!-- ENDIF --> />
+		</td>
+	</tr>
+	<tr>
+		<td class="row1"><b class="genmed">{L_UTO_CHAT}: </b><br />{L_UTO_CHAT_EXPLAIN}</td>
+		<td class="row2">
+			<input class="radio" type="checkbox" name="uto_chat" value="1"<!-- IF S_UTO_CHAT --> checked="checked"<!-- ENDIF --> />
+		</td>
+	</tr>
+	<tr>
+		<td class="row1"><b class="genmed"><!-- IF S_TDT_TYPE -->{L_UTO_TDT}<!-- ELSE -->{L_UTO_TDT2}<!-- ENDIF -->: </b><br /><!-- IF S_TDT_TYPE -->{L_UTO_TDT_EXPLAIN}<!-- ELSE -->{L_UTO_TDT2_EXPLAIN}<!-- ENDIF --></td>
+		<td class="row2">
+			<input class="radio" type="checkbox" name="uto_tdt" value="1"<!-- IF S_UTO_TDT --> checked="checked"<!-- ENDIF --> />
+		</td>
+	</tr>
+	<tr>
+		<td class="cat" colspan="2" align="center"><input class="btnmain" type="submit" name="submit" value="{L_SUBMIT}" />&nbsp;&nbsp;<input class="btnlite" type="reset" value="{L_RESET}" name="reset" /></td>
+	</tr>
+</table>
+
+<!-- INCLUDE ucp_footer.html -->

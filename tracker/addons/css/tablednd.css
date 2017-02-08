@@ -1,0 +1,15 @@
+
+.tDnD_whileDrag {
+    background-color: #eee;
+}
+
+td.dragHandle {
+
+}
+
+td.showDragHandle {
+	background-image: url(./../images/tablednd/updown2.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: move;
+}

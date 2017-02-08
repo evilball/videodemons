@@ -1,0 +1,23 @@
+
+<!-- IF S_SET_RTRACKER -->
+		<dl>
+			<dt><b>{L_RTRACKER}</b></dt>
+			<dd><b>{L_ACTION}</b></dd>
+		</dl>
+<!-- BEGIN rtrackers -->
+		<dl>
+			<dt><input type="text" name="rtracker_url[{rtrackers.COUNT}]" size="40" value="{rtrackers.URL}" title="{L_ZONE_RTRACK_URL}" /> <input type="text" name="rtracker_append[{rtrackers.COUNT}]" size="30" maxlength="255" value="{rtrackers.APPEND}" title="{L_ZONE_RTRACK_QSTRING}" /> <input type="text" name="rtracker_fill[{rtrackers.COUNT}]" size="20" maxlength="64" value="{rtrackers.FILL}" title="{L_ZONE_RTRACK_PKEY}" /></dt>
+			<dd><!-- IF rtrackers.URL -->
+				{rtrackers.TYPE}<br />[<input type="checkbox" name="rtracker_delete[{rtrackers.COUNT}]" value="1" /> - {L_DELETE}]
+				<!-- ELSE -->
+				{rtrackers.TYPE}
+				<br /><b>{L_ADD}</b>
+				<!-- ENDIF -->
+			</dd>
+		</dl>
+		<div>{rtrackers.STAT}</div>
+		<hr />
+<!-- END rtrackers -->
+<!-- ENDIF -->
+
+{S_HIDDEN_FIELDS}

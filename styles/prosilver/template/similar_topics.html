@@ -1,0 +1,52 @@
+<div class="forumbg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<ul class="topiclist">
+		<li class="header">
+			<dl class="icon">
+				<dt><!-- IF S_IS_TRACKER -->{L_SIMILAR_TORRENTS}<!-- ELSE -->{L_SIMILAR_TOPICS}<!-- ENDIF --></dt>
+				<dd class="posts">{L_REPLIES}</dd>
+				<dd class="views">{L_VIEWS}</dd>
+				<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist topics">
+	<!-- BEGIN similar -->
+		<li class="row <!-- IF similar.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+			<dl class="icon" style="background-image: url({similar.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
+				<dt <!-- IF similar.TOPIC_ICON_IMG -->style="background-image: url({T_ICONS_PATH}{similar.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF -->>
+
+						<!-- IF similar.TORRENT_LINK -->
+							<a href="{similar.TORRENT_SRC_LINK}" title="{L_DOWNLOAD_TORRENT}"><img src="{similar.TORRENT_DOWNLOAD_SRC_IMG}" alt="{L_DOWNLOAD_TORRENT}" /></a>
+							<!-- IF similar.TORRENT_MAGNET_LINK --><a href="{similar.TORRENT_MAGNET_LINK}" title="{L_TORRENT_MAGNET_LINK}"><img src="{similar.TORRENT_MAGNET_SRC_IMG}" alt="{L_TORRENT_MAGNET_LINK}" /></a> <!-- ENDIF -->
+						<!-- ENDIF -->
+					<!-- IF similar.TORRENT_MARK --><b>{similar.TORRENT_MARK}</b> <!-- ENDIF -->
+
+					<!-- IF similar.S_UNREAD_TOPIC --><a href="{similar.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
+					<a href="{similar.U_VIEW_TOPIC}" class="topictitle">{similar.TOPIC_TITLE}</a> <!-- IF not S_IS_TRACKER -->{similar.ATTACH_ICON_IMG}<!-- ENDIF -->
+					<!-- IF similar.S_TOPIC_UNAPPROVED or similar.S_POSTS_UNAPPROVED --><a href="{similar.U_MCP_QUEUE}">{similar.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+					<!-- IF similar.S_TOPIC_REPORTED --><a href="{similar.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+
+					<!-- IF similar.TORRENT_BONUS --><img src="{similar.TORRENT_BONUS_SRC_IMG}" alt="{similar.TORRENT_BONUS_TEXT}"  title="{similar.TORRENT_BONUS_TEXT}"/> <!-- ENDIF -->
+					<!-- IF similar.TORRENT_FREE --><img src="{similar.TORRENT_FREE_SRC_IMG}" alt="{similar.TORRENT_FREE_TEXT}"  title="{similar.TORRENT_FREE_TEXT}"/> <!-- ENDIF -->
+					<!-- IF similar.TORRENT_FORB --><img src="{similar.TORRENT_FORB_SRC_IMG}" alt="{similar.TORRENT_FORB_TEXT}"  title="{similar.TORRENT_FORB_TEXT}"/> <!-- ENDIF -->
+					<!-- IF similar.TORRENT_REQ_UPLOAD --><img src="{similar.TORRENT_REQ_UPLOAD_SRC_IMG}" alt="{similar.TORRENT_REQ_UPLOAD_TEXT}"  title="{similar.TORRENT_REQ_UPLOAD_TEXT}"/> <!-- ENDIF -->
+					<!-- IF similar.TORRENT_REQ_RATIO --><img src="{similar.TORRENT_REQ_RATIO_SRC_IMG}" alt="{similar.TORRENT_REQ_RATIO_TEXT}"  title="{similar.TORRENT_REQ_RATIO_TEXT}"/> <!-- ENDIF -->
+					<!-- IF similar.TORRENT_WAIT --><img src="{similar.TORRENT_WAIT_SRC_IMG}" alt="{similar.TORRENT_WAIT_TEXT}"  title="{similar.TORRENT_WAIT_TEXT}"/> <!-- ENDIF -->
+					<br />
+					<!-- IF similar.PAGINATION --><strong class="pagination"><span>{similar.PAGINATION}</span></strong><!-- ENDIF -->
+					{L_POST_BY_AUTHOR} {similar.TOPIC_AUTHOR_FULL} &raquo; {similar.FIRST_POST_TIME}
+					{L_IN} <a href="{similar.U_VIEW_FORUM}">{similar.FORUM_TITLE}</a><!-- IF similar.S_HAS_TORRENT -->, {L_TORRENT_SIZE}: <b>{similar.TORRENT_SIZE_VAL}</b>, {L_TORRENT_HEALTH}: <b>{similar.TORRENT_HEALTH_VAL}</b>%<!-- ENDIF -->
+				</dt>
+				<dd class="posts" style="line-height:1.5em;">{similar.TOPIC_REPLIES}<!-- IF similar.S_HAS_TORRENT --><br /><span class="my_tt seed" title="{L_TORRENT_SEEDERS}"><b>{similar.TORRENT_SEEDERS_VAL}</b></span>|<span class="my_tt leech" title="{L_TORRENT_LEECHERS}"><b>{similar.TORRENT_LEECHERS_VAL}</b></span><!-- ENDIF --></dd>
+				<dd class="views" style="line-height:1.5em;">{similar.TOPIC_VIEWS}<!-- IF similar.S_HAS_TORRENT --><br /><span class="my_tt complet" title="{L_TORRENT_COMPLETED}"><b>{similar.TORRENT_COMPLETED_VAL}</b></span><!-- ENDIF --></dd>
+				<dd class="lastpost"><span>
+					{L_POST_BY_AUTHOR} {similar.LAST_POST_AUTHOR_FULL}
+					<!-- IF not S_IS_BOT --><a href="{similar.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{similar.LAST_POST_TIME}<br /> </span>
+				</dd>
+			</dl>
+		</li>
+	<!-- END similar -->
+	</ul>
+	<span class="corners-bottom"><span></span></span></div>
+</div>

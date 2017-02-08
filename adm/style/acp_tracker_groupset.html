@@ -1,0 +1,41 @@
+<!-- IF S_VIEW_GSS -->
+
+	{GS_DESCR}
+	<table cellspacing="1">
+	<thead>
+	<tr>
+		<th>{L_GROUPSETS_SET}</th>
+		<th>{L_GROUPSETS_FORUMS}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td valign="top" width="50%">
+			{GS_NAME}: {GS_ACTION}<br />
+			{GS_ADDIT}
+		</td>
+		<td valign="top">
+			{GS_FORUMS}<br />
+			<!-- IF GS_VIEW --><a href="{GS_VIEW}">{L_GS_VIEW_CURR}</a><br /><br /><!-- ELSE --><br /><!-- ENDIF -->
+			<select name="gs_options"><option value="all">{L_GS_OPTIONS_ALL}</option><option value="selected" selected="selected">{L_GS_OPTIONS_SELECTED}</option><option value="not_selected">{L_GS_OPTIONS_NOTSELECTED}</option></select>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+
+<!-- ENDIF -->
+
+<!-- IF S_VIEW_GROUPSET -->
+	<dl>
+		<dt><b>{L_GROUPSETS_ACTION}</b></dt>
+		<dd><b>{L_GROUPSETS_DESCR}</b></dd>
+	</dl>
+	<!-- BEGIN groupsets -->
+	<dl>
+		<dt><a href="{groupsets.URL}">{groupsets.NAME}</a></dt>
+		<dd>{groupsets.DESCR}</dd>
+	</dl>
+	<!-- END groupsets -->
+<!-- ENDIF -->
+
+{S_HIDDEN_FIELDS}

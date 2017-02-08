@@ -1,0 +1,22 @@
+
+
+<!-- IF TOPDOWN_TORRENTS_POSTERS -->
+{TOPDOWN_TORRENTS_POSTERS}
+
+<!-- ELSE -->
+<div id="panel" style="margin-left:10px;white-space:nowrap;">{L_NO_TDT}</div>
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(
+	function($)
+	{
+		//$(".tdtnav_buttons").remove();
+		$("#topdown_torrents").animate({'height': '15px'});
+		$("#gallerya{TDT_ID}").animate({'height': '15px'});
+	}
+);
+stepcarousel.resetsettings();
+// ]]>
+</script>
+<!-- ENDIF -->
+

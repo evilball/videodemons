@@ -1,0 +1,47 @@
+<form id="user_prefs" method="post" action="{U_ACTION}">
+
+<fieldset>
+<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<p>{L_ACP_ZONE_RTRACK_EXPLAIN}</p>
+	<!-- IF S_VIEW_RTRACK -->
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" name="add_new" value="{L_ADD}" />
+	</fieldset>
+	<!-- ENDIF -->
+	<table cellspacing="1">
+	<!-- IF not rtracks.URL -->
+	<thead>
+	<tr>
+		<th colspan="2">{L_ADD}</th>
+	</tr>
+	</thead>
+	<!-- ENDIF -->
+	<!-- IF .rtracks or S_NEW_RTRACK -->
+	<thead>
+	<tr>
+		<th>{L_ZONE_RTRACK_URL}</th>
+		<th>{L_DELETE} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('user_prefs', 'rtrack_delete', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('user_prefs', 'rtrack_delete', false); return false;">-</a>]</th>
+	</tr>
+	</thead>
+	<!-- ENDIF -->
+	<tbody>
+	<!-- BEGIN rtracks -->
+		<!-- IF rtracks.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><input type="text" name="rtrack_url[{rtracks.COUNT}]" size="40" value="{rtracks.URL}" title="" /></td>
+			<td>
+			<!-- IF rtracks.URL -->
+				<input  class="radio"type="checkbox" name="rtrack_delete[{rtracks.COUNT}]" value="1" />
+			<!-- ENDIF -->
+			</td>
+		</tr>
+	<!-- END rtracks -->
+	</tbody>
+	</table>
+</fieldset>
+<!-- IF (S_VIEW_RTRACK or S_NEW_RTRACK) and .rtracks -->
+<fieldset class="quick">
+	<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	{S_FORM_TOKEN}{S_HIDDEN_FIELD}
+</fieldset>
+<!-- ENDIF -->
+</form>

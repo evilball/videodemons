@@ -1,0 +1,40 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_TITLE}</h2>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+<table width="100%" cellspacing="1" class="table1">
+
+<!-- IF ERROR -->
+	<tr class="bg2">
+		<td colspan="5" align="center"><span class="genmed error">{ERROR}</span></td>
+	</tr>
+<!-- ENDIF -->
+<tr class="bg1">
+	<td align="center"><!-- IF S_TINFO_TORRENTSSIZES -->{L_TRACKER_USER_TORRENTS}: <b>{TRACKER_USER_TORRENTS}</b><!-- ENDIF --></td>
+	<td align="center"><!-- IF S_TINFO_COMMENTS -->{L_TRACKER_USER_COMMENTS}: <b>{TRACKER_USER_COMMENTS}</b><!-- ENDIF --></td>
+	<td align="center">{L_TRACKER_USER_RATIO}: <b>{TRACKER_USER_RATIO}</b></td>
+	<td align="center">{L_TRACKER_USER_UPLOAD}: <b>{TRACKER_USER_UPLOAD}</b> (<a class="my_tt" title="{L_TRACKER_USER_UPLOAD_SELF}" href="#">{U_TINFO_UP_SELF}</a>)</td>
+	<td align="center">{L_TRACKER_USER_DOWNLOAD}: <b>{TRACKER_USER_DOWNLOAD}</b></td>
+</tr>
+<tr class="bg1">
+	<td align="center"><!-- IF S_TINFO_THANKS -->{L_TRACKER_USER_YTHANKS}: <b>{TRACKER_USER_YTHANKS}</b><!-- ENDIF --></td>
+	<td align="center"><!-- IF S_TINFO_THANKS -->{L_TRACKER_USER_TYTHANKS}: <b>{TRACKER_USER_TYTHANKS}</b><!-- ENDIF --></td>
+
+	<td align="center">{L_TRACKER_USER_RRATIO}: <b>{TRACKER_USER_RRATIO}</b></td>
+	<td align="center">&nbsp;</td>
+	<td align="center">{L_TRACKER_USER_REALDOWNLOAD}: <b>{TRACKER_USER_REALDOWNLOAD}</b></td>
+</tr>
+<tr class="bg1">
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center"><!-- IF S_TINFO_BONUS1 -->{L_TRACKER_USER_BONUS1}: <b>{TRACKER_USER_BONUS}</b><!-- ENDIF --></td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+
+</table>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE ucp_footer.html -->

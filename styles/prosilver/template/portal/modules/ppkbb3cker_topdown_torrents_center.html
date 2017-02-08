@@ -1,0 +1,64 @@
+<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>{$LR_BLOCK_H_L}{S_TOPDOWN_TORRENTS}{$LR_BLOCK_H_R}
+
+<!-- IF TOPDOWN_TORRENTS_POSTERS -->
+
+<style type="text/css">
+.stepcarousel
+{
+	position: relative; /*leave this value alone*/
+	border: 1px solid #FFFFFF;
+	overflow: scroll; /*leave this value alone*/
+	width: {S_TOPDOWN_TORRENTS_WIDTH}; /*Width of Carousel Viewer itself*/
+	height: {S_TOPDOWN_TORRENTS_HEIGHT}px; /*Height should enough to fit largest content's height*/
+	margin: 0px auto;
+}
+
+.stepcarousel .belt
+{
+	position: absolute; /*leave this value alone*/
+	left: 0;
+	top: 0;
+}
+
+.stepcarousel .panel
+{
+	float: left; /*leave this value alone*/
+	overflow: hidden; /*clip content that go outside dimensions of holding panel DIV*/
+	margin: 5px; /*margin around each panel*/
+	vertical-align:top;
+	text-align:left;
+	<!-- IF S_TOPDOWN_TORRENTS_WIDTH2 -->width: {S_TOPDOWN_TORRENTS_WIDTH2}px;<!-- ENDIF -->
+}
+
+#tdtnav_prevbutton, #tdtnav_nextbutton
+{
+	cursor:pointer;
+}
+</style>
+
+<script src="{PPKBB3CKER_ADDONS}js/stepcarousel.js" type="text/javascript" ></script>
+<script type="text/javascript">
+stepcarousel.setup({
+	galleryid: 'gallerya{TDT_ID}', //id of carousel DIV
+	beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
+	panelclass: 'panel', //class of panel DIVs each holding content
+	autostep: {enable: {S_TOPDOWN_TORRENTS_AUTOSTEP}, moveby: {S_TOPDOWN_TORRENTS_MOVEBY}, pause: {S_TOPDOWN_TORRENTS_PAUSE}},
+	panelbehavior: {speed: {S_TOPDOWN_TORRENTS_SPEED}, wraparound: {S_TOPDOWN_TORRENTS_WRAPAROUND}, wrapbehavior: '{S_TOPDOWN_TORRENTS_WRAPBEHAVIOR}', persist: {S_TOPDOWN_TORRENTS_PERSIST}},
+	defaultbuttons: {enable: {S_TOPDOWN_TORRENTS_DEFAULTBUTTONS}, moveby: {S_TOPDOWN_TORRENTS_MOVEBY2}, leftnav: ['{ROOT_PATH}tracker/addons/images/stepcarousel/go-previous-document.png', -10, {S_TOPDOWN_TORRENTS_BUTTPOS}], rightnav: ['{ROOT_PATH}tracker/addons/images/stepcarousel/go-next-document.png', -5, {S_TOPDOWN_TORRENTS_BUTTPOS}]},
+	contenttype: ['ajax', '{TDT_URL}'] //content setting ['inline'] or ['external', 'path_to_external_file']
+})
+</script>
+
+			<table cellspacing="1" width="100%" border="0">
+				<tr class="row1">
+					<!-- IF S_TOPDOWN_TORRENTS_DEFAULTBUTTONS != 'false' --><td style="width:1%;text-align:right;"><img id="tdtnav_prevbutton" src="{ROOT_PATH}tracker/addons/images/stepcarousel/go-previous-document.png" /></td><!-- ENDIF -->
+					<td style="padding:5px 5px 5px 5px;width:100%;" align="center">
+						<div class="stepcarousel" id="gallerya{TDT_ID}"><div class="belt"></div></div>
+					</td>
+					<!-- IF S_TOPDOWN_TORRENTS_DEFAULTBUTTONS != 'false' --><td style="width:1%;"><img id="tdtnav_nextbutton" src="{ROOT_PATH}tracker/addons/images/stepcarousel/go-next-document.png" /></td><!-- ENDIF -->
+				</tr>
+			</table>
+
+<!-- ENDIF -->
+
+{$LR_BLOCK_F_L}{$LR_BLOCK_F_R}</td></tr></table>

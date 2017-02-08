@@ -1,0 +1,100 @@
+	<a name="chat"></a>
+	<link rel="stylesheet" href="{ROOT_PATH}chat/css/stylesheet_chat.css" type="text/css" />
+	<table class="tablebg" cellspacing="1" width="100%">
+		<tr>
+			<th><!-- IF not S_CHAT_NOTIN --><div style="float:left;"><span id="clock"></span></div><!-- ENDIF --><div style="float:right;" id="chat_enter"><!-- IF U_CHAT_LINK --><a href="{U_CHAT_LINK}"><!-- ENDIF --><!-- IF S_CHAT_NOTIN -->{L_CHAT_ENTER}<!-- ELSE -->{L_CHAT_EXIT}<!-- ENDIF --><!-- IF U_CHAT_LINK --></a><!-- ENDIF --></div></th>
+		</tr>
+		<tr><td id="chat_area" class="row2">
+
+		<table class="tablebg" cellspacing="1" width="100%">
+		<tr align="center" class="bg2"<!-- IF not S_FORM_WINDOW --> style="display:none;"<!-- ENDIF -->>
+			<td class="cat" colspan="3" height="25">
+				<form name="text" id="text" method="post" action="javascript:;" onsubmit="handle_send('add', this);<!-- IF FULLTIME -->fulltime();<!-- ENDIF -->" autocomplete="off">
+				<strong style="color:#000000;">{L_MESSAGE}: </strong>
+				<!-- IF CHATPM_OPT --><input type="text" maxlength="64" tabindex="2" name="to_user" id="to_user" size="10" style="display:none;" /> <!-- ENDIF -->
+				<input type="text" maxlength="255" tabindex="1" name="message" id="message" class="inputbox chatinput" />&nbsp;<img alt="" src="{ROOT_PATH}chat/images/act_indicator.gif" id="act_indicator" />&nbsp;
+				<input type="submit" class="btnmain" value="{L_CHAT_SEND}" name="submit" id="submit" tabindex="6" accesskey="s"/>&nbsp;<input onclick="clear_form();return false;" class="btnlite" type="reset" value="{L_CHAT_RESET}" name="reset" id="reset" />
+				<!-- IF HIDDEN_OPT --> |&nbsp;<img style="width:16px;height:16px;vertical-align:middle;" id="hid_indicator" src="{ROOT_PATH}chat/images/overview.png" alt="" /> <input type="checkbox" title="{L_CHAT_SETHIDDENHLP}" checked="checked" id="hid_button" name="u_hidden" value="1" onclick="set_hidden();" /><!-- ENDIF -->
+				<!-- IF SOUND_OPT --> |&nbsp;<img style="width:16px;height:16px;vertical-align:middle;" src="{ROOT_PATH}chat/images/arts.png" alt="" />&nbsp;<input type="checkbox" title="{L_CHAT_SOUND_SWITCH}" id="sound_switch" name="sound_switch" value="1"<!-- IF SOUND_ON --> checked="checked"<!-- ENDIF --> /><!-- ENDIF -->
+				<!-- IF CHATPM_OPT --><input type="hidden" name="to_user_id" value="0" /><!-- ENDIF -->
+				<!-- IF ACOMMANDS_OPT --><input type="hidden" name="acomm" value="" /><!-- ENDIF -->
+				<input type="hidden" name="edit_mode" value="0" />
+				<input type="hidden" name="last_message_id" value="{LAST_ID}" />
+				</form>
+			</td>
+		</tr>
+
+		<!-- IF S_BBCODE_WINDOW -->
+		<tr>
+			<td class="row1" colspan="3" height="25" align="center">
+				<input type="button" class="btnbbcode" name="addbbcode0" value=" B " style="font-weight:bold;" onclick="bbstyle(0)" title="{L_BBCHAT_B}" />
+				<input type="button" class="btnbbcode" name="addbbcode2" value=" i " style="font-style:italic;" onclick="bbstyle(2)" title="{L_BBCHAT_I}" />
+				<input type="button" class="btnbbcode" name="addbbcode4" value=" u " style="text-decoration: underline;" onclick="bbstyle(4)" title="{L_BBCHAT_U}" />
+				<input type="button" class="btnbbcode" name="addbbcode6" value=" s " style="text-decoration: line-through;" onclick="bbstyle(6)" title="{L_BBCHAT_S}" />
+				<input type="button" class="btnbbcode" name="addbbcode8" value=" samp " onclick="bbstyle(8)" title="{L_BBCHAT_SAMP}" />
+				<input type="button" class="btnbbcode" name="addbbcode10" value=" color= " onclick="bbstyle(10)" title="{L_BBCHAT_COLOR}" />
+				<input type="button" class="btnbbcode" name="addbbcode12" value=" size= " onclick="bbstyle(12)" title="{L_BBCHAT_SIZE}" />
+				<input type="button" class="btnbbcode" name="addbbcode14" value=" url " onclick="bbstyle(14)" title="{L_BBCHAT_URL}" />
+				<input type="button" class="btnbbcode" name="addbbcode16" value=" url= " onclick="bbstyle(16)" title="{L_BBCHAT_URL2}" />
+				<input type="button" class="btnbbcode" name="addbbcode18" value=" q " onclick="bbstyle(18)" title="{L_BBCHAT_Q}" />
+				<input type="button" class="btnbbcode" name="addbbcode20" value=" blockquote " onclick="bbstyle(20)" title="{L_BBCHAT_BLOCKQUOTE}" />
+				<input type="button" class="btnbbcode" name="addbbcode22" value=" pre " onclick="bbstyle(22)" title="{L_BBCHAT_PRE}" />
+				<input type="button" class="btnbbcode" name="addbbcode24" value=" code "  onclick="bbstyle(24)" title="{L_BBCHAT_CODE}" />
+				<input type="button" class="btnbbcode" name="addbbcode26" value=" noparse " onclick="bbstyle(26)" title="{L_BBCHAT_NOPARSE}" />
+				<!-- IF S_BBCODE_IMG --><input type="button" class="btnbbcode" name="addbbcode28" value=" img= " onclick="bbstyle(28)" title="{L_BBCHAT_IMG}" /><!-- ENDIF -->
+			</td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF S_MESSAGE_WINDOW or S_USER_WINDOW or S_BAR_WINDOW -->
+		<tr class="row1">
+			<!-- IF S_BAR_WINDOW -->
+			<td style="width:10%;" valign="top">
+				<div class="smilies" id="smyles" style="text-align:center;<!-- IF CHAT_HEIGHT -->height:{CHAT_HEIGHT}px;<!-- ENDIF -->">{CHATSMILIES}</div>
+			</td>
+			<!-- ENDIF -->
+			<td style="width:<!-- IF S_READ_MODE -->100<!-- ELSE -->70<!-- ENDIF -->%;" valign="top" id="td_shouts">
+				<!-- IF S_MESSAGE_WINDOW -->
+				<div class="shouts" id="shouts"<!-- IF CHAT_HEIGHT --> style="height:{CHAT_HEIGHT}px;"<!-- ENDIF -->>
+					<div id="chat_window"<!-- IF CHAT_HEIGHT --> style="height:{CHAT_HEIGHT}px;"<!-- ENDIF -->><!-- IF S_READ_MODE --><img src="{ROOT_PATH}chat/images/act_indicator.gif" alt="" /> {L_CHAT_WAIT_MESSAGES}<!-- ENDIF --></div>
+				</div>
+				<!-- ENDIF -->
+			</td>
+			<!-- IF S_USER_WINDOW -->
+			<td valign="top" style="width:20%;">
+				<div class="users" id="users"<!-- IF CHAT_HEIGHT --> style="height:{CHAT_HEIGHT}px;"<!-- ENDIF -->></div>
+			</td>
+			<!-- ENDIF -->
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF S_ONLINE_WINDOW and not S_READ_MODE -->
+		<tr>
+			<td class="row1" colspan="3" align="center" valign="middle" height="35">{ONLINE_MESSAGE}</td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF not S_CHAT_NOTIN -->
+		<tr>
+			<td class="row1" colspan="3" align="center" valign="middle"><!-- IF ARCH_OPT --><strong>{L_CHAT_ARCHIVE}</strong>: <a href="javascript:;" id="varch" rel="{ARCH_OPT}">{L_CHAT_VIEW_ARCHIVE}</a><!-- ENDIF -->&nbsp;<!-- IF ACOMMANDS_OPT --><strong>{L_CHAT_DELETE}</strong>: [<a href="javascript:;" onClick="javascript:mclean();">{L_CHAT_MCLEAN}</a>] [<a href="javascript:;" onClick="javascript:uclean();">{L_CHAT_UCLEAN}</a>] [<a href="javascript:;" onClick="javascript:aclean();">{L_CHAT_ACLEAN}</a>]<!-- ENDIF -->&nbsp;<!-- IF not S_CHAT_NOTIN -->{CHAT_TUPDATE}&nbsp;<strong>{L_CHAT_HEIGHT}</strong>: [<a title="{L_CHAT_PHEIGHT}" href="javascript:;" class="chat_pheight">&darr;</a> <a title="{L_CHAT_OHEIGHT}" href="javascript:;" class="chat_height">&varr;</a> <a title="{L_CHAT_MHEIGHT}" href="javascript:;" class="chat_mheight">&uarr;</a>]<!-- ENDIF --></td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF ARCH_OPT -->
+		<tr>
+			<td class="row1" colspan="3" align="center" valign="middle"><div id="chat_arch"></div></td>
+		</tr>
+		<!-- ENDIF -->
+		<tr>
+			<td class="cat" colspan="3" align="center" valign="middle">&copy; <a href="http://www.ppkbb3cker.ru/" target="_blank">ppkBB3cker</a> Chat 2008-2015 @ <a href="http://protoneutron.narod.ru/" target="_blank">PPK</a></td>
+		</tr>
+		</table>
+
+		</td></tr>
+	</table>
+<br clear="all" />
+
+<div id="sounds"></div>
+<!-- IF CHAT_EXIT -->
+	<script type="text/javascript">
+	// <![CDATA[
+		window.close();
+	// ]]>
+	</script>
+<!-- ENDIF -->

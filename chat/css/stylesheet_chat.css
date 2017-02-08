@@ -1,0 +1,152 @@
+
+#act_indicator
+{
+	visibility:hidden;
+}
+
+.shouts
+{
+	width: 99%;
+	height:400px;
+	overflow:auto;
+	margin: 10px 10px 10px 10px;
+}
+.smilies
+{
+	width: 100%;
+	height: 400px;
+	overflow:auto;
+}
+.postprofile
+{
+	min-height: 5px !important;
+}
+.chatform
+{
+	width: 90%;
+	text-align:center;
+}
+.onlinelist
+{
+	width: 15%;
+	overflow:auto;
+	height:300px;
+}
+.users
+{
+	width: 90%;
+	text-align: left;
+	text-indent: 5px;
+	margin-left:auto;
+	margin-right:auto;
+	height: 400px;
+	overflow: auto;
+}
+.user
+{
+	width: 95%;
+	font-size: 1.1em;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	line-height: 1.4em;
+}
+.chatinput
+{
+	width: 50% !important;
+}
+.online_img
+{
+	vertical-align:middle;
+}
+.st
+{
+	overflow: auto;
+	height: 400px;
+	width: 100%;
+}
+.user
+{
+	color: #006597;
+	font-weight: bold;
+}
+.adm
+{
+	color: #AA0000;
+	font-weight: bold;
+}
+.mod
+{
+	color: #00AA00;
+	font-weight: bold;
+}
+a.user
+{
+	color: #006597;
+	font-weight: bold;
+}
+a.adm
+{
+	color: #AA0000;
+	font-weight: bold;
+}
+a.mod
+{
+	color: #00AA00;
+	font-weight: bold;
+}
+.mess
+{
+	font-size:1.0em;
+}
+.users
+{
+	font-size:1.0em;
+}
+.resbtn
+{
+
+}
+.subbtn
+{
+
+}
+.textinput
+{
+
+}
+.textform
+{
+
+}
+.textuser
+{
+
+}
+.textmess
+{
+
+}
+.m
+{
+	margin: 1px 0px;
+}
+.pm
+{
+	background-color: #ECD5D8;
+}
+/*a:link
+{
+	color: #006597;
+	text-decoration: none;
+}
+
+a:active, a:visited
+{
+	color: #005784;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #D46400;
+	text-decoration: underline;
+}*/

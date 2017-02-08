@@ -1,0 +1,122 @@
+<form id="user_prefs" method="post" action="{U_ACTION}">
+
+<fieldset>
+	<legend>{L_ACP_PREFS_TRACKER}</legend>
+<dl>
+	<dt><label for="tr_ratio">{L_ACP_TR_RATIO}:</label><br /><span>{L_ACP_TR_RATIO_EXPLAIN}</span></dt>
+	<dd><span name="tr_ratio" id="tr_ratio">{TR_RATIO}</span></dd>
+</dl>
+<dl>
+	<dt><label for="tr_rratio">{L_ACP_TR_RRATIO}:</label><br /><span>{L_ACP_TR_RRATIO_EXPLAIN}</span></dt>
+	<dd><span name="tr_rratio" id="tr_rratio">{TR_RRATIO}</span></dd>
+</dl>
+<dl>
+	<dt><label for="tr_down">{L_ACP_TR_DOWN}:</label><br /><span>{L_ACP_TR_DOWN_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_down" id="tr_down" value="{TR_DOWN}" maxlength="20" />&nbsp;<select name="tr_downv" id="tr_downv"><option value="b">{L_BYTES}</option><option value="kb">{L_KB}</option><option value="mb">{L_MB}</option><option value="gb">{L_GB}</option><option value="tb">{L_TB}</option><option value="pb">{L_PB}</option><option value="eb">{L_EB}</option></select>&nbsp;[<b>{TR_HDOWN}</b>]</dd>
+</dl>
+<dl>
+	<dt><label for="tr_up">{L_ACP_TR_UP}:</label><br /><span>{L_ACP_TR_UP_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_up" id="tr_up" value="{TR_UP}" maxlength="20" />&nbsp;<select name="tr_upv" id="tr_upv"><option value="b">{L_BYTES}</option><option value="kb">{L_KB}</option><option value="mb">{L_MB}</option><option value="gb">{L_GB}</option><option value="tb">{L_TB}</option><option value="pb">{L_PB}</option><option value="eb">{L_EB}</option></select>&nbsp;[<b>{TR_HUP}</b>]</dd>
+</dl>
+<dl>
+	<dt><label for="tr_up_self">{L_ACP_TR_UP_SELF}:</label><br /><span>{L_ACP_TR_UP_SELF_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_up_self" id="tr_up_self" value="{TR_UP_SELF}" maxlength="20" />&nbsp;<select name="tr_up_selfv" id="tr_up_selfv"><option value="b">{L_BYTES}</option><option value="kb">{L_KB}</option><option value="mb">{L_MB}</option><option value="gb">{L_GB}</option><option value="tb">{L_TB}</option><option value="pb">{L_PB}</option><option value="eb">{L_EB}</option></select>&nbsp;[<b>{TR_HUP_SELF}</b>]</dd>
+</dl>
+<dl>
+	<dt><label for="tr_comm">{L_ACP_TR_COMM}:</label><br /><span>{L_ACP_TR_COMM_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_comm" id="tr_comm" maxlength="8" value="{TR_COMM}" /></dd>
+</dl>
+<dl>
+	<dt><label for="tr_torr">{L_ACP_TR_TORR}:</label><br /><span>{L_ACP_TR_TORR_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_torr" id="tr_torr" maxlength="8" value="{TR_TORR}" /></dd>
+</dl>
+<dl>
+	<dt><label for="tr_bonus">{L_ACP_TR_BONUS}:</label><br /><span>{L_ACP_TR_BONUS_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_bonus" id="tr_bonus" maxlength="7" value="{TR_BONUS}" /></dd>
+</dl>
+<dl>
+<dl>
+	<dt><label for="tr_shadow_down">{L_ACP_TR_SHADOW_DOWN}:</label><br /><span>{L_ACP_TR_SHADOW_DOWN_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_shadow_down" id="tr_shadow_down" maxlength="20" value="{TR_SHADOW_DOWN}" />&nbsp;<select name="tr_shadow_downv" id="tr_shadow_downv"><option value="b">{L_BYTES}</option><option value="kb">{L_KB}</option><option value="mb">{L_MB}</option><option value="gb">{L_GB}</option><option value="tb">{L_TB}</option><option value="pb">{L_PB}</option><option value="eb">{L_EB}</option></select>&nbsp;[<b>{TR_HSHDOWN}</b>]</dd>
+</dl>
+	<dt><label for="tr_fromthanks">{L_ACP_TR_YTHANKS}:</label><br /><span>{L_ACP_TR_YTHANKS_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_fromthanks" id="tr_fromthanks" maxlength="5" value="{TR_FROMTHANKS}" /></dd>
+</dl>
+<dl>
+	<dt><label for="tr_tothanks">{L_ACP_TR_TYTHANKS}:</label><br /><span>{L_ACP_TR_TYTHANKS_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_tothanks" id="tr_tothanks" maxlength="5" value="{TR_TOTHANKS}" /></dd>
+</dl>
+<dl>
+	<dt><label for="tr_passkey">{L_ACP_TR_PASSKEY}:</label><br /><span>{L_RECREATE_PASSKEY_EXPLAIN}</span></dt>
+	<dd><input type="text" name="tr_passkey" id="tr_passkey" maxlength="32" value="{TR_PASSKEY}" /></dd>
+</dl>
+</fieldset>
+
+<fieldset>
+	<legend>{L_ACP_PREFS_PERSONAL}</legend>
+<dl>
+	<dt><label for="recreate_passkey">{L_RECREATE_PASSKEY}: </label><br />{L_RECREATE_PASSKEY_EXPLAIN}</dt>
+	<dd>
+		<input type="checkbox" class="radio" name="recreate_passkey" id="recreate_passkey" value="1" />
+	</dd>
+</dl>
+<dl>
+	<dt><label for="clear_trights">{L_CLEAR_TRIGHTS}: </label><br />{L_TR_CLEAR_TRIGHTS_EXPLAIN}</dt>
+	<dd>
+		<input type="checkbox" class="radio" name="clear_trights" id="clear_trights" value="1" />
+	</dd>
+</dl>
+<dl>
+	<dt><label for="collect_tbonus">{L_COLLECT_TBONUS}: </label><br />{L_COLLECT_TBONUS_EXPLAIN}</dt>
+	<dd>
+		<input type="checkbox" class="radio" name="collect_tbonus" id="collect_tbonus" value="1" />
+	</dd>
+</dl>
+<dl>
+	<dt><label for="clear_peers">{L_TR_CLEAR_PEERS}: </label><br />{L_TR_CLEAR_PEERS_EXPLAIN}</dt>
+	<dd>
+		<select name="clear_peers" id="clear_peers">
+			<option value="0">{L_NO}</option>
+			<option value="time">{L_CLEAR_PEERS_TIME}</option>
+			<option value="all">{L_CLEAR_PEERS_ALL}</option>
+		</select>
+	</dd>
+</dl>
+
+<dl>
+	<dt><label for="clear_snatch">{L_TR_CLEAR_SNATCH}: </label><br />{L_TR_CLEAR_SNATCH_EXPLAIN}</dt>
+	<dd>
+		<input type="checkbox" class="radio" name="clear_snatch" id="clear_snatch" value="1" />
+	</dd>
+</dl>
+<dl>
+	<dt><label for="reset_ratio">{L_TR_RESET_RATIO}: </label><br />{L_TR_RESET_RATIO_EXPLAIN}</dt>
+	<dd>
+		<input type="checkbox" class="radio" name="reset_ratio" id="reset_ratio" value="1" />
+	</dd>
+</dl>
+<dl>
+	<dt><label for="reset_bonus">{L_TR_RESET_BONUS}: </label><br />{L_TR_RESET_BONUS_EXPLAIN}</dt>
+	<dd>
+		<input type="checkbox" class="radio" name="reset_bonus" id="reset_bonus" value="1" />
+	</dd>
+</dl>
+</fieldset>
+
+<fieldset>
+	<legend>{L_ACP_PREFS_ADMIN}</legend>
+
+<dl>
+	<dt><label for="chat_kick">{L_CHAT_KICK}: </b><br /><span class="gensmall">{L_CHAT_KICK_EXPLAIN}</label></dt>
+	<dd>
+		<input type="checkbox" class="radio" name="chat_kick" id="chat_kick" value="1" />
+	</dd>
+</dl>
+</fieldset>
+
+<fieldset class="quick">
+	<input class="button1" type="submit" name="update" id="update" value="{L_SUBMIT}" />
+	{S_FORM_TOKEN}
+</fieldset>
+
+</form>

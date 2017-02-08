@@ -1,0 +1,113 @@
+<!-- IF not CHAT_WINDOW -->
+
+<!-- INCLUDE overall_header.html -->
+
+<!-- ELSE -->
+
+<!-- INCLUDE simple_header.html -->
+
+<!-- ENDIF -->
+
+<!-- IF S_FORUM_RULES -->
+	<div class="forumrules">
+		<!-- IF U_FORUM_RULES -->
+			<h3>{L_FORUM_RULES}</h3><br />
+			<a href="{U_FORUM_RULES}"><b>{L_FORUM_RULES_LINK}</b></a>
+		<!-- ELSE -->
+			<h3>{L_FORUM_RULES}</h3><br />
+			{FORUM_RULES}
+		<!-- ENDIF -->
+	</div>
+
+	<br clear="all" />
+<!-- ENDIF -->
+
+<!-- IF S_HAS_SUBFORUM -->
+	<!-- INCLUDE forumlist_body.html -->
+	<br clear="all" />
+<!-- ENDIF -->
+
+<!-- IF S_IS_POSTABLE or S_NO_READ_ACCESS -->
+	<div id="pageheader">
+		<h2><a class="titles" href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
+
+		<!-- IF MODERATORS -->
+			<p class="moderators"><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->: {MODERATORS}</p>
+		<!-- ENDIF -->
+
+	</div>
+
+	<br clear="all" /><br />
+<!-- ENDIF -->
+
+<div id="pagecontent">
+
+<!-- IF S_NO_READ_ACCESS -->
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="row1" height="30" align="center" valign="middle"><span class="gen">{L_NO_READ_ACCESS}</span></td>
+	</tr>
+	</table>
+
+	<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+
+		<br /><br />
+
+		<form method="post" action="{S_LOGIN_ACTION}">
+
+		<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<td class="cat"><h4><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></h4></td>
+		</tr>
+		<tr>
+			<td class="row1" align="center"><span class="genmed">{L_USERNAME}:</span> <input class="post" type="text" name="username" size="10" />&nbsp; <span class="genmed">{L_PASSWORD}:</span> <input class="post" type="password" name="password" size="10" /><!-- IF S_AUTOLOGIN_ENABLED -->&nbsp; <span class="gensmall">{L_LOG_ME_IN}</span> <input type="checkbox" class="radio" name="autologin" /><!-- ENDIF -->&nbsp; <input type="submit" class="btnmain" name="login" value="{L_LOGIN}" /></td>
+		</tr>
+		</table>
+
+		{S_LOGIN_REDIRECT}
+		</form>
+
+	<!-- ENDIF -->
+
+	<br clear="all" />
+<!-- ENDIF -->
+
+<!-- IF not S_CHAT_NOTIN or S_READ_MODE -->
+	<!-- INCLUDE viewforum_chat_scripts.html -->
+<!-- ENDIF -->
+
+<!-- INCLUDE chat_body.html -->
+
+<!-- IF not CHAT_WINDOW -->
+
+<!-- INCLUDE breadcrumbs.html -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>{L_WHO_IS_ONLINE}</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">{LOGGED_IN_USER_LIST}</p></td>
+	</tr>
+	</table>
+<!-- ENDIF -->
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><!-- IF S_DISPLAY_SEARCHBOX --><!-- INCLUDE searchbox.html --><!-- ENDIF --></td>
+	<td align="{S_CONTENT_FLOW_END}"><!-- INCLUDE jumpbox.html --></td>
+</tr>
+</table>
+
+<!-- INCLUDE overall_footer.html -->
+
+<!-- ELSE -->
+
+<!-- INCLUDE simple_footer.html -->
+
+<!-- ENDIF -->

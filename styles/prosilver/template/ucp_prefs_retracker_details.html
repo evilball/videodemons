@@ -1,0 +1,85 @@
+<!-- INCLUDE ucp_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+
+/**
+* Mark/unmark checkboxes
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+// ]]>
+</script>
+
+<h2>{L_TITLE}</h2>
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+<!-- IF S_VIEW_RTRACK or S_NEW_RTRACK -->
+	<p>{L_ZONE_RTRACK_EXPLAIN}</p>
+	<!-- IF S_VIEW_RTRACK -->
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" name="add_new" value="{L_ADD}" />
+	</fieldset>
+	<!-- ENDIF -->
+	<!-- IF .rtracks or S_NEW_RTRACK -->
+	<table class="tablebg" width="100%">
+		<tr>
+			<td><strong>{L_ZONE_RTRACK_URL}</strong></td>
+			<td><strong>{L_ENABLED} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('ucp', 'rtrack_enabled', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('ucp', 'rtrack_enabled', false); return false;">-</a>]</strong></td>
+			<td><strong><!-- IF S_VIEW_RTRACK -->{L_DELETE} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('ucp', 'rtrack_delete', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('ucp', 'rtrack_delete', false); return false;">-</a>]<!-- ELSE -->{L_ADD}<!-- ENDIF --></strong></td>
+		</tr>
+
+	<!-- BEGIN rtracks -->
+		<tr class="row<!-- IF attachrow.S_ROW_COUNT is otd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+			<td><input type="text" class="inputbox" name="rtrack_url[{rtracks.COUNT}]" size="40" value="{rtracks.URL}" title="" /></td>
+			<td>
+				<input type="checkbox" name="rtrack_enabled[{rtracks.COUNT}]" value="1"{rtracks.ENABLED} />
+			</td>
+			<td>
+				<!-- IF rtracks.URL -->
+				<input type="checkbox" name="rtrack_delete[{rtracks.COUNT}]" value="1" />
+				<!-- ENDIF -->
+			</td>
+		</tr>
+	<!-- END rtracks -->
+	</table>
+	<!-- ENDIF -->
+<!-- ELSE -->
+{L_RTRACK_DISABLED}
+<!-- ENDIF -->
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- IF (S_VIEW_RTRACK or S_NEW_RTRACK) and .rtracks -->
+<fieldset class="submit-buttons">
+	{S_HIDDEN_FIELD}{S_HIDDEN_FIELDS}<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	{S_FORM_TOKEN}
+</fieldset>
+<!-- ENDIF -->
+</form>
+<!-- INCLUDE ucp_footer.html -->

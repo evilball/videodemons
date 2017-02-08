@@ -1,0 +1,32 @@
+#
+# Uncomment the statement below if you want to make use of
+# HTTP authentication and it does not already work.
+# This could be required if you are for example using PHP via Apache CGI.
+#
+#<IfModule mod_rewrite.c>
+#RewriteEngine on
+#RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+#</IfModule>
+
+# PPK START CGP
+# Uncomment the statement below if your PHP running as a CGI
+# and you have no access to If-Modified-Since/If-None-Match request headers
+#
+#<IfModule mod_rewrite.c>
+#RewriteEngine on
+#RewriteRule .* - [E=HTTP_IF_MODIFIED_SINCE:%{HTTP:If-Modified-Since}]
+#RewriteRule .* - [E=HTTP_IF_NONE_MATCH:%{HTTP:If-None-Match}]
+#</IfModule>
+# PPK END CGP
+
+<Files "config.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "common.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+DirectoryIndex portal.php index.php index.html index.htm

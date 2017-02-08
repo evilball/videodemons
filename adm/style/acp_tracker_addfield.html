@@ -1,0 +1,189 @@
+<!-- IF S_SET_SETS -->
+	<strong>{L_ADDF_NAME}:</strong> {AF_NAME}
+	<table cellspacing="1">
+	<thead>
+	<tr>
+		<th>{L_ADDF_TPL}</th>
+		<th width="25%"><a class="my_tt" title="{L_ADDF_NAME_EXPLAIN}">{L_ADDF_NAME}</a></th>
+		<th width="35%">{L_ADDF_DESCR}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!-- IF .sets -->
+	<!-- BEGIN sets -->
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td>{sets.ADDF_TPL}</td>
+			<td><!-- IF addfield.NAME --><input type="text" name="af_name[{sets.COUNT}]" size="16" maxlength="64" value="{sets.NAME}" /><!-- ELSE --><input type="hidden" name="af_name[{sets.COUNT}]" value="{sets.NAME}" />{sets.NAME}<!-- ENDIF --></td>
+			<td><input type="text" name="af_descr[{sets.COUNT}]" size="32" maxlength="128" value="{sets.DESCR}" /></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><input class="radio" type="checkbox" name="af_ta[{sets.COUNT}]" value="1"{sets.TA} title="" /> - <a class="my_tt" title="{L_ADDF_TA_EXPLAIN}">{L_ADDF_TA}</a></td>
+			<td><input class="radio" type="checkbox" name="af_inall[{sets.COUNT}]" value="1"{sets.INALL} title="" /> - <a class="my_tt" title="{L_ADDF_INALL_EXPLAIN}">{L_ADDF_INALL}</a></td>
+			<td><input class="radio" type="checkbox" name="af_skip[{sets.COUNT}]" value="1"{sets.SKIP} title="" /> - <a class="my_tt" title="<!-- IF S_ADDFIELDS_TYPE -->{L_ADDF_SKIP_EXPLAIN}<!-- ELSE -->{L_ADDF_SKIP2_EXPLAIN}<!-- ENDIF -->">{L_ADDF_SKIP}</a></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><a class="my_tt" title="{L_ADDF_TITLE_EXPLAIN}">{L_ADDF_TITLE}</a>:</td>
+			<td colspan="2"><input type="text" name="af_title[{sets.COUNT}]" size="64" maxlength="255" value="{sets.TITLE}" /></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><a class="my_tt" title="{L_ADDF_BBCODES_EXPLAIN}">{L_ADDF_BBCODES}</a>:</td>
+			<td colspan="2"><input type="text" name="af_bbcodes[{sets.COUNT}]" size="64" maxlength="255" value="{sets.BBCODES}" /></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><a class="my_tt" title="{L_ADDF_BBCODE_EXPLAIN}">{L_ADDF_BBCODE}</a>:</td>
+			<td colspan="2"><input type="text" name="af_bbcode[{sets.COUNT}]" size="64" maxlength="255" value="{sets.BBCODE}" /></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><a class="my_tt" title="{L_ADDF_BR_EXPLAIN}">{L_ADDF_BR}</a>:</td>
+			<td colspan="2"><input type="text" name="af_br[{sets.COUNT}]" size="64" maxlength="255" value="{sets.BR}" /></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><a class="my_tt" title="{L_ADDF_BR2_EXPLAIN}">{L_ADDF_BR2}</a>:</td>
+			<td colspan="2"><input type="text" name="af_br2[{sets.COUNT}]" size="64" maxlength="255" value="{sets.BR2}" /></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><a class="my_tt" title="{L_ADDF_SPLIT_EXPLAIN}">{L_ADDF_SPLIT}</a>:</td>
+			<td colspan="2"><input type="text" name="af_split[{sets.COUNT}]" size="64" maxlength="255" value="{sets.SPLIT}" /></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><strong>{L_ADDF_HLP}</strong>:<br />{L_ADDF_HLP_EXPLAIN}</td>
+			<td><textarea cols="20" rows="5" name="af_hlp[{sets.COUNT}]">{sets.HLP}</textarea></td>
+			<td><input class="radio" type="checkbox" name="af_exists[{sets.COUNT}]" value="1"{sets.EXISTS} title="" /> - <a class="my_tt" title="{L_ADDF_EXISTS_EXPLAIN}">{L_ADDF_EXISTS}</a><br /><input class="radio" type="checkbox" name="af_multi[{sets.COUNT}]" value="1"{sets.MULTI} title="" /> - <a class="my_tt" title="{L_ADDF_MULTI_EXPLAIN}">{L_ADDF_MULTI}</a></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><a class="my_tt" title="{L_ADDF_DEF_EXPLAIN}">{L_ADDF_DEF}</a>:</td>
+			<td colspan="2"><input type="text" name="af_def[{sets.COUNT}]" size="64" maxlength="128" value="{sets.DEF}" /></td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><strong>{L_ADDF_ALIAS}</strong>:<br />{L_ADDF_ALIAS_EXPLAIN}</td>
+			<td><textarea cols="20" rows="5" name="af_alias[{sets.COUNT}]">{sets.ALIAS}</textarea></td>
+			<td>&nbsp;</td>
+		</tr>
+		<!-- IF sets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td><a class="my_tt" title="{L_ADDF_CHECKAS_EXPLAIN}">{L_ADDF_CHECKAS}</a>:</td>
+			<td colspan="2"><input type="text" name="af_checkas[{sets.COUNT}]" size="64" maxlength="64" value="{sets.CHECKAS}" /></td>
+		</tr>
+		</tr>
+	<!-- END sets -->
+	<!-- ELSE -->
+	<tr>
+		<td colspan="3" style="text-align:center;">{L_NO_DATA}</td>
+	</tr>
+	<!-- ENDIF -->
+	</tbody>
+	</table>
+<!-- ENDIF -->
+
+<!-- IF S_VIEW_ADDFIELD or S_NEW_ADDFIELD -->
+	<!-- IF S_VIEW_ADDFIELD -->
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" name="add_new" value="{L_ADD}" />
+	</fieldset>
+
+	<div style="text-align:right;">
+		{L_ADDF_FILTER}: <select name="filter" id="filter" onchange="if(this.options[this.selectedIndex].value!=''){document.location.href = this.options[this.selectedIndex].value;}">
+			<option value=""></option>
+		<!-- BEGIN addfield_filter -->
+			{addfield_filter.FILTER}
+			{addfield_filter.FILTER2}
+		<!-- END addfield_filter -->
+		</select>
+	</div>
+	<!-- ENDIF -->
+	<table cellspacing="1">
+	<!-- IF S_NEW_ADDFIELD -->
+	<thead>
+	<tr>
+		<th colspan="7">{L_ADD}</th>
+	</tr>
+	</thead>
+	<!-- ENDIF -->
+	<thead>
+	<tr>
+		<th>{L_ADDF_TPL}</th>
+		<th width="25%"><a class="my_tt" title="{L_ADDF_NAME_EXPLAIN}">{L_ADDF_NAME}</a></th>
+		<th width="35%">{L_ADDF_DESCR}</th>
+		<th>{L_ADDF_ENABLED} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('acp_board', 'af_enable', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('acp_board', 'af_enable', false); return false;">-</a>]</th>
+		<th>{L_VIEW_ADDF}</th>
+		<!-- IF not S_NEW_ADDFIELD --><th><a class="my_tt" title="{L_COPY_ADDF_EXPLAIN}">{L_COPY_ADDF}</a></th>
+		<th>{L_DELETE} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('acp_board', 'af_delete', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('acp_board', 'af_delete', false); return false;">-</a>]</th><!-- ENDIF -->
+	</tr>
+	</thead>
+	<tbody>
+	<!-- IF .addfield -->
+	<!-- BEGIN addfield -->
+		<!-- IF addfield.ENABLED == '' and addfield.NAME --><tr class="row3"><!-- ELSE --><!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF --><!-- ENDIF -->
+			<td>{addfield.ADDF_TPL}</td>
+			<td><!-- IF S_NEW_ADDFIELD --><input type="text" name="af_name[{addfield.COUNT}]" size="16" maxlength="64" value="{addfield.NAME}" /><!-- ELSE --><input type="hidden" name="af_name[{addfield.COUNT}]" value="{addfield.NAME}" />{addfield.NAME}<!-- ENDIF --></td>
+			<td><input type="text" name="af_descr[{addfield.COUNT}]" size="32" maxlength="128" value="{addfield.DESCR}" /></td>
+			<td><input class="radio" type="checkbox" name="af_enable[{addfield.COUNT}]" value="1"{addfield.ENABLED} title="" /></td>
+			<td><!-- IF addfield.NAME --><a href="{addfield.A_VIEW_SETS}">{L_VIEW_SETS}</a><!-- ELSE -->&darr; <a onclick="toggle_block('af_opt');" href="javascript:;">{L_ADDF_OPT}</a><!-- ENDIF --></td>
+			<!-- IF not S_NEW_ADDFIELD --><td><a href="{addfield.A_COPY_SETS}">{L_COPY_SETS}</a></td>
+			<td><input class="radio" type="checkbox" name="af_delete[{addfield.COUNT}]" value="1" /></td><!-- ENDIF -->
+		</tr>
+		<!-- IF not addfield.NAME -->
+		<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td colspan="7">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" id="af_opt" style="display:none;">
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><input class="radio" type="checkbox" name="af_ta[{addfield.COUNT}]" value="1"{addfield.TA} title="" /> - <a class="my_tt" title="{L_ADDF_TA_EXPLAIN}">{L_ADDF_TA}</a></td>
+						<td><input class="radio" type="checkbox" name="af_inall[{addfield.COUNT}]" value="1"{addfield.INALL} title="" /> - <a class="my_tt" title="{L_ADDF_INALL_EXPLAIN}">{L_ADDF_INALL}</a></td>
+						<td><input class="radio" type="checkbox" name="af_skip[{addfield.COUNT}]" value="1"{addfield.SKIP} title="" /> - <a class="my_tt" title="{L_ADDF_SKIP_EXPLAIN}">{L_ADDF_SKIP}</a></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><a class="my_tt" title="{L_ADDF_TITLE_EXPLAIN}">{L_ADDF_TITLE}</a>:</td>
+						<td colspan="2"><input type="text" name="af_title[{addfield.COUNT}]" size="64" maxlength="255" value="{addfield.TITLE}" /></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><a class="my_tt" title="{L_ADDF_BBCODES_EXPLAIN}">{L_ADDF_BBCODES}</a>:</td>
+						<td colspan="2"><input type="text" name="af_bbcodes[{addfield.COUNT}]" size="64" maxlength="255" value="{addfield.BBCODES}" /></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><a class="my_tt" title="{L_ADDF_BBCODE_EXPLAIN}">{L_ADDF_BBCODE}</a>:</td>
+						<td colspan="2"><input type="text" name="af_bbcode[{addfield.COUNT}]" size="64" maxlength="255" value="{addfield.BBCODE}" /></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><a class="my_tt" title="{L_ADDF_BR_EXPLAIN}">{L_ADDF_BR}</a>:</td>
+						<td colspan="2"><input type="text" name="af_br[{addfield.COUNT}]" size="64" maxlength="255" value="{addfield.BR}" /></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><a class="my_tt" title="{L_ADDF_BR2_EXPLAIN}">{L_ADDF_BR2}</a>:</td>
+						<td colspan="2"><input type="text" name="af_br2[{addfield.COUNT}]" size="64" maxlength="255" value="{addfield.BR2}" /></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><a class="my_tt" title="{L_ADDF_SPLIT_EXPLAIN}">{L_ADDF_SPLIT}</a>:</td>
+						<td colspan="2"><input type="text" name="af_split[{addfield.COUNT}]" size="64" maxlength="255" value="{addfield.SPLIT}" /></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><strong>{L_ADDF_HLP}</strong>:<br />{L_ADDF_HLP_EXPLAIN}</td>
+						<td><textarea cols="20" rows="5" name="af_hlp[{addfield.COUNT}]">{addfield.HLP}</textarea></td>
+						<td><input class="radio" type="checkbox" name="af_exists[{addfield.COUNT}]" value="1"{addfield.EXISTS} title="" /> - <a class="my_tt" title="{L_ADDF_EXISTS_EXPLAIN}">{L_ADDF_EXISTS}</a><br /><input class="radio" type="checkbox" name="af_multi[{addfield.COUNT}]" value="1"{addfield.MULTI} title="" /> - <a class="my_tt" title="{L_ADDF_MULTI_EXPLAIN}">{L_ADDF_MULTI}</a></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><a class="my_tt" title="{L_ADDF_DEF_EXPLAIN}">{L_ADDF_DEF}</a>:</td>
+						<td colspan="2"><input type="text" name="af_def[{addfield.COUNT}]" size="64" maxlength="128" value="{addfield.DEF}" /></td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><strong>{L_ADDF_ALIAS}</strong>:<br />{L_ADDF_ALIAS_EXPLAIN}</td>
+						<td><textarea cols="20" rows="5" name="af_alias[{addfield.COUNT}]">{addfield.ALIAS}</textarea></td>
+						<td>&nbsp;</td>
+					</tr>
+					<!-- IF addfield.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+						<td><a class="my_tt" title="{L_ADDF_CHECKAS_EXPLAIN}">{L_ADDF_CHECKAS}</a>:</td>
+						<td colspan="2"><input type="text" name="af_checkas[{addfield.COUNT}]" size="64" maxlength="64" value="{addfield.CHECKAS}" /></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<!-- ENDIF -->
+	<!-- END addfield -->
+	<!-- ELSE -->
+	<tr>
+		<td colspan="7" style="text-align:center;">{L_NO_DATA}</td>
+	</tr>
+	<!-- ENDIF -->
+	</tbody>
+	</table>
+<!-- ENDIF -->
+
+{S_HIDDEN_FIELDS}

@@ -1,0 +1,147 @@
+<tr>
+	<th colspan="2">
+		<script type="text/javascript">
+		// <![CDATA[
+			/**
+			* Show upload progress bar
+			*/
+			function popup_progress_bar()
+			{
+				close_waitscreen = 0;
+				// no scrollbars
+				popup('{UA_PROGRESS_BAR}', 400, 200, '_upload');
+			}
+		// ]]>
+		</script>
+
+		<!-- IF S_CLOSE_PROGRESS_WINDOW -->
+			<script type="text/javascript">
+			// <![CDATA[
+				close_waitscreen = 1;
+			// ]]>
+			</script>
+		<!-- ENDIF -->
+
+		{L_ADD_ATTACHMENT}
+	</th>
+</tr>
+<tr>
+	<td class="row3" colspan="2"><span class="gensmall">{L_ADD_ATTACHMENT_EXPLAIN}</span></td>
+</tr>
+<!-- IF S_SHOW_ANNWARN -->
+	<tr>
+		<td class="row1"><b class="genmed">{L_TRACKER_ANNWARN}</b></td>
+		<td class="row2"><input<!-- IF S_ANNWARN_CHECKED --> checked="checked"<!-- ENDIF --> type="checkbox" name="annwarn" id="annwarn" value="1" /> - {L_TRACKER_ANNWARN_EXPLAIN}</td>
+	</tr>
+<!-- ENDIF -->
+
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_FILENAME}</b></td>
+	<td class="row2">{L_UPAS_POSTER}: <input type="checkbox" name="as_poster" id="as_poster" value="1" /> <input type="file" name="fileupload" size="40" maxlength="{FILESIZE}" value="" class="btnfile" /><!-- IF S_MAX_MFU > 1 -->&nbsp;<input type="button" class="btnfile" name="files_" value="{L_ADD_FILEFIELD}" onclick="add_more_upload()" title="" /><!-- ENDIF --></td>
+</tr>
+
+<tr>
+	<td class="row1"><b class="genmed">{L_FILE_COMMENT}</b></td>
+	<td class="row2">
+		<table border="0" cellspacing="0" cellpadding="2">
+		<tr>
+			<td><textarea class="post" name="filecomment" rows="3" cols="35">{FILE_COMMENT}</textarea></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr id="multiple">
+	<td class="row1"><b class="genmed">&nbsp;</b></td>
+	<td class="row2">
+		<table border="0" cellspacing="0" cellpadding="2">
+			<tr>
+				<td>
+					<a name="FILES">
+					<input type="hidden" name="proxid" id="proxid" value="1" />
+					<input type="hidden" name="maxmfu" id="maxmfu" value="1" />
+					<input class="btnlite" type="submit" style="width:150px" name="add_file" value="{L_ADD_FILE}" onclick="popup_progress_bar();" /></a>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+<!-- IF S_MAX_MFU -->
+<tr>
+	<td class="row1"><input type="hidden" name="maxmfu" id="maxmfu" value="1" /></td>
+	<td class="row2">
+		{L_MAX_MFU}
+	</td>
+</tr>
+<!-- ENDIF -->
+<!-- IF S_EXTPOSTERS or S_EXTSCREENSHOTS -->
+<!-- IF .extposters -->
+<tr>
+	<th colspan="2">{L_EXT_POSTERS}</th>
+</tr>
+<tr>
+	<td colspan="2" class="row3">
+		{L_MAX_EXT_POSTERS}
+	</td>
+</tr>
+	<!-- BEGIN extposters -->
+	<tr>
+		<td class="row1">{L_EXT_POSTER} [{extposters.EXTPOSTERS_I}]</td>
+		<td class="row2">
+			<input type="hidden" name="exp[{extposters.EXTPOSTERS_I}]" value="{extposters.EXTPOSTERS_MD5}" />
+			<a href="javascript:;" onClick="document.getElementById('ep_{extposters.EXTPOSTERS_I}').value='';">x</a>&nbsp;<input class="post" id="ep_{extposters.EXTPOSTERS_I}" size="45" type="text" name="extposter[{extposters.EXTPOSTERS_I}]" value="{extposters.EXTPOSTERS_POSTER}" />
+			 [ <input class="radio" onClick="javascript:toggle_block('extp{extposters.EXTPOSTERS_I}');" title="{L_POSTSCR_WHMANUAL_TITLE}" type="checkbox" name="is_manual_p[{extposters.EXTPOSTERS_I}]" value="1" />
+			 <span id="extp{extposters.EXTPOSTERS_I}" style="display:none;"> - <input class="post" title="{L_POSTSCR_WIDTH}" size="4" maxlength="4" type="text" name="is_width_p[{extposters.EXTPOSTERS_I}]" value="{extposters.EXTPOSTERS_WIDTH}" />{L_PIXEL} <input class="post" title="{L_POSTSCR_HEIGHT}" size="4" maxlength="4" type="text" name="is_height_p[{extposters.EXTPOSTERS_I}]" value="{extposters.EXTPOSTERS_HEIGHT}" />{L_PIXEL}</span>]
+		</td>
+	</tr>
+	<!-- END extposters -->
+<!-- ENDIF -->
+<!-- IF .extscreenshots -->
+<tr>
+	<th colspan="2">{L_EXT_SCREENSHOTS}</th>
+</tr>
+<tr>
+	<td colspan="2" class="row3">
+		{L_MAX_EXT_SCREENSHOTS}
+	</td>
+</tr>
+	<!-- BEGIN extscreenshots -->
+	<tr>
+		<td class="row1">{L_EXT_SCREENSHOT} [{extscreenshots.EXTSCREENSHOTS_I}]</td>
+		<td class="row2">
+			<input type="hidden" name="exs[{extscreenshots.EXTSCREENSHOTS_I}]" value="{extscreenshots.EXTSCREENSHOTS_MD5}" />
+			<a href="javascript:;" onClick="document.getElementById('es_{extscreenshots.EXTSCREENSHOTS_I}').value='';">x</a>&nbsp;<input class="post" id="es_{extscreenshots.EXTSCREENSHOTS_I}" size="45" type="text" name="extscreenshot[{extscreenshots.EXTSCREENSHOTS_I}]" value="{extscreenshots.EXTSCREENSHOTS_POSTER}" />
+			 [ <input class="radio" onClick="javascript:toggle_block('exts{extscreenshots.EXTSCREENSHOTS_I}');" title="{L_POSTSCR_WHMANUAL_TITLE}" type="checkbox" name="is_manual_s[{extscreenshots.EXTSCREENSHOTS_I}]" value="1" />
+			 <span id="exts{extscreenshots.EXTSCREENSHOTS_I}" style="display:none;"> - <input class="post" title="{L_POSTSCR_WIDTH}" size="4" maxlength="4" type="text" name="is_width_s[{extscreenshots.EXTSCREENSHOTS_I}]" value="{extscreenshots.EXTSCREENSHOTS_WIDTH}" />{L_PIXEL} <input class="post" title="{L_POSTSCR_HEIGHT}" size="4" maxlength="4" type="text" name="is_height_s[{extscreenshots.EXTSCREENSHOTS_I}]" value="{extscreenshots.EXTSCREENSHOTS_HEIGHT}" />{L_PIXEL}</span>]
+		</td>
+	</tr>
+	<!-- END extscreenshots -->
+<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- IF S_HAS_ATTACHMENTS -->
+	<tr>
+		<th colspan="2">{L_POSTED_ATTACHMENTS}</th>
+	</tr>
+	<!-- BEGIN attach_row -->
+		<tr>
+			<td class="row1"><b class="genmed">{L_FILENAME}</b></td>
+			<td class="row2"><a class="genmed" href="{attach_row.U_VIEW_ATTACHMENT}" target="_blank">{attach_row.FILENAME}</a></td>
+		</tr>
+		<tr>
+			<td class="row1"><b class="genmed">{L_FILE_COMMENT}</b></td>
+			<td class="row2">{attach_row.S_HIDDEN}
+				<table border="0" cellspacing="0" cellpadding="2">
+				<tr>
+					<td><textarea class="post" name="comment_list[{attach_row.ASSOC_INDEX}]" rows="3" cols="35" wrap="virtual">{attach_row.FILE_COMMENT}</textarea>&nbsp;</td>
+					<td valign="top">
+						<table border="0" cellspacing="4" cellpadding="0">
+						<tr>
+							<td><!-- IF not attach_row.SKIP_ATTACHMENT --><input class="btnlite" type="submit" style="width:150px" name="delete_file[{attach_row.ASSOC_INDEX}]" value="{L_DELETE_FILE}" /><!-- ENDIF --></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+	<!-- END attach_row -->
+<!-- ENDIF -->

@@ -1,0 +1,38 @@
+
+.poster_sl
+{
+	text-align:center;
+}
+
+.screenshot_sl
+{
+	text-align:center;
+}
+
+.my_tt
+{
+	cursor: help;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	text-decoration: none;
+}
+
+a.seed, .seed
+{
+	color: #00B200;
+}
+
+a.leech, .leech
+{
+	color: #D40000;
+}
+
+a.complet, .complet
+{
+	color: #310083;
+}
+
+a.ext_peer, .ext_peer
+{
+	color: #CFCFCF;
+}

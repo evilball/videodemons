@@ -1,0 +1,82 @@
+#container {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 500px;
+}
+.tabber {
+  overflow: hidden;
+}
+.tabber .c {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: none;
+}
+.tabber .c a {
+  display: block;
+  text-decoration: none;
+  padding: 5px;
+}
+.tabber .c.top li {
+  float: left;
+  display: inline;
+  margin-bottom: -1px;
+}
+.tabber .c.top li a {
+  border: 1px solid #ccc;
+  border-right: 0;
+  background-color: #ddd;
+}
+.tabber .c.top li.active a {
+  background-color: #efefef;
+  border-bottom: 1px solid #efefef;
+}
+.tabber .c.top li.first a {
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.tabber .c.top li.last a {
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-right: 1px solid #ccc;
+}
+.tabber .c.left {
+  float: left;
+  margin-right: -1px;
+}
+.tabber .c.left li {
+  display: block;
+}
+.tabber .c.left li a {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+}
+.tabber .c.left li.active a {
+  background-color: #efefef;
+  border-right: 1px solid #fff;
+}
+.tabber .c.left li.first a {
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.tabber .c.left li.last a {
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom: 1px solid #ccc;
+}
+.tabber .t {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.tabber .t.top {
+  background-color: #efefef;
+  clear: left;
+}
+.tabber .t.left {
+  overflow: hidden;
+}

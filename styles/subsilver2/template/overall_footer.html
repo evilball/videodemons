@@ -1,0 +1,20 @@
+	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
+</div>
+
+<div id="wrapfooter">
+	<!-- IF U_ACP --><span class="gensmall">[ <a href="{U_ACP}">{L_ACP}</a> ]</span><br /><br /><!-- ENDIF -->
+	<span class="copyright">{CREDIT_LINE}
+	<br /><a href="http://www.ppkbb3cker.ru/">ppkBB3cker</a> v.2 &copy; 2008-2015 @ <a href="http://protoneutron.narod.ru/">PPK</a> | Icon Theme by Everaldo.com Design Studio
+	<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
+	<!-- IF DEBUG_OUTPUT and not S_IS_BOT --><br /><bdo dir="ltr">[ {DEBUG_OUTPUT} ]<!-- CGP DEBUG OUTPUT --></bdo><!-- ENDIF --></span>
+</div>
+
+	<!-- IF S_DISCLAIMER_BLOCK -->
+		<div style="width:100%;text-align:center;margin-top:10px;">{S_DISCLAIMER_BLOCK}</div>
+	<!-- ENDIF -->
+	<!-- BEGIN tracker_cron -->
+		{tracker_cron.CRON_TASK}
+	<!-- END tracker_cron -->
+
+</body>
+</html>

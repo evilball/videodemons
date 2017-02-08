@@ -1,0 +1,282 @@
+
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(function($){
+	$('#tt_info').dataTable({
+		"iDisplayLength": {S_MUA_COUNTLIST_DEFAULT},
+		//"bSort": false,
+		"bPaginate": true,
+		"sPaginationType": "full_numbers",
+		"aLengthMenu": [[{S_MUA_COUNTLIST}], [{S_MUA_COUNTLIST}]],
+		"aoColumns": [<!-- BEGIN headers -->{"sType": "num-html"}<!-- IF not headers.S_LAST_ROW -->, <!-- ENDIF --><!-- END headers -->],
+		"oLanguage":
+		{
+			"sLengthMenu": "{L_DT_SLENGTHMENU}",
+			"sZeroRecords": "{L_DT_SZERORECORDS}",
+			"sInfo": "{L_DT_SINFO}",
+			"sInfoEmpty": "{L_DT_SINFOEMTPY}",
+			"sInfoFiltered": "{L_DT_SINFOFILTERED}",
+			"sSearch": "{L_DT_SSEARCH}",
+			"oPaginate":
+			{
+				"sNext": "{L_DT_SNEXT}",
+				"sPrevious": "{L_DT_SPREVIOUS}",
+				"sFirst": "{L_DT_SFIRST}",
+				"sLast": "{L_DT_SLAST}"
+			}
+		}
+	});
+});
+function fnShowHide( iCol )
+{
+	var oTable = jQuery('#tt_info').dataTable();
+	var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+	oTable.fnSetColumnVis( iCol, bVis ? false : true );
+}
+// ]]>
+</script>
+
+<table class="table1" width="100%" border="0" cellpadding="0" cellspacing="1" id="tt_info">
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_TORRENT -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN torrent_option -->
+<!-- IF torrent_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{torrent_option.TORRENT_CNAME}</span><!-- IF torrent_option.TORRENT_URL --><a href="{torrent_option.TORRENT_URL}" class="topic_title">{torrent_option.TORRENT_NAME}</a><!-- ELSE -->{torrent_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{torrent_option.TORRENT_BUP}</span>{torrent_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{torrent_option.TORRENT_BDOWN}</span>{torrent_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{torrent_option.TORRENT_RATIO}</span>{torrent_option.TORRENT_RATIO}</td>
+	<td><span style="display:none;">{torrent_option.TORRENT_COMPLETED}</span>{torrent_option.TORRENT_COMPLETED}%</td>
+	<td><span style="display:none;">{torrent_option.TORRENT_SLAST}</span>{torrent_option.TORRENT_LAST}</td>
+	<td><span style="display:none;">{torrent_option.TORRENT_SSTART}</span>{torrent_option.TORRENT_START}</td>
+	<td><span style="display:none;">{torrent_option.TORRENT_SEND}</span>{torrent_option.TORRENT_END}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{torrent_option.ID}</span><input type="checkbox" class="radio" name="del[{torrent_option.ID}]" value="1" /></td>
+</tr>
+<!-- END torrent_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_FINISHED -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN finished_option -->
+<!-- IF finished_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{finished_option.TORRENT_CNAME}</span><!-- IF finished_option.TORRENT_URL --><a href="{finished_option.TORRENT_URL}" class="topic_title">{finished_option.TORRENT_NAME}</a><!-- ELSE -->{finished_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{finished_option.TORRENT_BUP}</span>{finished_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{finished_option.TORRENT_BDOWN}</span>{finished_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{finished_option.TORRENT_RATIO}</span>{finished_option.TORRENT_RATIO}</td>
+	<td><span style="display:none;">{finished_option.TORRENT_NOWSEED}</span>{finished_option.TORRENT_NOWSEED}</td>
+	<td><span style="display:none;">{finished_option.TORRENT_SDOWNTIME}</span>{finished_option.TORRENT_DOWNTIME}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{finished_option.ID}</span><input type="checkbox" class="radio" name="del[{finished_option.ID}]" value="1" /></td>
+</tr>
+<!-- END finished_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_SEED -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN seed_option -->
+<!-- IF seed_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{seed_option.TORRENT_CNAME}</span><!-- IF seed_option.TORRENT_URL --><a href="{seed_option.TORRENT_URL}" class="topic_title">{seed_option.TORRENT_NAME}</a><!-- ELSE -->{seed_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{seed_option.TORRENT_BUP}</span>{seed_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_BUPSP}</span>{seed_option.TORRENT_UPSP}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_BDOWN}</span>{seed_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_BDOWNSP}</span>{seed_option.TORRENT_DOWNSP}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_RATIO}</span>{seed_option.TORRENT_RATIO}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_SSTART}</span>{seed_option.TORRENT_START}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_COMPLETED}</span>{seed_option.TORRENT_COMPLETED}%</td>
+	<td><span style="display:none;">{seed_option.TORRENT_UCONN}</span>{seed_option.TORRENT_UCONN}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_NIP}</span>{seed_option.TORRENT_IP}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_PORT}</span>{seed_option.TORRENT_PORT}</td>
+	<td><span style="display:none;">{seed_option.TORRENT_AGENT}</span>{seed_option.TORRENT_AGENT}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{seed_option.ID}</span><input type="checkbox" class="radio" name="del[{seed_option.ID}]" value="1" /></td>
+</tr>
+<!-- END seed_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_LEECH -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN leech_option -->
+<!-- IF leech_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{leech_option.TORRENT_CNAME}</span><!-- IF leech_option.TORRENT_URL --><a href="{leech_option.TORRENT_URL}" class="topic_title">{leech_option.TORRENT_NAME}</a><!-- ELSE -->{leech_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{leech_option.TORRENT_BUP}</span>{leech_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_BUPSP}</span>{leech_option.TORRENT_UPSP}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_BDOWN}</span>{leech_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_BDOWNSP}</span>{leech_option.TORRENT_DOWNSP}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_RATIO}</span>{leech_option.TORRENT_RATIO}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_SSTART}</span>{leech_option.TORRENT_START}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_COMPLETED}</span>{leech_option.TORRENT_COMPLETED}%</td>
+	<td><span style="display:none;">{leech_option.TORRENT_UCONN}</span>{leech_option.TORRENT_UCONN}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_NIP}</span>{leech_option.TORRENT_IP}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_PORT}</span>{leech_option.TORRENT_PORT}</td>
+	<td><span style="display:none;">{leech_option.TORRENT_AGENT}</span>{leech_option.TORRENT_AGENT}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{leech_option.ID}</span><input type="checkbox" class="radio" name="del[{leech_option.ID}]" value="1" /></td>
+</tr>
+<!-- END leech_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_TOTHANKS -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN tothanks_option -->
+<!-- IF tothanks_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{tothanks_option.TORRENT_CUSER}</span>{tothanks_option.TORRENT_USER}</td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_CNAME}</span><!-- IF tothanks_option.TORRENT_URL --><a href="{tothanks_option.TORRENT_URL}" class="topic_title">{tothanks_option.TORRENT_NAME}</a><!-- ELSE -->{tothanks_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_BUP}</span>{tothanks_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_BDOWN}</span>{tothanks_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_COMPLETED}</span>{tothanks_option.TORRENT_COMPLETED}%</td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_SSTART}</span>{tothanks_option.TORRENT_START}</td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_SLAST}</span>{tothanks_option.TORRENT_LAST}</td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_SEND}</span>{tothanks_option.TORRENT_END}</td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_RATIO}</span>{tothanks_option.TORRENT_RATIO}</td>
+	<td><span style="display:none;">{tothanks_option.TORRENT_STADDED}</span>{tothanks_option.TORRENT_TADDED}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{tothanks_option.ID}</span><input type="checkbox" class="radio" name="del[{tothanks_option.ID}]" value="1" /></td>
+</tr>
+<!-- END tothanks_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_FROMTHANKS -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN fromthanks_option -->
+<!-- IF fromthanks_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{fromthanks_option.TORRENT_CUSER}</span>{fromthanks_option.TORRENT_USER}</td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_CNAME}</span><!-- IF fromthanks_option.TORRENT_URL --><a href="{fromthanks_option.TORRENT_URL}" class="topic_title">{fromthanks_option.TORRENT_NAME}</a><!-- ELSE -->{fromthanks_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_BUP}</span>{fromthanks_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_BDOWN}</span>{fromthanks_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_COMPLETED}</span>{fromthanks_option.TORRENT_COMPLETED}%</td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_SSTART}</span>{fromthanks_option.TORRENT_START}</td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_SLAST}</span>{fromthanks_option.TORRENT_LAST}</td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_SEND}</span>{fromthanks_option.TORRENT_END}</td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_RATIO}</span>{fromthanks_option.TORRENT_RATIO}</td>
+	<td><span style="display:none;">{fromthanks_option.TORRENT_STADDED}</span>{fromthanks_option.TORRENT_TADDED}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{fromthanks_option.ID}</span><input type="checkbox" class="radio" name="del[{fromthanks_option.ID}]" value="1" /></td>
+</tr>
+<!-- END fromthanks_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_DOWNLOADS -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN downloads_option -->
+<!-- IF downloads_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{downloads_option.TORRENT_CUSER}</span>{downloads_option.TORRENT_USER}</td>
+	<td><span style="display:none;">{downloads_option.TORRENT_CNAME}</span><!-- IF downloads_option.TORRENT_URL --><a href="{downloads_option.TORRENT_URL}" class="topic_title">{downloads_option.TORRENT_NAME}</a><!-- ELSE -->{downloads_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{downloads_option.TORRENT_BUP}</span>{downloads_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{downloads_option.TORRENT_BDOWN}</span>{downloads_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{downloads_option.TORRENT_COMPLETED}</span>{downloads_option.TORRENT_COMPLETED}%</td>
+	<td><span style="display:none;">{downloads_option.TORRENT_SSTART}</span>{downloads_option.TORRENT_START}</td>
+	<td><span style="display:none;">{downloads_option.TORRENT_SLAST}</span>{downloads_option.TORRENT_LAST}</td>
+	<td><span style="display:none;">{downloads_option.TORRENT_SEND}</span>{downloads_option.TORRENT_END}</td>
+	<td><span style="display:none;">{downloads_option.TORRENT_RATIO}</span>{downloads_option.TORRENT_RATIO}</td>
+	<td><span style="display:none;">{downloads_option.TORRENT_SDOWNLOADED}</span>{downloads_option.TORRENT_DOWNLOADED}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{downloads_option.ID}</span><input type="checkbox" class="radio" name="del[{downloads_option.ID}]" value="1" /></td>
+</tr>
+<!-- END downloads_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_HISTORY -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN history_option -->
+<!-- IF history_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{history_option.TORRENT_CNAME}</span><!-- IF history_option.TORRENT_URL --><a href="{history_option.TORRENT_URL}" class="topic_title">{history_option.TORRENT_NAME}</a><!-- ELSE -->{history_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{history_option.TORRENT_BUP}</span>{history_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{history_option.TORRENT_BDOWN}</span>{history_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{history_option.TORRENT_COMPLETED}</span>{history_option.TORRENT_COMPLETED}%</td>
+	<td><span style="display:none;">{history_option.TORRENT_SSTART}</span>{history_option.TORRENT_START}</td>
+	<td><span style="display:none;">{history_option.TORRENT_SLAST}</span>{history_option.TORRENT_LAST}</td>
+	<td><span style="display:none;">{history_option.TORRENT_SEND}</span>{history_option.TORRENT_END}</td>
+	<td><span style="display:none;">{history_option.TORRENT_RATIO}</span>{history_option.TORRENT_RATIO}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{history_option.ID}</span><input type="checkbox" class="radio" name="del[{history_option.ID}]" value="1" /></td>
+</tr>
+<!-- END history_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_LEAVE -->
+<thead>
+<tr>
+	<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN leave_option -->
+<!-- IF leave_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td><span style="display:none;">{leave_option.TORRENT_CNAME}</span><!-- IF leave_option.TORRENT_URL --><a href="{leave_option.TORRENT_URL}" class="topic_title">{leave_option.TORRENT_NAME}</a><!-- ELSE -->{leave_option.TORRENT_NAME}<!-- ENDIF --></td>
+	<td><span style="display:none;">{leave_option.TORRENT_BUP}</span>{leave_option.TORRENT_UP}</td>
+	<td><span style="display:none;">{leave_option.TORRENT_BDOWN}</span>{leave_option.TORRENT_DOWN}</td>
+	<td><span style="display:none;">{leave_option.TORRENT_COMPLETED}</span>{leave_option.TORRENT_COMPLETED}%</td>
+	<td><span style="display:none;">{leave_option.TORRENT_SSTART}</span>{leave_option.TORRENT_START}</td>
+	<td><span style="display:none;">{leave_option.TORRENT_SLAST}</span>{leave_option.TORRENT_LAST}</td>
+	<td><span style="display:none;">{leave_option.TORRENT_SEND}</span>{leave_option.TORRENT_END}</td>
+	<td><span style="display:none;">{leave_option.TORRENT_RATIO}</span>{leave_option.TORRENT_RATIO}</td>
+	<td align="center" style="text-align:center;"><span style="display:none;">{leave_option.ID}</span><input type="checkbox" class="radio" name="del[{leave_option.ID}]" value="1" /></td>
+</tr>
+<!-- END leave_option -->
+</tbody>
+<!-- ENDIF -->
+
+
+</table>
+
+<!-- IF S_TORRENT_FOOTER -->
+<table width="100%">
+<tr>
+	<td class="bg2" align="center" style="text-align:center;"><strong>{L_DT_HIDE}</strong>: {S_TORRENT_FOOTER}</td>
+</tr>
+</table>
+<!-- ENDIF -->
+
+<table width="100%">
+<tr>
+	<td><span style="color:#FF0000;">{S_DEL_USER_TORRENTS_WARN}</span></td><td class="bg1" align="right" style="text-align:right;"><a title="{L_MARK_ALL}" href="#" onclick="marklist('user_torrents', 'del', true); return false;">{L_MARK_ALL}</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('user_torrents', 'del', false); return false;">{L_UNMARK_ALL}</a></td>
+</tr>
+</table>
+
+<fieldset class="submit-buttons">
+	<input class="button1" type="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+	<input class="button2" type="reset" name="reset" value="{L_RESET}" />
+	{S_HIDDEN_FELDS}
+</fieldset>
+

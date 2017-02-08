@@ -1,0 +1,188 @@
+<a name="t"></a>
+
+<!-- IF LATEST_TORR_COUNT -->
+	{$C_BLOCK_H_L}{$TITLE}{$C_BLOCK_H_R}
+		<div class="post bg1">
+			<div class="inner"><span class="portal-corners-top-inner"></span>
+	<!-- IF S_AS_MESSAGES -->
+		<!-- BEGIN torrents_row -->
+			<table style="width:100%" cellpadding="1" cellspacing="1">
+			<tr>
+				<td class="cat" align="center">
+					<div class="myblock" style="text-align:center;width:auto;margin:5px 0px;">
+						<div class="inner"><span class="mycorners-top"><span></span></span>
+							<h4><a href="{torrents_row.U_VIEW_COMMENTS}">{torrents_row.TITLE}</a></h4>
+						<span class="mycorners-bottom"><span></span></span></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="100%">
+					<div style="width:100%;padding-bottom:10px;" class="postbody">
+						<div class="content">
+							<div style="float:right;margin:0px 0px 10px 10px;">
+								<div class="tabber" id="tabber_ps{torrents_row.TORRENT_COUNT}">
+									<ul class="c">
+										<!-- IF torrents_row.S_HAS_TRACKER_POSTER --><li>{L_ATTACHMENTS_POSTER}</li><!-- ENDIF -->
+										<!-- IF torrents_row.S_HAS_TRACKER_SCREENSHOT --><li>{L_ATTACHMENTS_SCREENSHOT}</li><!-- ENDIF -->
+									</ul>
+									<!-- IF torrents_row.S_HAS_TRACKER_POSTER or torrents_row.S_HAS_TRACKER_SCREENSHOT -->
+									<!-- IF torrents_row.S_HAS_TRACKER_POSTER -->
+									<div class="t">
+										<div style="text-align:center;width:{POSTERS_TABLE_WIDTH}px;margin-left: 0px;">
+						<div class="inner"><span class="mycorners-top"><span></span></span>
+											<div id="sliderPoster{torrents_row.TORRENT_COUNT}" style="margin:0px auto;width:{POSTERS_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+												<ul style="margin-left: 0px;">
+												<!-- BEGIN torrent_poster_fields -->
+												<li style="width:{POSTERS_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+													<a href="{torrents_row.torrent_poster_fields.POSTER_LINK}" rel="prettyPhotoPosters<!-- IF torrents_row.POSTERS_COUNT -->[{torrents_row.torrent_poster_fields.POSTER_COUNT}]<!-- ENDIF -->"><img <!-- IF torrents_row.torrent_poster_fields.POSTER_WH_WIDTH -->width="{torrents_row.torrent_poster_fields.POSTER_WH_WIDTH}"<!-- ELSE -->height="{torrents_row.torrent_poster_fields.POSTER_WH_HEIGHT}"<!-- ENDIF --> src="{torrents_row.torrent_poster_fields.POSTER_SRC}" alt="" /></a>
+												</li>
+												<!-- END torrent_poster_fields -->
+												</ul>
+											</div>
+						<span class="mycorners-bottom"><span></span></span></div>
+										</div>
+					</div>
+					<!-- ENDIF -->
+									<!-- IF torrents_row.S_HAS_TRACKER_SCREENSHOT -->
+									<div class="t">
+										<div style="text-align:center;width:{SCREENSHOTS_TABLE_WIDTH}px;margin-left: 0px;">
+											<div class="inner"><span class="mycorners-top"><span></span></span>
+											<div id="sliderScreen{torrents_row.TORRENT_COUNT}" style="margin:0px auto;width:{SCREENSHOTS_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+												<ul style="margin-left: 0px;">
+												<!-- BEGIN torrent_screenshot_fields -->
+												<li style="width:{SCREENSHOTS_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+													<a href="{torrents_row.torrent_screenshot_fields.SCREENSHOT_LINK}" rel="prettyPhotoScreenshots<!-- IF torrents_row.SCREENSHOTS_COUNT -->[{torrents_row.torrent_screenshot_fields.SCREENSHOT_COUNT}]<!-- ENDIF -->"><img <!-- IF torrents_row.torrent_screenshot_fields.SCREENSHOT_WH_WIDTH -->width="{torrents_row.torrent_screenshot_fields.SCREENSHOT_WH_WIDTH}"<!-- ELSE -->height="{torrents_row.torrent_screenshot_fields.SCREENSHOT_WH_HEIGHT}"<!-- ENDIF --> src="{torrents_row.torrent_screenshot_fields.SCREENSHOT_SRC}" alt="" /></a>
+												</li>
+												<!-- END torrent_screenshot_fields -->
+												</ul>
+											</div>
+											<span class="mycorners-bottom"><span></span></span></div>
+										</div>
+									</div>
+									<!-- ENDIF -->
+									<!-- ENDIF -->
+								</div>
+							</div>
+							{torrents_row.TEXT}
+						</div>
+						<!-- IF torrents_row.S_HAS_ATTACHMENTS -->
+						<dl class="attachbox">
+							<dt>{L_ATTACHMENTS}</dt>
+							<!-- BEGIN attachment -->
+								<dd>{torrents_row.attachment.DISPLAY_ATTACHMENT}</dd>
+							<!-- END attachment -->
+						</dl>
+						<!-- ENDIF -->
+						<!-- IF torrents_row.S_TORRENT_TOP_NOTICE -->
+					<div class="myblock" style="text-align:center;width:auto;clear:both;">
+						<div class="inner"><span class="mycorners-top"><span></span></span>
+								{torrents_row.S_TORRENT_TOP_NOTICE}
+						<span class="mycorners-bottom"><span></span></span></div>
+					</div>
+					<!-- ENDIF -->
+				<!-- IF torrents_row.S_LTDISPLAY -->
+
+					<!-- IF torrents_row.S_HAS_TRACKER_TORRENT or torrents_row.S_TORRENT_INFO -->
+						<div class="tabber" id="tabber_t{torrents_row.TORRENT_COUNT}">
+							<ul class="c">
+								<li>{L_ATTACHMENTS_TORRENT}</li>
+							</ul>
+							<div class="t">
+							<table width="100%"><tr>
+							<!-- IF torrents_row.S_TORRENT_INFO --><td valign="top" style="line-height:1.3em;" width="70%">
+								<table width="100%">
+									<tr>
+										<td><b>{L_POSTED_BY}</b>: {torrents_row.POSTER}</td>
+										<td><b>{L_TORRENT_HEALTH}</b>: {torrents_row.TORRENT_HEALTH_VAL}%</td>
+									</tr>
+									<tr>
+										<td><b>{L_TORRENT_ADDED}</b>: {torrents_row.TIME}</td>
+										<td><b>{L_TORRENT_SIZE}</b>: {torrents_row.TORRENT_SIZE_VAL}</td>
+									</tr>
+									<tr>
+										<td><b>{L_LATEST_TORRENTS_IN}</b>: <a href="{torrents_row.TORRENT_FORUM_LINK}">{torrents_row.TORRENT_FORUM_NAME}</a></td>
+										<td><b>{L_COMMENTS}</b>: {torrents_row.REPLIES}</td>
+									</tr>
+									<tr>
+										<td><b>{L_TORRENT_COMPLETED}</b>: <span class="complet">{torrents_row.TORRENT_COMPLETED_VAL}</span></td>
+										<td><b>{L_TOPIC_VIEWS}</b>: {torrents_row.TOPIC_VIEWS}</td>
+									</tr>
+									<tr>
+										<td><b>{L_TORRENT_SEEDERS}</b>: <span class="seed">{torrents_row.TORRENT_SEEDERS_VAL}</span></td>
+										<td><b>{L_TORRENT_LEECHERS}</b>: <span class="leech">{torrents_row.TORRENT_LEECHERS_VAL}</span></td>
+									</tr>
+								</table>
+							</td>
+							<!-- ENDIF -->
+							<!-- IF not torrents_row.S_HAS_TRACKER_TORRENT and not S_USER_LOGGED_IN -->
+							<td align="center" style="line-height:1.3em;"<!-- IF postrow.TORRENT_INFO_STAT --> width="25%"<!-- ENDIF -->>
+								{L_LOGORREG_DOWNLOAD}
+							</td>
+							<!-- ENDIF -->
+							<!-- IF torrents_row.S_HAS_TRACKER_TORRENT-->
+							<td align="center" style="line-height:1.3em;"<!-- IF torrents_row.S_TORRENT_INFO --> width="30%"<!-- ENDIF -->>
+							<div style="text-align:center;padding-bottom:10px;">
+								<!-- BEGIN torrent_fields -->
+									<!-- IF torrents_row.TORRENT_FORUM_IMAGE --><img src="{torrents_row.TORRENT_FORUM_IMAGE}" alt="{torrents_row.TORRENT_FORUM_NAME}" title="{torrents_row.TORRENT_FORUM_NAME}" /> <!-- ENDIF -->
+									<!-- IF torrents_row.TORRENT_BONUS --><img src="{torrents_row.TORRENT_BONUS_SRC_IMG}" alt="{torrents_row.TORRENT_BONUS_TEXT}"  title="{torrents_row.TORRENT_BONUS_TEXT}"/> <!-- ENDIF -->
+									<!-- IF torrents_row.TORRENT_FREE --><img src="{torrents_row.TORRENT_FREE_SRC_IMG}" alt="{torrents_row.TORRENT_FREE_TEXT}"  title="{torrents_row.TORRENT_FREE_TEXT}"/> <!-- ENDIF -->
+									<!-- IF torrents_row.TORRENT_FORB --><img src="{torrents_row.TORRENT_FORB_SRC_IMG}" alt="{torrents_row.TORRENT_FORB_TEXT}"  title="{torrents_row.TORRENT_FORB_TEXT}"/> <!-- ENDIF -->
+									<!-- IF torrents_row.TORRENT_REQ_UPLOAD --><img src="{torrents_row.TORRENT_REQ_UPLOAD_SRC_IMG}" alt="{torrents_row.TORRENT_REQ_UPLOAD_TEXT}"  title="{torrents_row.TORRENT_REQ_UPLOAD_TEXT}"/> <!-- ENDIF -->
+									<!-- IF torrents_row.TORRENT_REQ_RATIO --><img src="{torrents_row.TORRENT_REQ_RATIO_SRC_IMG}" alt="{torrents_row.TORRENT_REQ_RATIO_TEXT}"  title="{torrents_row.TORRENT_REQ_RATIO_TEXT}"/> <!-- ENDIF -->
+									<!-- IF torrents_row.TORRENT_WAIT --><img src="{torrents_row.TORRENT_WAIT_SRC_IMG}" alt="{torrents_row.TORRENT_WAIT_TEXT}"  title="{torrents_row.TORRENT_WAIT_TEXT}"/> <!-- ENDIF -->
+										<!-- IF torrents_row.torrent_fields.TORRENT_LINK -->
+											<a href="{torrents_row.torrent_fields.TORRENT_SRC_LINK}" title="{L_DOWNLOAD_TORRENT}"><img src="{torrents_row.torrent_fields.TORRENT_DOWNLOAD_SRC_IMG}" alt="{L_DOWNLOAD_TORRENT}" /></a>
+										<!-- IF torrents_row.torrent_fields.TORRENT_MAGNET_LINK --><a href="{torrents_row.torrent_fields.TORRENT_MAGNET_LINK}" title="{L_TORRENT_MAGNET_LINK}"><img src="{torrents_row.torrent_fields.TORRENT_MAGNET_SRC_IMG}" alt="{L_TORRENT_MAGNET_LINK}" /></a> <!-- ENDIF -->
+											<br /><a href="{torrents_row.torrent_fields.TORRENT_SRC_LINK}" title="{torrents_row.torrent_fields.TORRENT_FILENAME}">{L_DOWNLOAD_TORRENT}</a>
+										<!-- ENDIF -->
+								<!-- END torrent_fields -->
+							</div>
+							</td>
+							<!-- ENDIF -->
+							</tr>
+							</table>
+						</div>
+					</div>
+					<!-- ENDIF -->
+						<!-- ENDIF -->
+					<!-- IF torrents_row.S_TORRENT_BOTTOM_NOTICE -->
+					<div class="myblock" style="text-align:center;width:auto;clear:both;">
+								<div class="inner"><span class="mycorners-top"><span></span></span>
+							{torrents_row.S_TORRENT_BOTTOM_NOTICE}
+								<span class="mycorners-bottom"><span></span></span></div>
+							</div>
+						<!-- ENDIF -->
+						</div>
+				</td>
+			</tr>
+			</table>
+		<!-- END torrents_row -->
+						<!-- ENDIF -->
+
+
+	<!-- IF TP_PAGINATION or TP_TOTAL_TORRENTS -->
+		<div class="topic-actions">
+			<div class="pagination">
+				{TP_TOTAL_TORRENTS}
+				<!-- IF TP_PAGE_NUMBER --><!-- IF TP_PAGINATION --> &bull; {TP_PAGE_NUMBER} &bull; <span>{TP_PAGINATION}</span><!-- ELSE --> &bull; {TP_PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF --> &nbsp;
+			</div>
+		</div>
+	<!-- ENDIF -->
+
+
+
+		<span class="portal-corners-bottom-inner"></span></div>
+	</div>
+	{$C_BLOCK_F_L}{$C_BLOCK_F_R}
+
+<!-- ELSE -->
+	{$C_BLOCK_H_L}{$TITLE}{$C_BLOCK_H_R}
+	<div class="post bg1">
+		<div class="inner"><span class="portal-corners-top-inner"></span>
+		{L_NO_LATEST_TORRENTS}
+		<span class="portal-corners-bottom-inner"></span></div>
+	</div>
+	{$C_BLOCK_F_L}{$C_BLOCK_F_R}
+<!-- ENDIF -->
+

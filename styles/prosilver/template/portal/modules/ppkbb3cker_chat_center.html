@@ -1,0 +1,27 @@
+
+<!-- IF S_CHAT_NOTIN and CHAT_MINIMIZED -->
+<script type="text/javascript">
+// <![CDATA[
+	jQuery(document).ready(
+	function($)
+	{
+		$("#chat_area").hide();
+		$("#chat_enter").mouseover(function () {
+			$("#chat_area").show();
+			return false;
+		});
+		$("#chat_enter").mouseout(function () {
+			$("#chat_area").hide();
+			return false;
+		});
+	}
+);
+// ]]>
+</script>
+<!-- ENDIF -->
+
+<!-- IF not S_CHAT_NOTIN or S_READ_MODE -->
+	<!-- INCLUDE viewforum_chat_scripts.html -->
+<!-- ENDIF -->
+
+<!-- INCLUDE chat_body.html -->

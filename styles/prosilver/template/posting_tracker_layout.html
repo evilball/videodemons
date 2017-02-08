@@ -1,0 +1,209 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF TOPIC_TITLE -->
+	<h2><a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a></h2>
+<!-- ELSE -->
+	<h2><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
+ <!-- ENDIF -->
+
+<!-- IF S_FORUM_RULES -->
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<!-- IF U_FORUM_RULES -->
+			<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+		<!-- ELSE -->
+			<strong>{L_FORUM_RULES}</strong><br />
+			{FORUM_RULES}
+		<!-- ENDIF -->
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+
+<form id="postform" method="post" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
+
+<!-- IF S_DRAFT_LOADED -->
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<h3>{L_INFORMATION}</h3>
+		<p>{L_DRAFT_LOADED}</p>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_SHOW_DRAFTS --><!-- INCLUDE drafts.html --><!-- ENDIF -->
+
+<!-- IF S_POST_REVIEW --><!-- INCLUDE posting_review.html --><!-- ENDIF -->
+
+<!-- IF S_UNGLOBALISE -->
+	<div class="panel bg3">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<fieldset class="fields1">
+			<h2>{L_SELECT_DESTINATION_FORUM}</h2>
+			<p>{L_UNGLOBALISE_EXPLAIN}</p>
+			<dl>
+				<dt><label for="to_forum_id">{L_MOVE}:</label></dt>
+				<dd><select id="to_forum_id" name="to_forum_id">{S_FORUM_SELECT}</select></dd>
+			</dl>
+
+			<dl>
+				<dt>&nbsp;</dt>
+				<dd><input class="button1" type="submit" name="post" value="{L_CONFIRM}" /> <input class="button2" type="submit" name="cancel_unglobalise" value="{L_CANCEL}" /></dd>
+			</dl>
+
+		</fieldset>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+
+
+
+<!-- IF S_DISPLAY_PREVIEW --><!-- INCLUDE posting_tracker_preview.html --><!-- ENDIF -->
+
+<!-- IF ADDFIELDS_TYPE_SWITCH and FORUM_ADDFIELDS -->
+<div class="panel bg3" id="addfields-panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<h3>{L_POST_A}</h3>
+	<!-- IF ADDFIELDS_DESCR -->
+	<p style="width:100%;">
+		<span>{ADDFIELDS_DESCR}</span>
+	</p>
+	<!-- ENDIF -->
+	<fieldset class="fields2">
+	<dl style="clear: left;">
+		<dt><b>{L_TRACKER_ADDFIELDS}</b>:</dt>
+		<dd><!-- IF not ADDFIELDS_INFORM_PLACE -->{L_ADDFIELDS_REQUIRED_FIELDS}<!-- ENDIF --></dd>
+	</dl>
+		<!-- BEGIN addfields_option -->
+			<dl>
+				<dt><b>{addfields_option.ADDFIELDS_NAME}</b><!-- IF addfields_option.ADDFIELDS_DESCR --> <a class="my_tt" title="{addfields_option.ADDFIELDS_DESCR}"><img src="{addfields_option.ADDFIELDS_DESCR_SRC_IMG}" /></a><!-- ENDIF -->:</dt>
+				<dd>
+				<!-- IF .addfields_option.fields -->
+					<!-- BEGIN fields -->
+						<!-- IF addfields_option.ADDFIELD_TYPE == 'TA' -->
+						[{addfields_option.fields.ADDFIELD_I}] <textarea class="inputbox" id="af_{addfields_option.fields.ADDFIELD_KEY}" rows="3" cols="35" name="{addfields_option.fields.ADDFIELD_KEY}">{addfields_option.fields.ADDFIELD_VALUE}</textarea><!-- IF not addfields_option.fields.S_LAST_ROW --><br /><!-- ENDIF -->
+						<!-- ELSEIF addfields_option.ADDFIELD_TYPE == 'T' -->
+						[{addfields_option.fields.ADDFIELD_I}] <input class="inputbox autowidth" id="af_{addfields_option.fields.ADDFIELD_KEY}" size="45" type="text" name="{addfields_option.fields.ADDFIELD_KEY}" value="{addfields_option.fields.ADDFIELD_VALUE}" /><!-- IF not addfields_option.fields.S_LAST_ROW --><br /><!-- ENDIF --><!-- END fields -->
+						<!-- ENDIF -->
+				<!-- ELSE -->
+					<!-- IF addfields_option.ADDFIELD_TYPE == 'TA' -->
+						<textarea class="inputbox" id="af_{addfields_option.ADDFIELD_KEY}" rows="3" cols="35" name="{addfields_option.ADDFIELD_KEY}">{addfields_option.ADDFIELD_VALUE}</textarea>
+					<!-- ELSEIF addfields_option.ADDFIELD_TYPE == 'T' -->
+						<input class="inputbox autowidth" id="af_{addfields_option.ADDFIELD_KEY}" size="45" type="text" name="{addfields_option.ADDFIELD_KEY}" value="{addfields_option.ADDFIELD_VALUE}" />
+					<!-- ELSEIF addfields_option.ADDFIELD_TYPE == 'SEL' -->
+						<select name="{addfields_option.ADDFIELD_KEY}[]" multiple="multiple" style="width:300px;">{addfields_option.ADDFIELD_VALUE}</select>
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+				<!-- IF addfields_option.ADDFIELD_HELP -->
+					<br /><!-- IF addfields_option.ADDFIELD_HELP_TYPE != 'MLT' -->{L_TRACKER_ADDFIELDS_EXAMPLE}: <!-- ENDIF -->
+					<!-- IF addfields_option.ADDFIELD_HELP_TYPE == 'SEL' -->
+						<select name="ins_{addfields_option.ADDFIELD_HELP_KEY}" onchange="this.form.{addfields_option.ADDFIELD_HELP_KEY}.value=this.form.ins_{addfields_option.ADDFIELD_HELP_KEY}.value;">{addfields_option.ADDFIELD_HELP}</select>
+					<!-- ELSE -->
+						{addfields_option.ADDFIELD_HELP}
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+				</dd>
+			</dl>
+		<!-- END addfields_option -->
+	</fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<div class="panel bg2">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<fieldset class="submit-buttons">
+		<input type="hidden" name="addf_switch" value="1" />
+		{S_HIDDEN_ADDRESS_FIELD}
+		{S_HIDDEN_FIELDS}
+		{S_FORM_TOKEN}
+		<input type="submit" tabindex="5" id="pf_preview" name="preview" value="{L_PREVIEW}" class="button1"<!-- IF not S_PRIVMSGS --> onclick="document.getElementById('postform').action += '#preview';"<!-- ENDIF --> />&nbsp;
+	</fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ELSE -->
+
+<div class="panel" id="postingbox">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<h3>{L_POST_A}</h3>
+	{TRACKER_ANNOUNCE_URL}
+	<!-- DEFINE $EXTRA_POSTING_OPTIONS = 1 -->
+	<!-- INCLUDE posting_editor.html -->
+	{S_FORM_TOKEN}
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- IF FORUM_ADDFIELDS and ADDFIELDS_TYPE -->
+<div class="panel bg3" id="addfields-panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<!-- IF ADDFIELDS_DESCR -->
+	<p style="width:100%;">
+		<span>{ADDFIELDS_DESCR}</span>
+	</p>
+	<!-- ENDIF -->
+	<fieldset class="fields2">
+	<dl style="clear: left;">
+		<dt><b>{L_TRACKER_ADDFIELDS}</b>:</dt>
+		<dd><!-- IF not ADDFIELDS_INFORM_PLACE -->{L_ADDFIELDS_REQUIRED_FIELDS}<!-- ENDIF --></dd>
+	</dl>
+		<!-- BEGIN addfields_option -->
+			<dl>
+				<dt><b>{addfields_option.ADDFIELDS_NAME}</b><!-- IF addfields_option.ADDFIELDS_DESCR --> <a class="my_tt" title="{addfields_option.ADDFIELDS_DESCR}"><img src="{addfields_option.ADDFIELDS_DESCR_SRC_IMG}" /></a><!-- ENDIF -->:</dt>
+				<dd>
+				<!-- IF .addfields_option.fields -->
+					<!-- BEGIN fields -->
+						<!-- IF addfields_option.ADDFIELD_TYPE == 'TA' -->
+						[{addfields_option.fields.ADDFIELD_I}] <textarea class="inputbox" id="af_{addfields_option.fields.ADDFIELD_KEY}" rows="3" cols="35" name="{addfields_option.fields.ADDFIELD_KEY}">{addfields_option.fields.ADDFIELD_VALUE}</textarea><!-- IF not addfields_option.fields.S_LAST_ROW --><br /><!-- ENDIF -->
+						<!-- ELSEIF addfields_option.ADDFIELD_TYPE == 'T' -->
+						[{addfields_option.fields.ADDFIELD_I}] <input class="inputbox autowidth" id="af_{addfields_option.fields.ADDFIELD_KEY}" size="45" type="text" name="{addfields_option.fields.ADDFIELD_KEY}" value="{addfields_option.fields.ADDFIELD_VALUE}" /><!-- IF not addfields_option.fields.S_LAST_ROW --><br /><!-- ENDIF --><!-- END fields -->
+						<!-- ENDIF -->
+				<!-- ELSE -->
+					<!-- IF addfields_option.ADDFIELD_TYPE == 'TA' -->
+						<textarea class="inputbox" id="af_{addfields_option.ADDFIELD_KEY}" rows="3" cols="35" name="{addfields_option.ADDFIELD_KEY}">{addfields_option.ADDFIELD_VALUE}</textarea>
+					<!-- ELSEIF addfields_option.ADDFIELD_TYPE == 'T' -->
+						<input class="inputbox autowidth" id="af_{addfields_option.ADDFIELD_KEY}" size="45" type="text" name="{addfields_option.ADDFIELD_KEY}" value="{addfields_option.ADDFIELD_VALUE}" />
+					<!-- ELSEIF addfields_option.ADDFIELD_TYPE == 'SEL' -->
+						<select name="{addfields_option.ADDFIELD_KEY}[]" multiple="multiple" style="width:300px;">{addfields_option.ADDFIELD_VALUE}</select>
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+				<!-- IF addfields_option.ADDFIELD_HELP -->
+					<br /><!-- IF addfields_option.ADDFIELD_HELP_TYPE != 'MLT' -->{L_TRACKER_ADDFIELDS_EXAMPLE}: <!-- ENDIF -->
+					<!-- IF addfields_option.ADDFIELD_HELP_TYPE == 'SEL' -->
+						<select name="ins_{addfields_option.ADDFIELD_HELP_KEY}" onchange="this.form.{addfields_option.ADDFIELD_HELP_KEY}.value=this.form.ins_{addfields_option.ADDFIELD_HELP_KEY}.value;">{addfields_option.ADDFIELD_HELP}</select>
+					<!-- ELSE -->
+						{addfields_option.ADDFIELD_HELP}
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+				</dd>
+			</dl>
+		<!-- END addfields_option -->
+	</fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+<!-- IF S_SHOW_ATTACH_BOX --><!-- INCLUDE posting_tracker_attach_body.html --><!-- ENDIF -->
+
+<!-- IF not S_DISABLE_POLLTAB --><!-- IF S_SHOW_POLL_BOX or S_POLL_DELETE --><!-- INCLUDE posting_poll_body.html --><!-- ENDIF --><!-- ENDIF -->
+
+<!-- IF S_DISPLAY_REVIEW --><!-- INCLUDE posting_topic_review.html --><!-- ENDIF -->
+
+<!-- ENDIF -->
+
+</form>
+<!-- IF not S_PRIVMSGS -->
+<script type="text/javascript">
+// <![CDATA[
+	subPanels(show_panel);
+// ]]>
+</script>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

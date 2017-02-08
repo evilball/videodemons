@@ -1,0 +1,59 @@
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th width="4%" nowrap="nowrap">&nbsp;</th>
+		<th colspan="2" nowrap="nowrap">&nbsp;<!-- IF S_IS_TRACKER -->{L_SIMILAR_TORRENTS}<!-- ELSE -->{L_SIMILAR_TOPICS}<!-- ENDIF -->&nbsp;</th>
+		<th nowrap="nowrap">&nbsp;{L_AUTHOR}&nbsp;</th>
+		<th nowrap="nowrap">&nbsp;{L_REPLIES}&nbsp;</th>
+		<th nowrap="nowrap">&nbsp;{L_VIEWS}&nbsp;</th>
+		<th nowrap="nowrap">&nbsp;{L_LAST_POST}&nbsp;</th>
+	</tr>
+	<!-- BEGIN similar -->
+		<tr valign="middle">
+			<td class="row1" width="25" align="center">{similar.TOPIC_FOLDER_IMG}</td>
+			<td class="row1" width="25" align="center">
+			<!-- IF similar.TOPIC_ICON_IMG -->
+				<img src="{T_ICONS_PATH}{similar.TOPIC_ICON_IMG}" width="{similar.TOPIC_ICON_IMG_WIDTH}" height="{similar.TOPIC_ICON_IMG_HEIGHT}" alt="" title="" />
+			<!-- ENDIF -->
+			</td>
+			<td class="row1">
+
+				<!-- IF similar.TORRENT_LINK -->
+					<a href="{similar.TORRENT_SRC_LINK}" title="{L_DOWNLOAD_TORRENT}"><img src="{similar.TORRENT_DOWNLOAD_SRC_IMG}" alt="{L_DOWNLOAD_TORRENT}" /></a>
+					<!-- IF similar.TORRENT_MAGNET_LINK --><a href="{similar.TORRENT_MAGNET_LINK}" title="{L_TORRENT_MAGNET_LINK}"><img src="{similar.TORRENT_MAGNET_SRC_IMG}" alt="{L_TORRENT_MAGNET_LINK}" /></a> <!-- ENDIF -->
+				<!-- ENDIF -->
+				<!-- IF similar.TORRENT_MARK --><b>{similar.TORRENT_MARK}</b> <!-- ENDIF -->
+
+				<!-- IF similar.S_UNREAD_TOPIC --><a href="{similar.U_NEWEST_POST}">{NEWEST_POST_IMG}</a><!-- ENDIF -->
+				<!-- IF not S_IS_TRACKER -->{similar.ATTACH_ICON_IMG} <!-- ENDIF --><a href="{similar.U_VIEW_TOPIC}" class="topictitle">{similar.TOPIC_TITLE}</a>
+
+				<!-- IF similar.TORRENT_BONUS --><img src="{similar.TORRENT_BONUS_SRC_IMG}" alt="{similar.TORRENT_BONUS_TEXT}"  title="{similar.TORRENT_BONUS_TEXT}"/> <!-- ENDIF -->
+						<!-- IF similar.TORRENT_FREE --><img src="{similar.TORRENT_FREE_SRC_IMG}" alt="{similar.TORRENT_FREE_TEXT}"  title="{similar.TORRENT_FREE_TEXT}"/> <!-- ENDIF -->
+						<!-- IF similar.TORRENT_FORB --><img src="{similar.TORRENT_FORB_SRC_IMG}" alt="{similar.TORRENT_FORB_TEXT}"  title="{similar.TORRENT_FORB_TEXT}"/> <!-- ENDIF -->
+						<!-- IF similar.TORRENT_REQ_UPLOAD --><img src="{similar.TORRENT_REQ_UPLOAD_SRC_IMG}" alt="{similar.TORRENT_REQ_UPLOAD_TEXT}"  title="{similar.TORRENT_REQ_UPLOAD_TEXT}"/> <!-- ENDIF -->
+						<!-- IF similar.TORRENT_REQ_RATIO --><img src="{similar.TORRENT_REQ_RATIO_SRC_IMG}" alt="{similar.TORRENT_REQ_RATIO_TEXT}"  title="{similar.TORRENT_REQ_RATIO_TEXT}"/> <!-- ENDIF -->
+						<!-- IF similar.TORRENT_WAIT --><img src="{similar.TORRENT_WAIT_SRC_IMG}" alt="{similar.TORRENT_WAIT_TEXT}"  title="{similar.TORRENT_WAIT_TEXT}"/> <!-- ENDIF -->
+
+				<!-- IF similar.S_TOPIC_UNAPPROVED or similar.S_POSTS_UNAPPROVED -->
+					<a href="{similar.U_MCP_QUEUE}">{similar.UNAPPROVED_IMG}</a>&nbsp;
+				<!-- ENDIF -->
+				<!-- IF similar.S_TOPIC_REPORTED -->
+					<a href="{similar.U_MCP_REPORT}">{REPORTED_IMG}</a>&nbsp;
+				<!-- ENDIF -->
+				<!-- IF similar.PAGINATION -->
+					<p class="gensmall"> [ {GOTO_PAGE_IMG}{L_GOTO_PAGE}: {similar.PAGINATION} ] </p>
+				<!-- ENDIF -->
+				<p class="gensmall">{L_IN} <a href="{similar.U_VIEW_FORUM}">{similar.FORUM_TITLE}</a><!-- IF similar.S_HAS_TORRENT -->, {L_TORRENT_SIZE}: <b>{similar.TORRENT_SIZE_VAL}</b>, {L_TORRENT_HEALTH}: <b>{similar.TORRENT_HEALTH_VAL}</b>%<!-- ENDIF --></p>
+			</td>
+			<td class="row2" width="100" align="center"><p class="topicauthor">{similar.TOPIC_AUTHOR_FULL}</p></td>
+			<td class="row1" width="50" align="center"><p class="topicdetails">{similar.TOPIC_REPLIES}<!-- IF similar.S_HAS_TORRENT --><br /><span class="my_tt seed" title="{L_TORRENT_SEEDERS}"><b>{similar.TORRENT_SEEDERS_VAL}</b></span>|<span class="my_tt leech" title="{L_TORRENT_LEECHERS}"><b>{similar.TORRENT_LEECHERS_VAL}</b></span><!-- ENDIF --></p></td>
+			<td class="row2" width="50" align="center"><p class="topicdetails">{similar.TOPIC_VIEWS}<!-- IF similar.S_HAS_TORRENT --><br /><span class="my_tt complet" title="{L_TORRENT_COMPLETED}"><b>{similar.TORRENT_COMPLETED_VAL}</b></span><!-- ENDIF --></p></td>
+			<td class="row1" width="120" align="center">
+				<p class="topicdetails">{similar.LAST_POST_TIME}</p>
+				<p class="topicdetails">{similar.LAST_POST_AUTHOR_FULL}
+					<a href="{similar.U_LAST_POST}">{LAST_POST_IMG}</a>
+				</p>
+			</td>
+		</tr>
+	<!-- END similar -->
+	</table>
+	<br clear="all" />

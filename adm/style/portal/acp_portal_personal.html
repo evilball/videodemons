@@ -1,0 +1,99 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_TITLE_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+<form id="acp_portal_config" method="post" action="{U_ACTION}">
+<!-- IF SHOW_MODULE_OPTIONS -->
+		<fieldset>
+			<legend>{L_MODULE_OPTIONS}</legend>
+			<dl>
+				<dt><label for="module_name">{L_MODULE_NAME}:</label><br /><span>{L_MODULE_NAME_EXP}</span></dt>
+				<dd><input id="module_name" type="text" value="{MODULE_NAME}" name="module_name" maxlength="255" size="64" /></dd>
+			</dl>
+			<!-- IF MODULE_SHOW_IMAGE -->
+			<dl>
+				<dt><label for="module_image">{L_MODULE_IMAGE}:</label><br /><span>{L_MODULE_IMAGE_EXP}</span></dt>
+				<dd><input id="module_image" type="text" value="{MODULE_IMAGE}" name="module_image" maxlength="255" size="64" /></dd>
+				<!-- IF MODULE_IMAGE_SRC --><dd><img src="{MODULE_IMAGE_SRC}" alt="{L_MODULE_IMAGE}" /></dd><!-- ENDIF -->
+			</dl>
+			<!-- IF MODULE_IMAGE_SRC -->
+			<dl>
+				<dt><label for="module_img_width">{L_MODULE_IMAGE_WIDTH}:</label><br /><span>{L_MODULE_IMAGE_WIDTH_EXP}</span></dt>
+				<dd><input id="module_img_width" type="text" value="{MODULE_IMAGE_WIDTH}" name="module_img_width" maxlength="3" size="3" />px</dd>
+			</dl>
+			<dl>
+				<dt><label for="module_img_height">{L_MODULE_IMAGE_HEIGHT}:</label><br /><span>{L_MODULE_IMAGE_HEIGHT_EXP}</span></dt>
+				<dd><input id="module_img_height" type="text" value="{MODULE_IMAGE_HEIGHT}" name="module_img_height" maxlength="3" size="3" />px</dd>
+			</dl>
+			<!-- ENDIF -->
+			<!-- ENDIF -->
+			<dl>
+				<dt><label for="module_reset">{L_MODULE_RESET}:</label><br /><span style="color: #BC2A4D;">{L_MODULE_RESET_EXP}</span></dt>
+				<dd><input id="module_reset" type="checkbox" value="1" name="module_reset" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="module_status">{L_MODULE_STATUS}:</label></dt>
+				<dd>
+					<label><input type="radio" class="radio" name="module_status" value="1" id="module_status"<!-- IF MODULE_ENABLED --> checked="checked"<!-- ENDIF --> />{L_YES}</label>
+					<label><input type="radio" class="radio" name="module_status" value="0"<!-- IF not MODULE_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt><label for="permission-setting">{L_ACP_PORTAL_PERSONAL_PERMISSION}:</label><br /><span>{L_ACP_PORTAL_PERSONAL_PERMISSION_EXP}</span></dt>
+				<dd>
+					<select id="permission-setting" size="10" multiple="multiple" name="permission-setting[]">
+						<!-- BEGIN permission_setting_personal -->
+						<option value="{permission_setting_personal.GROUP_ID}"<!-- IF permission_setting_personal.SELECTED -->selected="selected"<!-- ENDIF -->>{permission_setting_personal.GROUP_NAME}</option>
+						<!-- END permission_setting_personal -->
+					</select>
+				</dd>
+			</dl>
+		</fieldset>
+<!-- ENDIF -->
+	<fieldset>
+		<dl>
+			<dt>
+				<label for="personal_htmltpl">{L_ACP_PORTAL_PERSONAL_HTMLTPL}:</label><br />
+				<span>{L_ACP_PORTAL_PERSONAL_HTMLTPL_EXP}</span>
+			</dt>
+			<dd><input type="text" name="personal_htmltpl" id="personal_htmltpl" value="{PERSONAL_HTMLTPL}" size="32" maxlength="128" /></dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="personal_phptpl">{L_ACP_PORTAL_PERSONAL_PHPTPL}:</label><br />
+				<span>{L_ACP_PORTAL_PERSONAL_PHPTPL_EXP}</span>
+			</dt>
+			<dd><input type="text" name="personal_phptpl" id="personal_phptpl" value="{PERSONAL_PHPTPL}" size="32" maxlength="128" /></dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="personal_langtpl">{L_ACP_PORTAL_PERSONAL_LANGTPL}:</label><br />
+				<span>{L_ACP_PORTAL_PERSONAL_LANGTPL_EXP}</span>
+			</dt>
+			<dd><input type="text" name="personal_langtpl" id="personal_langtpl" value="{PERSONAL_LANGTPL}" size="32" maxlength="128" /></dd>
+		</dl>
+<!-- IF S_AUTH -->
+	<!-- BEGIN auth_tpl -->
+		{auth_tpl.TPL}
+	<!-- END auth_tpl -->
+<!-- ENDIF -->
+	</fieldset>
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

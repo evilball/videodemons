@@ -1,0 +1,78 @@
+
+<!-- IF S_VIEW_STATUS or S_NEW_STATUS -->
+	<!-- IF S_VIEW_STATUS -->
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" name="add_new" value="{L_ADD}" />
+	</fieldset>
+	<!-- ENDIF -->
+	<table cellspacing="1">
+	<!-- IF S_NEW_STATUS -->
+	<thead>
+	<tr>
+		<th colspan="8">{L_ADD}</th>
+	</tr>
+	</thead>
+	<!-- ENDIF -->
+	<thead>
+	<tr>
+		<!-- IF not S_NEW_STATUS --><th>{L_STATUS_ID}</th><!-- ENDIF -->
+		<th>{L_STATUS}</th>
+		<th>{L_STATUS_ENABLED} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('acp_board', 'status_enabled', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('acp_board', 'status_enabled', false); return false;">-</a>]</th>
+		<!-- IF not S_NEW_STATUS --><th><a class="my_tt" title="{L_STATUS_CANDOWN}">{L_STATUS_CANDOWN_SHORT}</a><!-- [<a title="{L_MARK_ALL}" href="#" onclick="marklist('acp_board', 'author_candown', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('acp_board', 'author_candown', false); return false;">-</a>]--></th>
+		<th><a class="my_tt" title="{L_STATUS_DEF_FORB}">{L_STATUS_DEF_FORB_SHORT}</a> <a class="my_tt" title="{L_STATUS_DEF_NOTFORB}">{L_STATUS_DEF_NOTFORB_SHORT}</a></th>
+		<!-- ENDIF -->
+		<th><a class="my_tt" title="{L_STATUS_REASON_EXPLAIN}">{L_STATUS_REASON}</a>, <a class="my_tt" title="{L_STATUS_MARK_EXPLAIN}">{L_STATUS_MARK}</a></th>
+		<!-- IF not S_NEW_STATUS --><th><a class="my_tt" title="{L_STATUS_EXCHANGE_REPLACE_EXPLAIN}">{L_STATUS_EXCHANGE_REPLACE}</a></th>
+		<th>{L_DELETE} [<a title="{L_MARK_ALL}" href="#" onclick="marklist('acp_board', 'status_delete', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('acp_board', 'status_delete', false); return false;">-</a>]</th><!-- ENDIF -->
+	</tr>
+	</thead>
+	<tbody>
+	<!-- IF .statuses -->
+	<!-- BEGIN statuses -->
+	<!-- IF statuses.DESCR -->
+	<tr>
+		<th colspan="8">{statuses.DESCR}</th>
+	</tr>
+	<!-- ENDIF -->
+		<!-- IF statuses.ENABLED == '' and statuses.REASON --><tr class="row3"><!-- ELSE --><!-- IF statuses.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF --><!-- ENDIF -->
+			<!-- IF not S_NEW_STATUS --><td>{statuses.ID}</td><!-- ENDIF -->
+			<td>{statuses.STATUS}</td>
+			<td><input class="radio" type="checkbox" name="status_enabled[{statuses.COUNT}]" value="1"<!-- IF statuses.ID != 0 or S_NEW_STATUS -->{statuses.ENABLED}<!-- ELSE --> checked="checked" onclick="javascript:return false;"<!-- ENDIF --> title="" /></td>
+			<!-- IF not S_NEW_STATUS --><td><!-- IF statuses.CANDOWN_OPT --><label><input class="radio" type="checkbox" name="author_candown[{statuses.COUNT}]" value="1"{statuses.CANDOWN} /> - {L_STATUS_CANDOWN_AUTHOR}</label><!-- ENDIF --><!-- IF statuses.CANTDOWN_OPT --><label><input class="radio" type="checkbox" name="guest_cantdown[{statuses.COUNT}]" value="1"{statuses.CANTDOWN} /> - {L_STATUS_CANDOWN_GUEST}</label><!-- ENDIF --></td>
+			<td>
+				<!-- IF statuses.COUNT -->
+				<div style="width:20px;height:20px;text-align:center;<!-- IF statuses.FORB -->background-color:#00FF6B;<!-- ENDIF -->">
+					<input class="radio" type="radio" name="def_forb" value="{statuses.COUNT}"{statuses.FORB} />
+				</div>
+				<div style="width:20px;height:20px;text-align:center;<!-- IF statuses.NOTFORB -->background-color:#FF6D00;<!-- ENDIF -->">
+					<input class="radio" type="radio" name="def_notforb" value="{statuses.COUNT}"{statuses.NOTFORB} />
+				</div>
+				<!-- ENDIF -->
+			</td>
+			<!-- ENDIF -->
+			<td>
+				<input type="text" name="status_reason[{statuses.COUNT}]" maxlength="255" value="{statuses.REASON}" title="{L_STATUS_REASON}" />
+				<!-- IF statuses.LANG_REASON --><br />{statuses.LANG_REASON}<!-- ENDIF -->
+				<div style="height:5px;"></div>
+				<input type="text" name="status_mark[{statuses.COUNT}]" maxlength="255" value="{statuses.MARK}" title="{L_STATUS_MARK}" />
+				<!-- IF statuses.LANG_MARK --><br />{statuses.LANG_MARK}<!-- ENDIF -->
+			</td>
+			<!-- IF not S_NEW_STATUS --><td><!-- IF not S_NEW_STATUS -->{statuses.EXCHANGE_FROM}&nbsp;{L_STATUS_EXCHANGE_FROM}<br />{statuses.REPLACE_FROM}&nbsp;{L_STATUS_REPLACE_FROM}<br />{statuses.EXCHANGE_REPLACE_TO}&nbsp;{L_STATUS_EXCHANGE_REPLACE_TO}<!-- ENDIF --></td>
+			<td>
+				<!-- IF statuses.COUNT and statuses.ID != 0 -->
+				<input class="radio" type="checkbox" name="status_delete[{statuses.COUNT}]" value="1" />
+				<!-- ENDIF -->
+				<input type="hidden" name="status_count[{statuses.COUNT}]" value="{statuses.ID}" />
+			</td><!-- ENDIF -->
+		</tr>
+	<!-- END statuses -->
+	<!-- ELSE -->
+	<tr>
+		<td colspan="8" style="text-align:center;">{L_NO_DATA}</td>
+	</tr>
+	<!-- ENDIF -->
+	</tbody>
+	</table>
+<!-- ENDIF -->
+
+{S_HIDDEN_FIELDS}
