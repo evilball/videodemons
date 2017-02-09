@@ -1,0 +1,190 @@
+
+<table class="table1" width="100%" border="0" cellpadding="0" cellspacing="1" id="tt_info">
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_TORRENT -->
+<thead>
+<tr class="bg2">
+	<!-- BEGIN headers --><td>{headers.VALUE}</td><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN torrent_option -->
+<!-- IF torrent_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td>{torrent_option.TORRENT_NAME}</td>
+	<td>{torrent_option.TORRENT_DOWN}</td>
+	<td>{torrent_option.TORRENT_UP}</td>
+	<td>{torrent_option.TORRENT_RATIO}</td>
+	<td>{torrent_option.TORRENT_COMPLETED}%</td>
+	<td>{torrent_option.TORRENT_LAST}</td>
+	<td>{torrent_option.TORRENT_START}</td>
+	<td>{torrent_option.TORRENT_END}</td>
+</tr>
+<!-- END torrent_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_FINISHED -->
+<thead>
+<tr class="bg2">
+	<!-- BEGIN headers --><td>{headers.VALUE}</td><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN finished_option -->
+<!-- IF finished_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td>{finished_option.TORRENT_NAME}</td>
+	<td>{finished_option.TORRENT_DOWN}</td>
+	<td>{finished_option.TORRENT_UP}</td>
+	<td>{finished_option.TORRENT_RATIO}</td>
+	<td>{finished_option.TORRENT_NOWSEED}</td>
+	<td>{finished_option.TORRENT_DOWNTIME}</td>
+</tr>
+<!-- END finished_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_SEED -->
+<thead>
+<tr class="bg2">
+	<!-- BEGIN headers --><td>{headers.VALUE}</td><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN seed_option -->
+<!-- IF seed_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td>{seed_option.TORRENT_NAME}</td>
+	<td>{seed_option.TORRENT_DOWN}</td>
+	<td>{seed_option.TORRENT_DOWNSP}</td>
+	<td>{seed_option.TORRENT_UP}</td>
+	<td>{seed_option.TORRENT_UPSP}</td>
+	<td>{seed_option.TORRENT_RATIO}</td>
+	<td>{seed_option.TORRENT_A}</td>
+	<td>{seed_option.TORRENT_COMPLETED}%</td>
+	<td>{seed_option.TORRENT_UCONN}</td>
+	<td>{seed_option.TORRENT_IP}</td>
+	<td>{seed_option.TORRENT_PORT}</td>
+	<td>{seed_option.TORRENT_AGENT}</td>
+</tr>
+<!-- END seed_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_LEECH -->
+<thead>
+<tr class="bg2">
+	<!-- BEGIN headers --><td>{headers.VALUE}</td><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN leech_option -->
+<!-- IF leech_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td>{leech_option.TORRENT_NAME}</td>
+	<td>{leech_option.TORRENT_DOWN}</td>
+	<td>{leech_option.TORRENT_DOWNSP}</td>
+	<td>{leech_option.TORRENT_UP}</td>
+	<td>{leech_option.TORRENT_UPSP}</td>
+	<td>{leech_option.TORRENT_RATIO}</td>
+	<td>{leech_option.TORRENT_A}</td>
+	<td>{leech_option.TORRENT_COMPLETED}%</td>
+	<td>{leech_option.TORRENT_UCONN}</td>
+	<td>{leech_option.TORRENT_IP}</td>
+	<td>{leech_option.TORRENT_PORT}</td>
+	<td>{leech_option.TORRENT_AGENT}</td>
+</tr>
+<!-- END leech_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_TOTHANKS -->
+<thead>
+<tr class="bg2">
+	<!-- BEGIN headers --><td>{headers.VALUE}</td><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN tothanks_option -->
+<!-- IF tothanks_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td>{tothanks_option.TORRENT_USER}</td>
+	<td>{tothanks_option.TORRENT_NAME}</td>
+	<td>{tothanks_option.TORRENT_DOWN}</td>
+	<td>{tothanks_option.TORRENT_UP}</td>
+	<td>{tothanks_option.TORRENT_COMPLETED}%</td>
+	<td>{tothanks_option.TORRENT_START}</td>
+	<td>{tothanks_option.TORRENT_LAST}</td>
+	<td>{tothanks_option.TORRENT_END}</td>
+	<td>{tothanks_option.TORRENT_RATIO}</td>
+	<td>{tothanks_option.TORRENT_TADDED}</td>
+</tr>
+<!-- END tothanks_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_FROMTHANKS -->
+<thead>
+<tr class="bg2">
+	<!-- BEGIN headers --><td>{headers.VALUE}</td><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN fromthanks_option -->
+<!-- IF fromthanks_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td>{fromthanks_option.TORRENT_USER}</td>
+	<td>{fromthanks_option.TORRENT_NAME}</td>
+	<td>{fromthanks_option.TORRENT_DOWN}</td>
+	<td>{fromthanks_option.TORRENT_UP}</td>
+	<td>{fromthanks_option.TORRENT_COMPLETED}%</td>
+	<td>{fromthanks_option.TORRENT_START}</td>
+	<td>{fromthanks_option.TORRENT_LAST}</td>
+	<td>{fromthanks_option.TORRENT_END}</td>
+	<td>{fromthanks_option.TORRENT_RATIO}</td>
+	<td>{fromthanks_option.TORRENT_TADDED}</td>
+</tr>
+<!-- END fromthanks_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_HISTORY -->
+<thead>
+<tr class="bg2">
+	<!-- BEGIN headers --><td>{headers.VALUE}</td><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN history_option -->
+<!-- IF history_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td>{history_option.TORRENT_NAME}</td>
+	<td>{history_option.TORRENT_DOWN}</td>
+	<td>{history_option.TORRENT_UP}</td>
+	<td>{history_option.TORRENT_COMPLETED}%</td>
+	<td>{history_option.TORRENT_START}</td>
+	<td>{history_option.TORRENT_LAST}</td>
+	<td>{history_option.TORRENT_END}</td>
+	<td>{history_option.TORRENT_RATIO}</td>
+</tr>
+<!-- END history_option -->
+</tbody>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_TORRENT_EXPLAIN_LEAVE -->
+<thead>
+<tr class="bg2">
+	<!-- BEGIN headers --><td>{headers.VALUE}</td><!-- END headers -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN leave_option -->
+<!-- IF leave_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	<td>{leave_option.TORRENT_NAME}</td>
+	<td>{leave_option.TORRENT_DOWN}</td>
+	<td>{leave_option.TORRENT_UP}</td>
+	<td>{leave_option.TORRENT_COMPLETED}%</td>
+	<td>{leave_option.TORRENT_START}</td>
+	<td>{leave_option.TORRENT_LAST}</td>
+	<td>{leave_option.TORRENT_END}</td>
+	<td>{leave_option.TORRENT_RATIO}</td>
+</tr>
+<!-- END leave_option -->
+</tbody>
+<!-- ENDIF -->
+
+</table>

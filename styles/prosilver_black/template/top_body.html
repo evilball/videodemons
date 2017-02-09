@@ -1,0 +1,223 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_TRACKER_TOP}</h2>
+	<div class="panel bg1 font-normal">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_TOP_BY_UPLOAD}</h3>
+  <table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr class="bg2">
+	  <td>#</td>
+	  <td><b>{L_USERNAME}</b></td>
+	  <td><b>{L_TORRENT_INFO_HEADER_UPLOADED}</b></td>
+	  <td><b>{L_TORRENT_INFO_HEADER_DOWNLOADED}</b></td>
+	  <td><b>{L_TRACKER_USER_BONUS1}</b></td>
+	  <td><b>{L_TORRENT_INFO_HEADER_RATIO}</b></td>
+	  <td><b>{L_TRACKER_USER_RRATIO}</b></td>
+	</tr>
+
+	<!-- BEGIN memberrow1 -->
+	<!-- IF memberrow1.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	  <td align="center"><span class="gen">&nbsp;{memberrow1.ROW_NUMBER}&nbsp;</span></td>
+	  <td><span class="gen"><a href="{memberrow1.U_VIEWPROFILE}" class="gen">{memberrow1.USERNAME}</a></span></td>
+	  <td align="center" valign="middle">{memberrow1.UP}</td>
+	  <td align="center" valign="middle">{memberrow1.DOWN}</td>
+	  <td align="center" valign="middle">{memberrow1.BONUS}</td>
+	  <td align="center" valign="middle">{memberrow1.UP_DOWN_RATIO}</td>
+	  <td align="center" valign="middle">{memberrow1.UP_DOWN_RRATIO}</td>
+	</tr>
+	<!-- END memberrow1 -->
+	<tr class="bg1">
+	  <td class="catBottom" colspan="8" height="20">&nbsp;</td>
+	</tr>
+  </table>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<div class="panel bg1 font-normal">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_TOP_BY_RATIO}</h3>
+  <table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr class="bg2">
+	  <td>#</td>
+	  <td><b>{L_USERNAME}</b></td>
+	  <td><b>{L_TORRENT_INFO_HEADER_UPLOADED}</b></td>
+	  <td><b>{L_TORRENT_INFO_HEADER_DOWNLOADED}</b></td>
+	  <td><b>{L_TRACKER_USER_BONUS1}</b></td>
+	  <td><b>{L_TORRENT_INFO_HEADER_RATIO}</b></td>
+	  <td><b>{L_TRACKER_USER_RRATIO}</b></td>
+	</tr>
+
+	<!-- BEGIN memberrow -->
+	<!-- IF memberrow.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	  <td align="center"><span class="gen">&nbsp;{memberrow.ROW_NUMBER}&nbsp;</span></td>
+	  <td><span class="gen"><a href="{memberrow.U_VIEWPROFILE}" class="gen">{memberrow.USERNAME}</a></span></td>
+	  <td align="center" valign="middle">{memberrow.UP}</td>
+	  <td align="center" valign="middle">{memberrow.DOWN}</td>
+	  <td align="center" valign="middle">{memberrow.BONUS}</td>
+	  <td align="center">{memberrow.UP_DOWN_RATIO}</td>
+	  <td align="center">{memberrow.UP_DOWN_RRATIO}</td>
+	</tr>
+	<!-- END memberrow -->
+	<tr class="bg1">
+	  <td class="catBottom" colspan="8" height="20">&nbsp;</td>
+	</tr>
+  </table>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<div class="panel bg1 font-normal">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_TOP_BY_DOWNSUM}</h3>
+  <table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr class="bg2">
+	  <td>#</td>
+	  <td><b>{L_USERNAME}</b></td>
+	  <td><b>{L_JOINED}</b></td>
+	  <td><b>{L_TRACKER_USER_TORRENTS}</b></td>
+	  <td><b>{L_TORRENT_COMPLETED}</b></td>
+	  <td><b>{L_TRACKER_AVG}</b></td>
+	</tr>
+
+	<!-- BEGIN countrow -->
+	<!-- IF countrow.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	  <td align="center"><span class="gen">&nbsp;{countrow.ROW_NUMBER}&nbsp;</span></td>
+	  <td><span class="gen"><a href="{countrow.U_VIEWPROFILE}" class="gen">{countrow.USERNAME}</a></span></td>
+	  <td valign="middle"><span class="gensmall">{countrow.JOINED}</span></td>
+	  <td align="center" valign="middle">{countrow.RELEASES}</td>
+	  <td align="center" valign="middle">{countrow.DL_COUNT}</td>
+	  <td align="center" valign="middle">{countrow.DL_AVG}</td>
+	</tr>
+	<!-- END countrow -->
+	<tr class="bg1">
+	  <td class="catBottom" colspan="6" height="20">&nbsp;</td>
+	</tr>
+  </table>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<div class="panel bg1 font-normal">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_TOP_BY_AUTHOR}</h3>
+  <table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr class="bg2">
+	  <td>#</td>
+	  <td><b>{L_USERNAME}</b></td>
+	  <td><b>{L_JOINED}</b></td>
+	  <td><b>{L_TRACKER_USER_TORRENTS}</b></td>
+	  <td><b>{L_TORRENT_COMPLETED}</b></td>
+	</tr>
+
+	<!-- BEGIN releaserow -->
+	<!-- IF releaserow.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	  <td align="center"><span class="gen">&nbsp;{releaserow.ROW_NUMBER}&nbsp;</span></td>
+	  <td><span class="gen"><a href="{releaserow.U_VIEWPROFILE}" class="gen">{releaserow.USERNAME}</a></span></td>
+	  <td valign="middle"><span class="gensmall">{releaserow.JOINED}</span></td>
+	  <td align="center" valign="middle">{releaserow.RELEASES}</td>
+	  <td align="center" valign="middle">{releaserow.DL_COUNT}</td>
+	</tr>
+	<!-- END releaserow -->
+	<tr class="bg1">
+	  <td class="catBottom" colspan="6" height="20">&nbsp;</td>
+	</tr>
+  </table>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<div class="panel bg1 font-normal">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_TOP_BY_TORRENTS}</h3>
+  <table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr class="bg2">
+	  <td>#</td>
+	  <td><b>{L_USERNAME}</b></td>
+	  <td><b>{L_SUBJECT}</b></td>
+	  <td><b>{L_FORUM}</b></td>
+	  <td><b>{L_TORRENT_COMPLETED}</b></td>
+	  <td><b>{L_TORRENT_ADDED}</b></td>
+	</tr>
+
+	<!-- BEGIN torrentsrow -->
+	<!-- IF torrentsrow.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	  <td align="center"><span class="gen">&nbsp;{torrentsrow.ROW_NUMBER}&nbsp;</span></td>
+	  <td><span class="gen"><a href="{torrentsrow.U_VIEWPROFILE}" class="gen">{torrentsrow.USERNAME}</a></span></td>
+	  <td align="left" valign="middle"><span class="genmed"><a href="{torrentsrow.TOPIC_HREF}" class="genmed">{torrentsrow.TOPIC_TITLE}</a></span></td>
+	  <td align="center" valign="middle"><span class="genmed"><a href="{torrentsrow.FORUM_HREF}" class="genmed">{torrentsrow.FORUM_NAME}</a></span></td>
+	  <td align="center" valign="middle">{torrentsrow.COMPLETE_COUNT}</td>
+	  <td valign="middle"><span class="gensmall">{torrentsrow.REG_TIME}</td>
+	</tr>
+	<!-- END torrentsrow -->
+	<tr class="bg1">
+	  <td class="catBottom" colspan="6" height="20">&nbsp;</td>
+	</tr>
+  </table>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<div class="panel bg1 font-normal">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_TOP_BY_TORRENTS_MONTH}</h3>
+  <table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr class="bg2">
+	  <td>#</td>
+	  <td><b>{L_USERNAME}</b></td>
+	  <td><b>{L_SUBJECT}</b></td>
+	  <td><b>{L_FORUM}</b></td>
+	  <td><b>{L_TORRENT_COMPLETED}</b></td>
+	  <td><b>{L_TORRENT_ADDED}</b></td>
+	</tr>
+
+	<!-- BEGIN torrent30 -->
+	<!-- IF torrent30.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	  <td align="center"><span class="gen">&nbsp;{torrent30.ROW_NUMBER}&nbsp;</span></td>
+	  <td><span class="gen"><a href="{torrent30.U_VIEWPROFILE}" class="gen">{torrent30.USERNAME}</a></span></td>
+	  <td align="left" valign="middle"><span class="genmed"><a href="{torrent30.TOPIC_HREF}" class="genmed">{torrent30.TOPIC_TITLE}</a></span></td>
+	  <td align="center" valign="middle"><span class="genmed"><a href="{torrent30.FORUM_HREF}" class="genmed">{torrent30.FORUM_NAME}</a></span></td>
+	  <td align="center" valign="middle">{torrent30.COMPLETE_COUNT}</td>
+	  <td valign="middle"><span class="gensmall">{torrent30.REG_TIME}</td>
+	</tr>
+	<!-- END torrent30 -->
+	<tr class="bg1">
+	  <td class="catBottom" colspan="6" height="20">&nbsp;</td>
+	</tr>
+  </table>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<div class="panel bg1 font-normal">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_TOP_BY_TORRENTS_WEEK}</h3>
+  <table width="100%" cellpadding="3" cellspacing="1" border="0" class="table1">
+	<tr class="bg2">
+	  <td>#</td>
+	  <td><b>{L_USERNAME}</b></td>
+	  <td><b>{L_SUBJECT}</b></td>
+	  <td><b>{L_FORUM}</b></td>
+	  <td><b>{L_TORRENT_COMPLETED}</b></td>
+	  <td><b>{L_TORRENT_ADDED}</b></td>
+	</tr>
+
+	<!-- BEGIN torrent7 -->
+	<!-- IF torrent7.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+	  <td align="center"><span class="gen">&nbsp;{torrent7.ROW_NUMBER}&nbsp;</span></td>
+	  <td><span class="gen"><a href="{torrent7.U_VIEWPROFILE}" class="gen">{torrent7.USERNAME}</a></span></td>
+	  <td align="left" valign="middle"><span class="genmed"><a href="{torrent7.TOPIC_HREF}" class="genmed">{torrent7.TOPIC_TITLE}</a></span></td>
+	  <td align="center" valign="middle"><span class="genmed"><a href="{torrent7.FORUM_HREF}" class="genmed">{torrent7.FORUM_NAME}</a></span></td>
+	  <td align="center" valign="middle">{torrent7.COMPLETE_COUNT}</td>
+	  <td valign="middle"><span class="gensmall">{torrent7.REG_TIME}</td>
+	</tr>
+	<!-- END torrent7 -->
+	<tr class="bg1">
+	  <td class="catBottom" colspan="6" height="20">&nbsp;</td>
+	</tr>
+  </table>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+<!-- INCLUDE overall_footer.html -->

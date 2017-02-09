@@ -1,0 +1,162 @@
+<div class="post <!-- IF S_PRIVMSGS -->pm<!-- ELSE -->bg2<!-- ENDIF -->" id="preview">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+<link rel="stylesheet" href="{PPKBB3CKER_ADDONS}css/tabber.css" type="text/css" />
+<script src="{PPKBB3CKER_ADDONS}js/tabber.js" type="text/javascript"></script>
+
+<table width="100%" class="torrblock">
+	<tr>
+		<td valign="top" width="80%">
+			<div class="tabber" id="tab1">
+				<div class="tabbertab">
+					<h2>{L_MESSAGE}</h2>
+					<p>
+						<div class="message_sl">
+						<div class="postbody" style="width:100%;">
+							<h3>{L_PREVIEW}: {PREVIEW_SUBJECT}</h3>
+
+							<div class="content">{PREVIEW_MESSAGE}</div>
+
+							<!-- IF .attachment -->
+							<dl class="attachbox">
+								<dt>{L_ATTACHMENTS}</dt>
+								<!-- BEGIN attachment -->
+								<dd>{attachment.DISPLAY_ATTACHMENT}</dd>
+								<!-- END attachment -->
+							</dl>
+							<!-- ENDIF -->
+						</div>
+						</div>
+					</p>
+				</div>
+			</div>
+		</td>
+		<td valign="top">
+			<!-- IF S_HAS_TRACKER_POSTER -->
+			<div class="tabber" id="tab2">
+				<div class="tabbertab">
+					<h2>{L_ATTACHMENTS_POSTER}</h2>
+					<p>
+					<div style="width:auto;">
+						<div class="inner"><span class="mycorners-top"><span></span></span>
+						<div class="poster_sl">
+							<div id="sliderPoster" style="margin:0px auto;width:{TORR_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+								<ul>
+								<!-- BEGIN torrent_poster_fields -->
+									<li style="width:{TORR_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+										<a href="{torrent_poster_fields.POSTER_LINK}" rel="prettyPhotoPosters[0]"><img <!-- IF torrent_poster_fields.POSTER_WH_WIDTH -->width="{torrent_poster_fields.POSTER_WH_WIDTH}"<!-- ELSE -->height="{torrent_poster_fields.POSTER_WH_HEIGHT}"<!-- ENDIF --> src="{torrent_poster_fields.POSTER_SRC}" alt="" /></a>
+										<!-- IF torrent_poster_fields.POSTER_FORUM -->
+										<br />{torrent_poster_fields.POSTER_COMMENT} <a href="{torrent_poster_fields.POSTER_LINK}" title="{torrent_poster_fields.POSTER_ALTITLE}">{torrent_poster_fields.POSTER_DOWNLOAD_NAME}</a>
+										<br  />[ {L_TORRENT_SIZE} <b>{torrent_poster_fields.POSTER_FILESIZE}</b> {torrent_poster_fields.POSTER_SIZE_LANG} / {L_TORRENT_VIEWED} <b>{torrent_poster_fields.POSTER_DOWNLOADED}</b> ]
+										<!-- ENDIF -->
+									</li>
+								<!-- END torrent_poster_fields -->
+								</ul>
+							</div>
+						</div>
+						<span class="mycorners-bottom"><span></span></span></div>
+					</div>
+					</p>
+				</div>
+			</div>
+			<!-- ENDIF -->
+			<!-- IF S_HAS_TRACKER_SCREENSHOT -->
+			<div class="tabber" id="tab3">
+				<div class="tabbertab">
+					<h2>{L_ATTACHMENTS_SCREENSHOT}</h2>
+					<p>
+					<div style="width:auto;">
+						<div class="inner"><span class="mycorners-top"><span></span></span>
+						<div class="screenshot_sl">
+							<div id="sliderScreen" style="margin:0px auto;width:{TORR_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+								<ul>
+								<!-- BEGIN torrent_screenshot_fields -->
+									<li style="width:{TORR_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+										<a href="{torrent_screenshot_fields.SCREENSHOT_LINK}" rel="prettyPhotoScreenshots[0]"><img <!-- IF torrent_screenshot_fields.SCREENSHOT_WH_WIDTH -->width="{torrent_screenshot_fields.SCREENSHOT_WH_WIDTH}"<!-- ELSE -->height="{torrent_screenshot_fields.SCREENSHOT_WH_HEIGHT}"<!-- ENDIF --> src="{torrent_screenshot_fields.SCREENSHOT_SRC}" alt="" /></a>
+										<!-- IF torrent_screenshot_fields.SCREENSHOT_FORUM -->
+										<br />{torrent_screenshot_fields.SCREENSHOT_COMMENT} <a href="{torrent_screenshot_fields.SCREENSHOT_LINK}" title="{torrent_screenshot_fields.SCREENSHOT_ALTITLE}">{torrent_screenshot_fields.SCREENSHOT_DOWNLOAD_NAME}</a>
+										<br  />[ {L_TORRENT_SIZE} <b>{torrent_screenshot_fields.SCREENSHOT_FILESIZE}</b> {torrent_screenshot_fields.SCREENSHOT_SIZE_LANG} / {L_TORRENT_VIEWED} <b>{torrent_screenshot_fields.SCREENSHOT_DOWNLOADED}</b> ]
+										<!-- ENDIF -->
+									</li>
+								<!-- END torrent_screenshot_fields -->
+								</ul>
+							</div>
+						</div>
+						<span class="mycorners-bottom"><span></span></span></div>
+					</div>
+					</p>
+				</div>
+			</div>
+			<!-- ENDIF -->
+		</td>
+	</tr>
+
+	<tr>
+		<td valign="top" width="80%">
+		<!-- IF S_HAS_POLL_OPTIONS -->
+			<div class="tabber" id="tab5">
+
+				<!-- IF S_HAS_POLL_OPTIONS -->
+				<div class="tabbertab">
+					<h2>{POLL_QUESTION}</h2>
+					<p>
+					<form method="post" action="{S_POLL_ACTION}">
+						<fieldset class="polls">
+							<div class="vote_sl">
+							{L_POLL_LENGTH}<!-- IF S_CAN_VOTE and L_POLL_LENGTH --><!-- ENDIF --><!-- IF S_CAN_VOTE -->{L_MAX_VOTES}<!-- ENDIF -->
+							<!-- BEGIN poll_option -->
+								<dl class="<!-- IF poll_option.POLL_OPTION_VOTED -->voted<!-- ENDIF -->"<!-- IF poll_option.POLL_OPTION_VOTED --> title="{L_POLL_VOTED_OPTION}"<!-- ENDIF -->>
+									<dt><!-- IF S_CAN_VOTE --><label for="vote_{poll_option.POLL_OPTION_ID}">{poll_option.POLL_OPTION_CAPTION}</label><!-- ELSE -->{poll_option.POLL_OPTION_CAPTION}<!-- ENDIF --></dt>
+									<!-- IF S_CAN_VOTE --><dd style="width: auto;"><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dd><!-- ENDIF -->
+									<!-- IF S_DISPLAY_RESULTS --><dd class="resultbar"><div class="<!-- IF poll_option.POLL_OPTION_PCT < 20 -->pollbar1<!-- ELSEIF poll_option.POLL_OPTION_PCT < 40 -->pollbar2<!-- ELSEIF poll_option.POLL_OPTION_PCT < 60 -->pollbar3<!-- ELSEIF poll_option.POLL_OPTION_PCT < 80 -->pollbar4<!-- ELSE -->pollbar5<!-- ENDIF -->" style="width:{poll_option.POLL_OPTION_PERCENT};">{poll_option.POLL_OPTION_RESULT}</div></dd>
+									<dd><!-- IF poll_option.POLL_OPTION_RESULT == 0 -->{L_NO_VOTES}<!-- ELSE -->{poll_option.POLL_OPTION_PERCENT}<!-- ENDIF --></dd><!-- ENDIF -->
+								</dl>
+							<!-- END poll_option -->
+
+							<!-- IF S_CAN_VOTE -->
+								<dl style="border-top: none;">
+									<dt>&nbsp;</dt>
+									<dd class="resultbar"><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="button1" /></dd>
+								</dl>
+							<!-- ENDIF -->
+							</div>
+						</fieldset>
+						{S_FORM_TOKEN}
+						{S_HIDDEN_FIELDS}
+					</form>
+					</p>
+				</div>
+				<!-- ENDIF -->
+			</div>
+		<!-- ENDIF -->
+		</td>
+		<td valign="top">
+			<!-- IF S_HAS_TRACKER_TORRENT -->
+			<div class="tabber" id="tab6">
+				<div class="tabbertab">
+					<h2>{L_ATTACHMENTS_TORRENT}</h2>
+					<p>
+						<div class="torrent_sl" style="line-height:1.3em;">
+							<!-- IF S_HAS_TRACKER_TORRENT -->
+								<!-- BEGIN torrent_fields -->
+									{MESS_FORUM_IMAGE} {torrent_fields.TORRENT_BONUS} {torrent_fields.TORRENT_FREE} {torrent_fields.TORRENT_UP} {torrent_fields.TORRENT_FORB} {torrent_fields.TORRENT_REQ_UPLOAD} {torrent_fields.TORRENT_REQ_RATIO} {torrent_fields.TORRENT_WAIT} {torrent_fields.TORRENT_DOWNLOAD_IMG} {torrent_fields.TORRENT_MAGNET_TXT}
+									<br />{torrent_fields.TORRENT_DOWNLOAD_TXT}
+									<br  />[ {L_TORRENT_SIZE} <b>{torrent_fields.TORRENT_FILESIZE}</b> {torrent_fields.TORRENT_SIZE_LANG} / {L_TORRENT_VIEWED} <b>{torrent_fields.TORRENT_DOWNLOADED}</b> ]
+									<!-- IF torrent_fields.TORRENT_COMMENT_TEXT --><br />(<b>{L_FILE_COMMENT}</b>: {torrent_fields.TORRENT_COMMENT_TEXT})<!-- ENDIF -->
+								<!-- END torrent_fields -->
+							<!-- ENDIF -->
+						</div>
+					</p>
+				</div>
+			</div>
+			<!-- ENDIF -->
+		</td>
+	</tr>
+</table>
+
+
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<hr />

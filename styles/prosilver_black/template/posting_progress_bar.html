@@ -1,0 +1,42 @@
+<!-- INCLUDE simple_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+	/**
+	* Close previously opened popup
+	*/
+	function close_popup()
+	{
+		if (opener != null)
+		{
+			if (opener.close_waitscreen != null)
+			{
+				if (opener.close_waitscreen == 1)
+				{
+					opener.close_waitscreen = 0;
+					self.close();
+					return 0;
+				}
+			}
+		}
+		setTimeout("close_popup()", 1000);
+		return 0;
+	}
+// ]]>
+</script>
+
+<h2>{L_UPLOAD_IN_PROGRESS}</h2>
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<div style="align:center">{PROGRESS_BAR}</div><br /><br />
+		<a href="#" onclick="window.close(); return false;">{L_CLOSE_WINDOW}</a>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<script type="text/javascript">
+// <![CDATA[
+	close_popup();
+// ]]>
+</script>
+
+<!-- INCLUDE simple_footer.html -->

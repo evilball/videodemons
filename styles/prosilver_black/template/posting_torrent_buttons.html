@@ -1,0 +1,46 @@
+<!--//Sanya modified for ppkbb3cker-->
+ 
+<script type="text/javascript">
+// <![CDATA[
+   var form_name = 'postform';
+   var text_name = <!-- IF $SIG_EDIT -->'signature'<!-- ELSE -->'message'<!-- ENDIF -->;
+   var load_draft = false;
+   var upload = false;
+ 
+   // Define the bbCode tags
+   var bbcode = new Array();
+   var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote]', '[code]','[/code]','[list]','[/list]','[list=]','[/list]','[img]','[/img]','[url]','[/url]','[flash=]', '[/flash]','[size=]','[/size]','[spoiler]','[/spoiler]'<!-- BEGIN custom_tags -->, {custom_tags.BBCODE_NAME}<!-- END custom_tags -->);
+   var imageTag = false;
+ 
+   function remove_more_upload(id)
+   {
+      document.getElementById("multiple").removeChild(document.getElementById('multiple' + id ));
+      <!-- IF S_MAX_MFU -->document.getElementById('maxmfu').value--;<!-- ENDIF -->
+   }
+   function add_more_upload()
+   {
+      var id = document.getElementById('proxid').value;
+      <!-- IF S_MAX_MFU -->
+      var maxmfu = document.getElementById('maxmfu').value;
+      if(maxmfu >= {S_MAX_MFU})
+      {
+         return
+      }
+      <!-- ENDIF -->
+      var div = document.getElementById('multiple');
+      var childdiv = document.createElement("div");
+      childdiv.setAttribute('id','multiple'+ id);
+      var html = "<dl><dt><label for='fileupload'>{L_FILENAME}:</label></dt><dd><!-- IF S_IS_TRACKER -->{L_UPAS_POSTER}: <input type='checkbox' name='as_poster" + id + "' id='as_poster" + id + "' value='1' /> <!-- ENDIF --><input type='file' name='fileupload" + id + "' id='fileupload" + id + "' maxlength='{FILESIZE}' value='' class='inputbox autowidth' /><input type='button' class='button2' name='files_" + id + "' value='-' style='width: 40px' onclick='remove_more_upload(" + id + ")' title='' /></dd></dl><dl><dt><label for='filecomment'>{L_FILE_COMMENT}:</label></dt><dd><textarea name='filecomment" + id + "' id='filecomment" + id + "' rows='1' cols='40' class='inputbox autowidth'>{FILE_COMMENT}</textarea></dd></dl>";
+      childdiv.innerHTML = html;
+      div.appendChild(childdiv);
+      document.getElementById('proxid').value++;
+      <!-- IF S_MAX_MFU -->document.getElementById('maxmfu').value++;<!-- ENDIF -->
+   }
+   var panels = new Array('options-panel', 'attach-panel', 'poll-panel', 'addfields-panel');
+   var show_panel = 'addfields-panel';
+ 
+ 
+// ]]>
+</script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
+ 

@@ -1,0 +1,62 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_TITLE}</h2>
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<fieldset>
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<dl>
+		<dt><label>{L_RECREATE_PASSKEY}: </label><br />{L_RECREATE_PASSKEY_EXPLAIN}</dt>
+		<dd>
+			<label><input type="checkbox" name="recreate_passkey" value="1" /></label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_CLEAR_TRIGHTS}: </label><br />{L_CLEAR_TRIGHTS_EXPLAIN}</dt>
+		<dd>
+			<label><input type="checkbox" name="clear_trights" value="1" /></label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_CLEAR_PEERS}: </label><br />{L_CLEAR_PEERS_EXPLAIN}</dt>
+		<dd>
+			<select name="clear_peers">
+				<option value="0">{L_NO}</option>
+				<option value="time">{L_CLEAR_PEERS_TIME}</option>
+				<option value="all">{L_CLEAR_PEERS_ALL}</option>
+			</select>
+		</dd>
+	</dl>
+<!-- IF S_TRBONUS_ENABLED -->
+	<dl>
+		<dt><label>{L_COLLECT_TBONUS}: </label><br />{L_COLLECT_TBONUS_EXPLAIN}</dt>
+		<dd>
+			<label><input type="checkbox" name="collect_tbonus" value="1" /></label>
+		</dd>
+	</dl>
+<!-- ENDIF -->
+	<dl>
+		<dt><label>{L_USER_TBONUS_RESET}: </label><br />{L_USER_TBONUS_RESET_EXPLAIN}</dt>
+		<dd>
+			<label><input type="checkbox" name="reset_bonus" value="1" /></label>
+		</dd>
+	</dl>
+<!-- IF S_UNREGTORR_ENABLED -->
+	<dl>
+		<dt><label>{L_UNREGTORR}: </label><br />{L_UNREGTORR_EXPLAIN}</dt>
+		<dd>
+			<label><input class="inputbox" type="text" name="unregtorr_passkey" maxlength="255" value="{S_UNREGTORR_ENABLED}" /></label>
+		</dd>
+	</dl>
+<!-- ENDIF -->
+	</fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<fieldset class="submit-buttons">
+	{S_HIDDEN_FIELDS}<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+<!-- INCLUDE ucp_footer.html -->

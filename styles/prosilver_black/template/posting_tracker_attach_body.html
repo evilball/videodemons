@@ -1,0 +1,135 @@
+<div class="panel bg3" id="attach-panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+	<script type="text/javascript">
+	// <![CDATA[
+	/**
+	* Show upload progress bar
+	*/
+	function popup_progress_bar()
+	{
+		close_waitscreen = 0;
+		// no scrollbars
+		popup('{UA_PROGRESS_BAR}', 400, 200, '_upload');
+	}
+	// ]]>
+	</script>
+
+	<!-- IF S_CLOSE_PROGRESS_WINDOW -->
+	<script type="text/javascript">
+	// <![CDATA[
+		close_waitscreen = 1;
+	// ]]>
+	</script>
+	<!-- ENDIF -->
+	
+	<p>{L_ADD_ATTACHMENT_EXPLAIN}</p>
+
+	<fieldset class="fields2">
+	
+	<!-- IF S_SHOW_ANNWARN -->
+	<dl>
+		<dt><label for="annwarn">{L_TRACKER_ANNWARN}</label></dt>
+		<dd><input<!-- IF S_ANNWARN_CHECKED --> checked="checked"<!-- ENDIF --> type="checkbox" name="annwarn" id="annwarn" value="1" /> - {L_TRACKER_ANNWARN_EXPLAIN}</dd>
+	</dl>
+	<!-- ENDIF -->
+	
+
+	<dl>
+		<dt><label for="fileupload">{L_FILENAME}:</label></dt>
+		<dd>
+			
+			{L_UPAS_POSTER}: <input type="checkbox" name="as_poster" id="as_poster" value="1" /> <input type="file" name="fileupload" id="fileupload" maxlength="{FILESIZE}" value="" class="inputbox autowidth" />
+			<input type="button" class="button2" name="files_" value="+" style="width: 40px" onclick="add_more_upload()" title="" />
+			
+		</dd>
+	</dl>
+
+	<dl>
+		<dt><label for="filecomment">{L_FILE_COMMENT}:</label></dt>
+		<dd><textarea name="filecomment" id="filecomment" rows="1" cols="40" class="inputbox autowidth">{FILE_COMMENT}</textarea></dd>
+	</dl>
+	
+	<input type="hidden" name="proxid" id="proxid" value="1" />
+	<div id="multiple"></div>
+	<dl>
+		<dd>
+			<input type="submit" name="add_file" value="{L_ADD_FILE}" class="button2" onclick="popup_progress_bar();upload = true;" />
+		</dd>
+	</dl>
+	<!-- IF S_MAX_MFU -->
+	<dl>
+		<dt><input type="hidden" name="maxmfu" id="maxmfu" value="1" /></dt>
+		<dd>
+			{L_MAX_MFU}
+		</dd>
+	</dl>
+	<!-- ENDIF -->
+	
+
+	
+	
+	<!-- IF S_EXTPOSTERS or S_EXTSCREENSHOTS -->
+	<!-- IF .extposters -->
+	<dl>
+		<dt><label>{L_EXT_POSTERS}</label></dt>
+		<dd>
+			{L_MAX_EXT_POSTERS}
+		</dd>
+	</dl>
+		<!-- BEGIN extposters -->
+	<dl>
+		<dt>{L_EXT_POSTER} [{extposters.EXTPOSTERS_I}]</dt>
+		<dd>
+			{extposters.EXTPOSTERS_FIELD}
+		</dd>
+	</dl>
+		<!-- END extposters -->
+	<!-- ENDIF -->
+	<!-- IF .extscreenshots -->
+	<dl>
+		<dt><label>{L_EXT_SCREENSHOTS}</label></dt>
+		<dd>
+			{L_MAX_EXT_SCREENSHOTS}
+		</dd>
+	</dl>
+		<!-- BEGIN extscreenshots -->
+	<dl>
+		<dt>{L_EXT_SCREENSHOT} [{extscreenshots.EXTSCREENSHOTS_I}]</dt>
+		<dd>
+			{extscreenshots.EXTSCREENSHOTS_FIELD}
+		</dd>
+	</dl>
+		<!-- END extscreenshots -->
+	<!-- ENDIF -->
+	<!-- ENDIF -->
+	<!-- IF S_HAS_ATTACHMENTS -->
+	
+			<h3>{L_POSTED_ATTACHMENTS}</h3>
+
+			<fieldset class="fields2">
+
+			<!-- BEGIN attach_row -->
+
+			<dl>
+
+				<dt><label for="comment_list_{attach_row.ASSOC_INDEX}">{L_FILE_COMMENT}:</label></dt>
+				<dd><textarea name="comment_list[{attach_row.ASSOC_INDEX}]" id="comment_list_{attach_row.ASSOC_INDEX}" rows="1" cols="35" class="inputbox">{attach_row.FILE_COMMENT}</textarea></dd>
+				<dd><a href="{attach_row.U_VIEW_ATTACHMENT}" class="{S_CONTENT_FLOW_END}">{attach_row.FILENAME}</a></dd>
+				<dd style="margin-top: 5px;">
+					<!-- IF not attach_row.SKIP_ATTACHMENT --><!-- IF S_INLINE_ATTACHMENT_OPTIONS --><input type="button" value="{L_PLACE_INLINE}" onclick="attach_inline({attach_row.ASSOC_INDEX}, '{attach_row.A_FILENAME}');" class="button2" />&nbsp; <!-- ENDIF -->
+					<input type="submit" name="delete_file[{attach_row.ASSOC_INDEX}]" value="{L_DELETE_FILE}" class="button2" /><!-- ENDIF -->
+				</dd>
+			</dl>
+			{attach_row.S_HIDDEN}
+				<!-- IF not attach_row.S_LAST_ROW --><hr class="dashed" /><!-- ENDIF -->
+			<!-- END attach_row -->
+
+			</fieldset>
+
+	<!-- ENDIF -->
+	
+	</fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>

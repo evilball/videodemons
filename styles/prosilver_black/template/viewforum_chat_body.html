@@ -1,0 +1,469 @@
+<!-- INCLUDE overall_header.html -->
+<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+<!-- IF U_MCP --><p>[&nbsp;<a href="{U_MCP}">{L_MCP}</a>&nbsp;]</p><!-- ENDIF -->
+<h2><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
+
+<!-- IF FORUM_DESC or MODERATORS or U_MCP -->
+<p>
+	<!-- NOTE: remove the style="display: none" when you want to have the forum description on the forum body -->
+	<!-- IF FORUM_DESC --><span style="display: none">{FORUM_DESC}<br /></span><!-- ENDIF -->
+	<!-- IF MODERATORS --><strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}<!-- ENDIF -->
+</p>
+<!-- ENDIF -->
+
+<!-- IF S_FORUM_RULES -->
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<!-- IF U_FORUM_RULES -->
+			<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+		<!-- ELSE -->
+			<strong>{L_FORUM_RULES}</strong><br />
+			{FORUM_RULES}
+		<!-- ENDIF -->
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_SUBFORUM -->
+
+	<!-- INCLUDE forumlist_body.html -->
+<!-- ENDIF -->
+
+<!-- IF S_IS_LOCKED -->
+	<div class="topic-actions" <!-- IF S_HAS_SUBFORUM -->style="margin-top: 2em;"<!-- ENDIF -->>
+
+	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
+		<div class="buttons">
+			<div class="locked-icon"><a href="{U_POST_NEW_TOPIC}" title="{L_FORUM_LOCKED}"><span></span>{L_FORUM_LOCKED}</a></div>
+		</div>
+	<!-- ENDIF -->
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_NO_READ_ACCESS -->
+
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<strong>{L_NO_READ_ACCESS}</strong>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<!-- IF not S_USER_LOGGED_IN -->
+
+		<form action="{S_LOGIN_ACTION}" method="post">
+
+		<div class="panel">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<div class="content">
+				<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
+
+				<fieldset class="fields1">
+				<dl>
+					<dt><label for="username">{L_USERNAME}:</label></dt>
+					<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" /></dd>
+				</dl>
+				<dl>
+					<dt><label for="password">{L_PASSWORD}:</label></dt>
+					<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" /></dd>
+					<!-- IF S_AUTOLOGIN_ENABLED --><dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="3" /> {L_LOG_ME_IN}</label></dd><!-- ENDIF -->
+					<dd><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="4" /> {L_HIDE_ME}</label></dd>
+				</dl>
+				<dl>
+					<dt>&nbsp;</dt>
+					<dd><input type="submit" name="login" tabindex="5" value="{L_LOGIN}" class="button1" /></dd>
+				</dl>
+				</fieldset>
+			</div>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		</form>
+
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+<!-- BEGIN topicrow -->
+
+	<!-- IF not topicrow.S_TOPIC_TYPE_SWITCH and not topicrow.S_FIRST_ROW -->
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+<!-- BEGINELSE -->
+<a name="chat"></a>
+	<!-- IF topicrow.S_FIRST_ROW or not topicrow.S_TOPIC_TYPE_SWITCH -->
+	<div class="forumbg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dd style="width:100%;">&nbsp;<div style="float:left;"><a href="{U_CHAT_LINK}"><!-- IF S_CHAT_NOTIN -->{L_CHAT_ENTER}<!-- ELSE -->{L_CHAT_EXIT}<!-- ENDIF --></a></div><div style="float:right;" id="clock"></div>&nbsp;</dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist topics">
+	<!-- ENDIF -->
+
+		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+			<dl class="icon">
+				<dd class="lastpost" style="width:100%">
+		<!-- IF S_IS_POSTABLE -->
+<!-- IF not S_CHAT_NOTIN -->
+
+	<script type="text/javascript">
+	// <![CDATA[
+		function start_clock()
+		{
+			var tick;
+			var ut=new Date();
+			var h,m,s;
+			var time="";
+			h=ut.getHours();
+			m=ut.getMinutes();
+			s=ut.getSeconds();
+			if(s<=9) s="0"+s;
+			if(m<=9) m="0"+m;
+			if(h<=9) h="0"+h;
+			time+=h+":"+m+":"+s;
+			document.getElementById('clock').innerHTML=time;
+			tick=setTimeout("start_clock()",1000);
+		}
+
+	 jQuery(document).ready(
+		function($)
+		{
+			start_clock();
+
+			handle_send("read", 0);
+
+		}
+	);
+
+	function getCookie(name)
+	{
+		var start = document.cookie.indexOf( name + "=" );
+		var len = start + name.length + 1;
+		if ((!start) && (name != document.cookie.substring( 0, name.length)))
+		{
+			return null;
+		}
+		if (start == -1) return null;
+		var end = document.cookie.indexOf(';', len);
+		if (end == -1) end = document.cookie.length;
+		return unescape(document.cookie.substring(len, end));
+	}
+
+	function setCookie (name, value, expires, path, domain, secure)
+	{
+		var today = new Date();
+		today.setTime(today.getTime());
+		if (expires)
+		{
+			expires = expires * 1000 * 60 * 60 * 24;
+		}
+		var expires_date = new Date( today.getTime() + (expires));
+		document.cookie = name+'='+escape( value ) +
+		((expires) ? ';expires='+expires_date.toGMTString() : '' ) + //expires.toGMTString()
+		((path) ? ';path=' + path : '' ) +
+		((domain) ? ';domain=' + domain : '' ) +
+		((secure) ? ';secure' : '' );
+	}
+
+	function deleteCookie (name, path, domain)
+	{
+		if (getCookie(name)) document.cookie = name + '=' +
+		((path) ? ';path=' + path : '') +
+		((domain) ? ';domain=' + domain : '' ) +
+		';expires=Thu, 01-Jan-1970 00:00:01 GMT';
+	}
+
+	var fieldname = 'chat_window';
+	var last_time = {TIME};
+	var xmlHttp = http_object();
+	var last_id = {LAST_ID};
+	var type = 'receive';
+	var post_time = {TIME};
+	var read_interval = {REFRESH};
+	var interval = setInterval('handle_send("read", last_id);', read_interval);
+
+	function handle_send(mode, f)
+	{
+		if(document.text.message.value=='' && (mode != 'read' && mode != 'delete'))
+		{
+			return false;
+		}
+
+		if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0)
+		{
+			indicator_switch('on');
+			type = 'receive';
+			param = 'mode=' + mode;
+			//param += '&last_id=' + last_id;
+			//param += '&last_time=' + last_time;
+			//param += '&last_post=' + post_time;
+			//param += '&read_interval=' + read_interval;
+
+			if (mode == 'add' && document.text.message.value != '')
+			{
+				type = 'send';
+				for(var i = 0; i < f.elements.length; i++)
+				{
+					elem = f.elements[i];
+					param += '&' + elem.name + '=' + encodeURIComponent(elem.value);
+				}
+				document.text.message.value = '';
+			}
+			else if (mode == 'delete')
+			{
+				type = 'delete';
+				param += '&del_mess=' + f;
+			}
+
+			<!-- IF IN_CHAT -->document.text.message.focus();<!-- ENDIF -->
+			xmlHttp.open("POST", '{FILENAME}', true);
+			xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xmlHttp.onreadystatechange = handle_return;
+			xmlHttp.send(param);
+		}
+	}
+
+	function handle_return()
+	{
+		if (xmlHttp.readyState == 4)
+		{
+			if (type != 'delete')
+			{
+				results = xmlHttp.responseText.split('---');
+				//if (results[0])
+				//{
+					//if (last_id == 0)
+					//{
+						document.getElementById(fieldname).innerHTML = results[0];
+					//}
+					//else
+					//{
+						//document.getElementById(fieldname).innerHTML = results[0] + document.getElementById(fieldname).innerHTML;
+					//}
+					//last_id = results[1];
+					//if (results[2])
+					//{
+						document.getElementById('users').innerHTML = results[2];
+						//last_time = results[3];
+					//}
+					/*if (results[4] != read_interval)
+					{
+						window.clearInterval(interval);
+						read_interval = results[4];
+						interval = setInterval('handle_send("read", last_id);', read_interval);
+						//document.getElementById('update_seconds').innerHTML = results[4];
+					}*/
+					if(results[5]!=0)
+					{
+						killtime(results[5]);
+					}
+				//}
+			}
+			indicator_switch('off');
+		}
+	}
+
+	function delete_post(chatid)
+	{
+		if(confirm('{L_CHAT_DELMESS}'))
+		{
+			document.getElementById('p' + chatid).style.display = 'none';
+			handle_send('delete', chatid);
+		}
+	}
+
+
+	function indicator_switch(mode)
+	{
+		if(document.getElementById("act_indicator"))
+		{
+			var img = document.getElementById("act_indicator");
+			if(img.style.visibility == "hidden" && mode == 'on')
+			{
+				img.style.visibility = "visible";
+			}
+			else if (mode == 'off')
+			{
+				img.style.visibility = "hidden";
+			}
+		}
+	}
+
+	function http_object()
+	{
+		if (window.XMLHttpRequest)
+		{
+			return new XMLHttpRequest();
+		}
+		else if(window.ActiveXObject)
+		{
+			return new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		else
+		{
+			document.getElementById('chat_window').innerHTML = 'Status: Cound not create XmlHttpRequest Object.  Consider upgrading your browser.';
+		}
+	}
+
+	function inserttext(str)
+	{
+		if(str!='')
+		{
+			document.text.message.value += str;
+		}
+		else
+		{
+			document.text.message.value = '';
+		}
+		document.text.message.focus();
+	}
+	function fulltime()
+	{
+		document.text.submit.disabled=true;
+		if(document.text.submit.value > 0)
+		{
+			document.text.submit.value-=1;
+		}
+		else if(document.text.submit.value == 0)
+		{
+			document.text.submit.value = '{L_CHAT_SEND}';
+			document.text.submit.disabled=false;
+			document.text.message.focus();
+			return;
+		}
+		else
+		{
+			document.text.submit.value = {WAITTIME};
+		}
+
+		setTimeout('fulltime()', 1000);
+	}
+
+	function killtime(r)
+	{
+		if(r)
+		{
+			document.location.href='./viewchat.{PHPEX}?f={FORUM_ID}&chat=exit&r='+r;
+		}
+	}
+	// ]]>
+	</script>
+<!-- ENDIF -->
+	<link rel="stylesheet" href="{ROOT_PATH}chat/css/stylesheet_chat.css" type="text/css" />
+		<table width="100%" cellspacing="1">
+		<tr align="center" class="bg2"<!-- IF not S_FORM_WINDOW --> style="display:none;"<!-- ENDIF -->>
+			<td colspan="3" height="25">
+				<form name="text" id="text" method="post" action="javascript:void(0);" onsubmit="handle_send('add', this);{FULLTIME}" autocomplete="off">
+				<strong style="color:#000000;">{L_MESSAGE}: </strong><input type="text" maxlength="255" tabindex="1" name="message" id="message" class="inputbox chatinput" />&nbsp;<img src="{ROOT_PATH}chat/images/act_indicator.gif" id="act_indicator" />&nbsp;
+				<input type="submit" class="button1" value="{L_CHAT_SEND}" name="submit" tabindex="6" accesskey="s"/><input class="button1" type="reset" value="{L_CHAT_RESET}" /><br />
+
+				</form>
+			</td>
+		</tr>
+
+		<!-- IF S_MESSAGE_WINDOW or S_USER_WINDOW or S_BAR_WINDOW -->
+		<tr class="bg1">
+			<td style="width:10%;" valign="top">
+				<!-- IF S_BAR_WINDOW -->
+				<div class="smilies" id="smyles">{CHATSMILIES}</div>
+				<!-- ENDIF -->
+			</td>
+			<td style="width:70%;" valign="top" id="td_shouts">
+					<!-- IF S_MESSAGE_WINDOW -->
+					<div class="shouts" id="shouts">
+						<div id="chat_window"></div>
+					</div>
+					<!-- ENDIF -->
+			</td>
+			<td valign="top" style="width:20%;">
+					<!-- IF S_USER_WINDOW -->
+					<div class="users" id="users"></div>
+					<!-- ENDIF -->
+			</td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF S_CHAT_NOTIN -->
+		<!-- <tr class="bg1">
+			<td colspan="3" align="center" valign="middle" height="35">{L_CHAT_LOGIN}</td>
+		</tr> -->
+		<!-- ENDIF -->
+		<!-- IF S_ONLINE_WINDOW -->
+		<tr class="bg1">
+			<td colspan="3" align="center" valign="middle" height="35">{ONLINE_MESSAGE}</td>
+		</tr>
+		<!-- ENDIF -->
+		<tr class="bg1">
+			<td colspan="3" align="center" valign="middle">&nbsp;<!-- IF not S_CHAT_NOTIN -->{CHAT_TUPDATE}&nbsp;<!-- ENDIF --></td>
+		</tr>
+
+		<tr class="bg2">
+			<td colspan="3" align="center" valign="middle">&copy; <a href="http://www.ppkbb3cker.ru/" target="_blank">ppkBB3cker</a> Chat 2008-2012  @ <a href="http://protoneutron.narod.ru/" target="_blank">PPK</a></td>
+		</tr>
+		</table>
+		<!-- ENDIF -->
+				</dd>
+			</dl>
+		</li>
+
+			</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+<!-- END topicrow -->
+
+<!-- IF S_SELECT_SORT_DAYS and not S_DISPLAY_ACTIVE -->
+	<form method="post" action="{S_FORUM_ACTION}">
+		<fieldset class="display-options">
+			<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
+			<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+			<label>{L_DISPLAY_TOPICS}: {S_SELECT_SORT_DAYS}</label>
+			<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
+			<label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
+		</fieldset>
+	</form>
+	<hr />
+<!-- ENDIF -->
+
+<!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
+	<div class="topic-actions">
+		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
+		<div class="buttons">
+			<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->"><a href="{U_POST_NEW_TOPIC}"><span></span><!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF --></a></div>
+		</div>
+		<!-- ENDIF -->
+
+		<!-- IF PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
+		<div class="pagination">
+			<!-- IF TOTAL_TOPICS and not S_IS_BOT and U_MARK_TOPICS --><a href="{U_MARK_TOPICS}">{L_MARK_TOPICS_READ}</a> &bull;  <!-- ENDIF -->
+			<!-- IF TOTAL_POSTS and not NEWEST_USER --> {TOTAL_POSTS}<!-- ELSEIF TOTAL_TOPICS and not NEWEST_USER --> {TOTAL_TOPICS}<!-- ENDIF -->
+			<!-- IF TOTAL_USERS -->{TOTAL_USERS}<!-- ENDIF -->
+			<!-- IF PAGINATION --> &bull;  <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a>
+			 &bull;  <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+		</div>
+		<!-- ENDIF -->
+	</div>
+<!-- ENDIF -->
+
+<!-- INCLUDE jumpbox.html -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3>
+	<p>{LOGGED_IN_USER_LIST}</p>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_POST_INFO -->
+	<h3>{L_FORUM_PERMISSIONS}</h3>
+	<p><!-- BEGIN rules -->{rules.RULE}<br /><!-- END rules --></p>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

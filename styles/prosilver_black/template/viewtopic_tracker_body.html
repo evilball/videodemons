@@ -1,0 +1,836 @@
+<!-- INCLUDE overall_header.html -->
+<!-- IF U_MCP --><p>[&nbsp;<a href="{U_MCP}">{L_MCP}</a>&nbsp;]</p><!-- ENDIF -->
+<h2><a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a></h2>
+
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body -->
+<!-- IF FORUM_DESC --><div style="display: none !important;">{FORUM_DESC}<br /></div><!-- ENDIF -->
+
+<!-- IF MODERATORS -->
+<p>
+	<strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}
+</p>
+<!-- ENDIF -->
+
+<!-- IF S_FORUM_RULES -->
+<div class="rules">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+		<!-- IF U_FORUM_RULES -->
+		<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+		<!-- ELSE -->
+		<strong>{L_FORUM_RULES}</strong><br />
+		{FORUM_RULES}
+		<!-- ENDIF -->
+
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+
+<div class="topic-actions">
+
+	<div class="buttons">
+		<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
+		<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->"><a href="{U_POST_REPLY_TOPIC}" title="<!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF -->"><span></span><!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED_SHORT}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF --></a></div>
+		<!-- ENDIF -->
+	</div>
+
+	<!-- IF S_DISPLAY_SEARCHBOX -->
+	<div class="search-box">
+		<form method="get" id="topic-search" action="{S_SEARCHBOX_ACTION}">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="{L_SEARCH_TOPIC}" onclick="if(this.value=='{LA_SEARCH_TOPIC}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_TOPIC}';" />
+				<input class="button2" type="submit" value="{L_SEARCH}" />
+				{S_SEARCH_LOCAL_HIDDEN_FIELDS}
+			</fieldset>
+		</form>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF PAGINATION or TOTAL_POSTS -->
+	<div class="pagination">
+		<!-- IF U_VIEW_UNREAD_POST and not S_IS_BOT --><a href="{U_VIEW_UNREAD_POST}">{L_VIEW_UNREAD_POST}</a> &bull; <!-- ENDIF -->{TOTAL_POSTS}
+		<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+	</div>
+	<!-- ENDIF -->
+
+</div>
+
+
+<div class="clear"></div>
+
+<!-- IF S_HAS_VOTE and S_HAS_POLL -->
+<form method="post" action="{S_POLL_ACTION}">
+
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+			<div class="content">
+				<h2>{POLL_QUESTION}</h2>
+				<p class="author">{L_POLL_LENGTH}<!-- IF S_CAN_VOTE and L_POLL_LENGTH --><br /><!-- ENDIF --><!-- IF S_CAN_VOTE -->{L_MAX_VOTES}<!-- ENDIF --></p>
+
+				<fieldset class="polls">
+					<!-- BEGIN poll_option -->
+					<dl class="<!-- IF poll_option.POLL_OPTION_VOTED -->voted<!-- ENDIF -->"<!-- IF poll_option.POLL_OPTION_VOTED --> title="{L_POLL_VOTED_OPTION}"<!-- ENDIF -->>
+					<dt><!-- IF S_CAN_VOTE --><label for="vote_{poll_option.POLL_OPTION_ID}">{poll_option.POLL_OPTION_CAPTION}</label><!-- ELSE -->{poll_option.POLL_OPTION_CAPTION}<!-- ENDIF --></dt>
+					<!-- IF S_CAN_VOTE --><dd style="width: auto;"><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dd><!-- ENDIF -->
+					<!-- IF S_DISPLAY_RESULTS --><dd class="resultbar"><div class="<!-- IF poll_option.POLL_OPTION_PCT < 20 -->pollbar1<!-- ELSEIF poll_option.POLL_OPTION_PCT < 40 -->pollbar2<!-- ELSEIF poll_option.POLL_OPTION_PCT < 60 -->pollbar3<!-- ELSEIF poll_option.POLL_OPTION_PCT < 80 -->pollbar4<!-- ELSE -->pollbar5<!-- ENDIF -->" style="width:{poll_option.POLL_OPTION_PERCENT};">{poll_option.POLL_OPTION_RESULT}</div></dd>
+					<dd><!-- IF poll_option.POLL_OPTION_RESULT == 0 -->{L_NO_VOTES}<!-- ELSE -->{poll_option.POLL_OPTION_PERCENT}<!-- ENDIF --></dd><!-- ENDIF -->
+					</dl>
+					<!-- END poll_option -->
+
+					<!-- IF S_DISPLAY_RESULTS -->
+					<dl>
+						<dt>&nbsp;</dt>
+						<dd class="resultbar">{L_TOTAL_VOTES} : {TOTAL_VOTES}</dd>
+					</dl>
+					<!-- ENDIF -->
+
+					<!-- IF S_CAN_VOTE -->
+					<dl style="border-top: none;">
+						<dt>&nbsp;</dt>
+						<dd class="resultbar"><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="button1" /></dd>
+					</dl>
+					<!-- ENDIF -->
+
+					<!-- IF not S_DISPLAY_RESULTS -->
+					<dl style="border-top: none;">
+						<dt>&nbsp;</dt>
+						<dd class="resultbar"><a href="{U_VIEW_RESULTS}">{L_VIEW_RESULTS}</a></dd>
+					</dl>
+					<!-- ENDIF -->
+				</fieldset>
+			</div>
+
+			<span class="corners-bottom"><span></span></span></div>
+		{S_FORM_TOKEN}
+		{S_HIDDEN_FIELDS}
+	</div>
+
+
+</form>
+<hr />
+<!-- ENDIF -->
+<!-- BEGIN postrow -->
+
+<!-- IF postrow.S_FIRST_ROW -->
+
+<link rel="stylesheet" href="{PPKBB3CKER_ADDONS}css/dataTables.css" type="text/css" />
+<style type="text/css">
+	a.my_ath:link, a.my_ath:visited
+	{
+		font-weight: normal;
+		color: #105289 !important;
+		float: left;
+		border-bottom-width: 1px;
+		border-bottom-style: dotted;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+</style>
+<script src="{PPKBB3CKER_ADDONS}js/dataTables.min.js" type="text/javascript"></script>
+<script src="{PPKBB3CKER_ADDONS}js/dataTables.ext.js" type="text/javascript"></script>
+
+<!-- ENDIF -->
+
+<!-- IF postrow.S_FIRST_UNREAD --><a id="unread"></a><!-- ENDIF -->
+<div id="p{postrow.POST_ID}" class="post <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF -->">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody"<!-- IF postrow.S_FIRST_ROW and not postrow.TORRENT_INFO_AUTHOR --> style="width:97%;"<!-- ENDIF -->>
+		<!-- IF postrow.S_IGNORE_POST -->
+		<div class="ignore">{postrow.L_IGNORE_POST}</div>
+		<!-- ELSE -->
+
+		<!-- IF not S_IS_BOT -->
+		<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE -->
+		<ul class="profile-icons">
+			<!-- IF S_QUICK_REPLY --><li class="quickquote-icon"><a href="#postform" onclick="if((window.getSelection && window.getSelection().toString() == '') || (document.getSelection && document.getSelection() == '') || (document.selection && document.selection.createRange().text == '')){ alert('{L_NO_SELECTION}'); return false; }else{dE('qr_editor_div', 1);dE('qr_showeditor_div', -1);addquote({postrow.POST_ID},'{postrow.POSTER_QUOTE}'); insert_text('\r\n'); return false; }" title="{L_QUICKQUOTE_TEXT}"><span>{L_QUICKQUOTE_TEXT}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_EDIT --><li class="edit-icon"><a href="{postrow.U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_DELETE --><li class="delete-icon"><a href="{postrow.U_DELETE}" title="{L_DELETE_POST}"><span>{L_DELETE_POST}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_REPORT --><li class="report-icon"><a href="{postrow.U_REPORT}" title="{L_REPORT_POST}"><span>{L_REPORT_POST}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_WARN --><li class="warn-icon"><a href="{postrow.U_WARN}" title="{L_WARN_USER}"><span>{L_WARN_USER}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_INFO --><li class="info-icon"><a href="{postrow.U_INFO}" title="{L_INFORMATION}"><span>{L_INFORMATION}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->
+		</ul>
+		<!-- ENDIF -->
+		<!-- ENDIF -->
+		<h3 <!-- IF postrow.S_FIRST_ROW -->class="first"<!-- ENDIF -->><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /> <!-- ENDIF --><a href="{postrow.U_MINI_POST}">{postrow.POST_SUBJECT}</a></h3>
+		<p class="author"><!-- IF S_IS_BOT -->{postrow.MINI_POST_IMG}<!-- ELSE --><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a><!-- ENDIF -->{L_POST_BY_AUTHOR} <!-- We use "\r\n" newline here because insert_text() JS function doesn't insert newline with "\n" (at least in Windows) --><!-- IF S_QUICK_REPLY --><a href="#postform" title="{L_QUOTE_USERNAME}" onclick="dE('qr_editor_div', 1);dE('qr_showeditor_div', -1); insert_text('[b]{postrow.POSTER_QUOTE}[/b]'); return false;"<!-- IF postrow.POST_AUTHOR_COLOUR --> style="color: {postrow.POST_AUTHOR_COLOUR}" <!-- ENDIF -->><strong>{postrow.POST_AUTHOR}</strong></a><!-- ELSE --><!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF --><!-- ENDIF --> &raquo; {postrow.POST_DATE} </p>
+
+		<!-- IF postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED -->
+		<p class="rules">
+			<!-- IF postrow.S_POST_UNAPPROVED -->{UNAPPROVED_IMG} <a href="{postrow.U_MCP_APPROVE}"><strong>{L_POST_UNAPPROVED}</strong></a><br /><!-- ENDIF -->
+			<!-- IF postrow.S_POST_REPORTED -->{REPORTED_IMG} <a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a><!-- ENDIF -->
+		</p>
+		<!-- ENDIF -->
+
+		<div class="content">
+
+			<!-- IF postrow.S_HAS_TRACKER_POSTER or postrow.S_HAS_TRACKER_SCREENSHOT -->
+			<div style="float:right;margin:0px 0px 10px 10px;">
+				<div class="tabber" id="tabber1">
+					<ul class="c">
+						<!-- IF postrow.S_HAS_TRACKER_POSTER --><li>{L_ATTACHMENTS_POSTER}</li><!-- ENDIF -->
+						<!-- IF postrow.S_HAS_TRACKER_SCREENSHOT --><li>{L_ATTACHMENTS_SCREENSHOT}</li><!-- ENDIF -->
+					</ul>
+					<!-- IF postrow.S_HAS_TRACKER_POSTER -->
+					<div class="t">
+						<div class="poster_sl">
+							<div id="sliderPoster" style="margin:0px auto;width:{POSTERS_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+								<ul style="margin-left:5px;">
+									<!-- BEGIN torrent_poster_fields -->
+									<li style="margin:0px;width:{POSTERS_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+										<a href="{postrow.torrent_poster_fields.POSTER_LINK}" rel="prettyPhotoPosters<!-- IF postrow.TRACKER_POSTERS_COUNT -->[0]<!-- ENDIF -->"><img <!-- IF postrow.torrent_poster_fields.POSTER_WH_WIDTH -->width="{postrow.torrent_poster_fields.POSTER_WH_WIDTH}"<!-- ELSE -->height="{postrow.torrent_poster_fields.POSTER_WH_HEIGHT}"<!-- ENDIF --> src="{postrow.torrent_poster_fields.POSTER_SRC}" alt="" /></a>
+										<!-- IF postrow.torrent_poster_fields.POSTER_FORUM -->
+										<br /><a href="{postrow.torrent_poster_fields.POSTER_LINK}" title="{postrow.torrent_poster_fields.POSTER_FILENAME}">{postrow.torrent_poster_fields.POSTER_SHORTNAME}</a>
+										<br  />[ {L_TORRENT_SIZE} <b>{postrow.torrent_poster_fields.POSTER_FILESIZE}</b> {postrow.torrent_poster_fields.POSTER_SIZE_LANG} / {L_TORRENT_VIEWED} <b>{postrow.torrent_poster_fields.POSTER_DOWNLOADED}</b> ]
+										<!-- IF postrow.torrent_poster_fields.POSTER_COMMENT --><br />({L_FILE_COMMENT}: {postrow.torrent_poster_fields.POSTER_COMMENT})<!-- ENDIF -->
+										<!-- ENDIF -->
+									</li>
+									<!-- END torrent_poster_fields -->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- ENDIF -->
+					<!-- IF postrow.S_HAS_TRACKER_SCREENSHOT -->
+					<div class="t">
+						<div class="screenshot_sl">
+							<div id="sliderScreen" style="margin:0px auto;width:{SCREENSHOTS_TABLE_WIDTH}px;height:auto;overflow:hidden;">
+								<ul style="margin-left:5px;">
+									<!-- BEGIN torrent_screenshot_fields -->
+									<li style="margin:0px;width:{SCREENSHOTS_TABLE_WIDTH}px;height:auto;overflow:hidden;list-style:none;">
+										<a href="{postrow.torrent_screenshot_fields.SCREENSHOT_LINK}" rel="prettyPhotoSscreenshots<!-- IF postrow.TRACKER_SCREENSHOTS_COUNT -->[0]<!-- ENDIF -->"><img <!-- IF postrow.torrent_screenshot_fields.SCREENSHOT_WH_WIDTH -->width="{postrow.torrent_screenshot_fields.SCREENSHOT_WH_WIDTH}"<!-- ELSE -->height="{postrow.torrent_screenshot_fields.SCREENSHOT_WH_HEIGHT}"<!-- ENDIF --> src="{postrow.torrent_screenshot_fields.SCREENSHOT_SRC}" alt="" /></a>
+										<!-- IF postrow.torrent_screenshot_fields.SCREENSHOT_FORUM -->
+										<br /><a href="{postrow.torrent_screenshot_fields.SCREENSHOT_LINK}" title="{postrow.torrent_screenshot_fields.SCREENSHOT_FILENAME}">{postrow.torrent_screenshot_fields.SCREENSHOT_SHORTNAME}</a>
+										<br  />[ {L_TORRENT_SIZE} <b>{postrow.torrent_screenshot_fields.SCREENSHOT_FILESIZE}</b> / {L_TORRENT_VIEWED} <b>{postrow.torrent_screenshot_fields.SCREENSHOT_DOWNLOADED}</b> ]
+										<!-- IF postrow.torrent_screenshot_fields.SCREENSHOT_COMMENT --><br />({L_FILE_COMMENT}: {postrow.torrent_screenshot_fields.SCREENSHOT_COMMENT})<!-- ENDIF -->
+										<!-- ENDIF -->
+									</li>
+									<!-- END torrent_screenshot_fields -->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- ENDIF -->
+				</div>
+			</div>
+			<!-- ENDIF -->
+			{postrow.MESSAGE}
+		</div>
+
+		<!-- IF postrow.S_HAS_ATTACHMENTS -->
+		<dl class="attachbox">
+			<dt>{L_ATTACHMENTS}</dt>
+			<!-- BEGIN attachment -->
+			<dd>{postrow.attachment.DISPLAY_ATTACHMENT}</dd>
+			<!-- END attachment -->
+		</dl>
+		<!-- ENDIF -->
+
+		<!-- IF postrow.S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
+		<!-- IF postrow.EDITED_MESSAGE or postrow.EDIT_REASON -->
+		<div class="notice">{postrow.EDITED_MESSAGE}
+			<!-- IF postrow.EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{postrow.EDIT_REASON}</em><!-- ENDIF -->
+		</div>
+		<!-- ENDIF -->
+
+		<!-- IF postrow.BUMPED_MESSAGE --><div class="notice"><br /><br />{postrow.BUMPED_MESSAGE}</div><!-- ENDIF -->
+		<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
+		<!-- ENDIF -->
+
+	</div>
+
+	<!-- IF not postrow.S_IGNORE_POST -->
+	<dl class="postprofile<!-- IF postrow.S_ONLINE and not postrow.S_IGNORE_POST --> online<!-- ENDIF -->" id="profile{postrow.POST_ID}"<!-- IF postrow.S_FIRST_ROW and not postrow.TORRENT_INFO_AUTHOR --> style="display:none;"<!-- ENDIF -->>
+	<dt>
+		<!-- IF postrow.POSTER_AVATAR -->
+		<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{postrow.POSTER_AVATAR}</a><!-- ELSE -->{postrow.POSTER_AVATAR}<!-- ENDIF --><br />
+		<!-- ENDIF -->
+		<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF -->
+	</dt>
+
+	<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd>{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+
+	<dd>&nbsp;</dd>
+
+	<!-- IF postrow.POSTER_POSTS != '' -->
+	<dd><strong>{L_USER_UPLOADS}:</strong> {postrow.U_UPLOADS}</dd>
+	<dd><strong>{L_USER_DOWNLOADS}:</strong> {postrow.U_DOWNLOADS}</dd>
+	<dd><strong>{L_USER_RATIO}:</strong> {postrow.U_RATIO}</dd>
+	<!-- IF S_TINFO_THANKS --><dd><strong>{L_THANKS_COUNT}:</strong> <span class="my_tt" title="{L_TRACKER_USER_TYTHANKS}">{postrow.U_TOTHANKS}</span> / <span class="my_tt" title="{L_TRACKER_USER_YTHANKS}">{postrow.U_FROMTHANKS}</span></dd><!-- ENDIF -->
+	<!-- IF S_TINFO_TORRENTSSIZES -->
+	<dd><strong>{L_USER_TORRENTS}:</strong>
+		<!-- IF S_TINFO_TORRENTSSIZES --> <span class="my_tt" title="{L_TRACKER_USER_TORRENTS}">{postrow.U_TORRENTS}</span><!-- ENDIF --></dd>
+	<!-- ENDIF -->
+	<!-- IF S_TINFO_COMMENTS --><dd><strong>{L_USER_COMMENTS}:</strong> {postrow.U_COMMENTS}</dd><!-- ENDIF -->
+	<!-- IF postrow.POSTER_WARNINGS -->
+	<dd><strong style="color:#FF0000;">{L_USER_WARNINGS}:</strong> {postrow.POSTER_WARNINGS}</dd>
+	<!-- ENDIF -->
+	<!-- ENDIF -->
+
+	<!-- IF postrow.POSTER_POSTS != '' --><dd><strong>{L_POSTS}:</strong> {postrow.POSTER_POSTS}</dd><!-- ENDIF -->
+	<!-- IF postrow.POSTER_JOINED --><dd><strong>{L_JOINED}:</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
+	<!-- IF postrow.POSTER_FROM --><dd><strong>{L_LOCATION}:</strong> {postrow.POSTER_FROM}</dd><!-- ENDIF -->
+
+	<!-- IF postrow.S_PROFILE_FIELD1 -->
+	<!-- Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
+	<dd><strong>{postrow.PROFILE_FIELD1_NAME}:</strong> {postrow.PROFILE_FIELD1_VALUE}</dd>
+	<!-- ENDIF -->
+
+	<!-- BEGIN custom_fields -->
+	<dd><strong>{postrow.custom_fields.PROFILE_FIELD_NAME}:</strong> {postrow.custom_fields.PROFILE_FIELD_VALUE}</dd>
+	<!-- END custom_fields -->
+
+	<!-- IF not S_IS_BOT -->
+	<!-- IF postrow.U_PM or postrow.U_EMAIL or postrow.U_WWW or postrow.U_MSN or postrow.U_ICQ or postrow.U_YIM or postrow.U_AIM or postrow.U_JABBER -->
+	<dd>
+		<ul class="profile-icons">
+			<!-- IF postrow.U_PM --><li class="pm-icon"><a href="{postrow.U_PM}" title="{L_PRIVATE_MESSAGE}"><span>{L_PRIVATE_MESSAGE}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_EMAIL --><li class="email-icon"><a href="{postrow.U_EMAIL}" title="{L_SEND_EMAIL_USER} {postrow.POST_AUTHOR}"><span>{L_SEND_EMAIL_USER} {postrow.POST_AUTHOR}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_WWW --><li class="web-icon"><a href="{postrow.U_WWW}" title="{L_VISIT_WEBSITE}: {postrow.U_WWW}"><span>{L_WEBSITE}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_MSN --><li class="msnm-icon"><a href="{postrow.U_MSN}" onclick="popup(this.href, 550, 320); return false;" title="{L_MSNM}"><span>{L_MSNM}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_ICQ --><li class="icq-icon"><a href="{postrow.U_ICQ}" onclick="popup(this.href, 550, 320); return false;" title="{L_ICQ}"><span>{L_ICQ}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_YIM --><li class="yahoo-icon"><a href="{postrow.U_YIM}" onclick="popup(this.href, 780, 550); return false;" title="{L_YIM}"><span>{L_YIM}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_AIM --><li class="aim-icon"><a href="{postrow.U_AIM}" onclick="popup(this.href, 550, 320); return false;" title="{L_AIM}"><span>{L_AIM}</span></a></li><!-- ENDIF -->
+			<!-- IF postrow.U_JABBER --><li class="jabber-icon"><a href="{postrow.U_JABBER}" onclick="popup(this.href, 550, 320); return false;" title="{L_JABBER}"><span>{L_JABBER}</span></a></li><!-- ENDIF -->
+		</ul>
+	</dd>
+	<!-- ENDIF -->
+	<!-- ENDIF -->
+	</dl>
+	<!-- ENDIF -->
+	<div class="back2top"><a href="#wrap" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a></div>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- IF postrow.S_FIRST_ROW -->
+<!-- IF postrow.S_HAS_TRACKER_TORRENT or postrow.TORRENT_INFO_STAT or postrow.TORRENT_INFO_ACTION -->
+<div class="panel" id="torrblock">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<table width="100%" class="torrblock">
+			<tr>
+				<td valign="top" width="100%">
+					<div id="c_set_error" style="text-align:center;color:#FF0000;font-weight:bold;"></div>
+					<div class="tabber" id="tabber2">
+						<ul class="c">
+							<!-- IF postrow.S_HAS_TRACKER_TORRENT or postrow.TORRENT_INFO_STAT --><li>{L_ATTACHMENTS_TORRENT}</li><!-- ENDIF -->
+							<!-- IF postrow.TORRENT_INFO_ACTION and postrow.TA_FORB_FORM --><li>{L_TORRENT_OPTION}</li><!-- ENDIF -->
+						</ul>
+						<!-- IF postrow.S_HAS_TRACKER_TORRENT or postrow.TORRENT_INFO_STAT -->
+						<div class="t">
+							<div class="torrent_sl" style="line-height:1.3em;">
+								<!-- IF postrow.S_TORRENT_TOP_NOTICE -->
+								<div class="myblock" style="text-align:center;width:auto;">
+									<div class="inner"><span class="mycorners-top"><span></span></span>
+										{postrow.S_TORRENT_TOP_NOTICE}
+										<span class="mycorners-bottom"><span></span></span></div>
+								</div>
+								<!-- ENDIF -->
+								<table width="100%"><tr>
+									<!-- IF postrow.TORRENT_INFO_STAT --><td valign="top" style="line-height:1.3em;" width="70%">
+									<table width="100%">
+										<tr>
+											<td><b>{L_TORRENT_AUTHOR}</b>: {postrow.TS_AUTHOR}</td>
+											<td><b>{L_TORRENT_HASH}</b>: <!-- IF postrow.TS_HASH -->{postrow.TS_HASH2}<!-- ELSE -->---<!-- ENDIF --></td>
+										</tr>
+										<tr>
+											<td><b>{L_TORRENT_ADDED}</b>: <span class="my_tt" title="{postrow.TS_ADDED_LEFT} {L_TORRENT_LAST_TIME}">{postrow.TS_ADDED}</span></td>
+											<td><b>{L_TORRENT_PRIVATE}</b>: <!-- IF postrow.TS_PRIVATE -->{L_TORRENT_PRIVATE_YES}<!-- ELSE -->{L_TORRENT_PRIVATE_NO}<!-- ENDIF --></td>
+										</tr>
+										<tr>
+											<td><div id="c_tstatus" style="float:left;"><b>{L_TORRENT_STATUS}</b>: <!-- IF postrow.TS_TSTATUS -->{postrow.TS_TSTATUS}</div><!-- ELSE --><div id="c_tstatus" style="float:left;"></div>---<!-- ENDIF --></td>
+											<td><b>{L_TORRENT_SIZE}</b>: {postrow.TS_SIZE} ({postrow.TS_SIZE2} {L_BYTES})</td>
+										</tr>
+										<tr>
+											<td><div id="c_ustatus" style="float:left;"><b>{L_TORRENT_STATUS_USER}</b>: <!-- IF postrow.TS_USTATUS -->{postrow.TS_USTATUS} ({postrow.TS_USTATUS_DATE})</div><!-- ELSE --><div id="c_ustatus" style="float:left;"></div>---<!-- ENDIF --></td>
+											<td><b>{L_TORRENT_COMPLETED}</b>: <span class="complet">{postrow.TS_COMPLETED}</span> ({L_TORRENT_PERCENT}: <!-- IF postrow.TS_SPERCENT_WO_REM --><a href="javascript:;" title="{L_WO_REM_PEERS}" class="my_tt">{postrow.TS_SPERCENT}</a><!-- ELSE -->{postrow.TS_SPERCENT}<!-- ENDIF -->%)</td>
+										</tr>
+										<tr>
+											<td><div id="c_treason" style="float:left;"><b>{L_TORRENT_STATUS_REASON}</b>: <!-- IF postrow.TS_REASON -->{postrow.TS_REASON}</div><!-- ELSE --><div id="c_treason" style="float:left;"></div>---<!-- ENDIF --> </td>
+											<td><b>{L_TORRENT_HEALTH}</b>: {postrow.TS_HEALTH}%</td>
+										</tr>
+										<tr>
+											<td><b>{L_TORRENT_SEEDERS}</b>: <span class="seed">{postrow.TS_SEEDERS}</span></td>
+											<td><b>{L_TORRENT_LEECHERS}</b>: <span class="leech">{postrow.TS_LEECHERS}</span></td>
+										</tr>
+										<tr>
+											<td><b>{L_TORRENT_SSPEED}</b>: <span class="seed">{postrow.TS_SSPEED}</span></td>
+											<td><b>{L_TORRENT_LSPEED}</b>: <span class="leech">{postrow.TS_LSPEED}</span></td>
+										</tr>
+										<tr>
+											<td><b>{L_TORRENT_LASTSEED}</b>: <span class="seed"><!-- IF postrow.TS_LSEED -->{postrow.TS_LSEED} {L_TORRENT_LAST_TIME}<!-- ELSE -->{L_NO}<!-- ENDIF --></span></td>
+											<td><b>{L_TORRENT_LASTLEECH}</b>: <span class="leech"><!-- IF postrow.TS_LLEECH -->{postrow.TS_LLEECH} {L_TORRENT_LAST_TIME}<!-- ELSE -->{L_NO}<!-- ENDIF --></span></td>
+										</tr>
+									</table>
+								</td>
+									<!-- ENDIF -->
+									<!-- IF not postrow.S_HAS_TRACKER_TORRENT and not S_USER_LOGGED_IN -->
+									<td align="center" style="line-height:1.3em;"<!-- IF postrow.TORRENT_INFO_STAT --> width="25%"<!-- ENDIF -->>
+									{L_LOGORREG_DOWNLOAD}
+									</td>
+									<!-- ENDIF -->
+									<!-- IF postrow.S_HAS_TRACKER_TORRENT or postrow.TA_THANKS_FORM -->
+									<td align="center" style="line-height:1.3em;"<!-- IF postrow.TORRENT_INFO_STAT --> width="30%"<!-- ENDIF -->>
+									<!-- IF postrow.S_HAS_TRACKER_TORRENT -->
+									<!-- BEGIN torrent_fields -->
+									<!-- IF postrow.FORUM_IMAGE --><img src="{postrow.FORUM_IMAGE}" alt="{FORUM_NAME}" title="{FORUM_NAME}" /> <!-- ENDIF -->
+									<!-- IF postrow.torrent_fields.TORRENT_BONUS --><img src="{postrow.torrent_fields.TORRENT_BONUS_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_BONUS_TEXT}"  title="{postrow.torrent_fields.TORRENT_BONUS_TEXT}"/> <!-- ENDIF -->
+									<!-- IF postrow.torrent_fields.TORRENT_FREE --><img src="{postrow.torrent_fields.TORRENT_FREE_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_FREE_TEXT}"  title="{postrow.torrent_fields.TORRENT_FREE_TEXT}"/> <!-- ENDIF -->
+									<!-- IF postrow.torrent_fields.TORRENT_FORB --><img src="{postrow.torrent_fields.TORRENT_FORB_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_FORB_TEXT}"  title="{postrow.torrent_fields.TORRENT_FORB_TEXT}"/> <!-- ENDIF -->
+									<!-- IF postrow.torrent_fields.TORRENT_REQ_UPLOAD --><img src="{postrow.torrent_fields.TORRENT_REQ_UPLOAD_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_REQ_UPLOAD_TEXT}"  title="{postrow.torrent_fields.TORRENT_REQ_UPLOAD_TEXT}"/> <!-- ENDIF -->
+									<!-- IF postrow.torrent_fields.TORRENT_REQ_RATIO --><img src="{postrow.torrent_fields.TORRENT_REQ_RATIO_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_REQ_RATIO_TEXT}"  title="{postrow.torrent_fields.TORRENT_REQ_RATIO_TEXT}"/> <!-- ENDIF -->
+									<!-- IF postrow.torrent_fields.TORRENT_WAIT --><img src="{postrow.torrent_fields.TORRENT_WAIT_SRC_IMG}" alt="{postrow.torrent_fields.TORRENT_WAIT_TEXT}"  title="{postrow.torrent_fields.TORRENT_WAIT_TEXT}"/> <!-- ENDIF -->
+									<!-- IF postrow.torrent_fields.TORRENT_LINK -->
+									<a href="{postrow.torrent_fields.TORRENT_SRC_LINK}" title="{L_DOWNLOAD_TORRENT}"><img src="{postrow.torrent_fields.TORRENT_DOWNLOAD_SRC_IMG}" alt="{L_DOWNLOAD_TORRENT}" /></a>
+									<!-- IF postrow.torrent_fields.TORRENT_MAGNET_LINK --><a href="{postrow.torrent_fields.TORRENT_MAGNET_LINK}" title="{L_TORRENT_MAGNET_LINK}"><img src="{postrow.torrent_fields.TORRENT_MAGNET_SRC_IMG}" alt="{L_TORRENT_MAGNET_LINK}" /></a> <!-- ENDIF -->
+									<!-- ENDIF -->
+									<br /><!-- IF postrow.torrent_fields.TORRENT_LINK --><a href="{postrow.torrent_fields.TORRENT_SRC_LINK}" title="{postrow.torrent_fields.TORRENT_FILENAME}">{L_DOWNLOAD_TORRENT}</a><!-- ELSE -->{postrow.torrent_fields.TORRENT_SHORTNAME}<!-- ENDIF -->
+									<br  />[ {L_TORRENT_SIZE} <b>{postrow.torrent_fields.TORRENT_FILESIZE}</b> / {L_TORRENT_VIEWED} <b>{postrow.torrent_fields.TORRENT_DOWNLOADED}</b> ]
+									<!-- IF postrow.torrent_fields.TORRENT_COMMENT --><br />({L_FILE_COMMENT}: {postrow.torrent_fields.TORRENT_COMMENT})<!-- ENDIF -->
+									<!-- END torrent_fields -->
+									<!-- ENDIF -->
+									<!-- IF postrow.TA_THANKS_FORM -->
+									<table width="50%">
+										<tr>
+											<!-- IF postrow.TA_THANKS_FORM -->
+											<td style="text-align:center;">
+												<form action="{S_VIEWTOPIC_URL}" method="post" id="hj_thanks">
+													<input type="hidden" name="say_thanks" id="say_thanks" value="1" />
+													<input src="{TR_THANKS_IMG}" style="border:0px;background-color:transparent;" type="image" name="submit_thanks" title="{L_TORRENT_INFO_HEADER_SAYTHANKS}" />
+												</form>
+												<div id="c_say_thanks" style="font-style:italic;"></div>
+											</td>
+											<!-- ENDIF -->
+
+										</tr>
+									</table>
+									<!-- ENDIF -->
+									</td><!-- ENDIF --></tr>
+								</table>
+								<!-- IF postrow.S_TORRENT_BOTTOM_NOTICE -->
+								<div class="myblock" style="text-align:center;width:auto;">
+									<div class="inner"><span class="mycorners-top"><span></span></span>
+										{postrow.S_TORRENT_BOTTOM_NOTICE}
+										<span class="mycorners-bottom"><span></span></span></div>
+								</div>
+								<!-- ENDIF -->
+							</div>
+
+						</div>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.TORRENT_INFO_ACTION and postrow.TA_FORB_FORM -->
+						<div class="t">
+							<div class="option_sl">
+
+								<table width="100%">
+									<!-- IF postrow.TA_FORB_FORM -->
+									<tr>
+										<td style="vertical-align:top;">
+											<div id="c_set_forb" style="font-style:italic;"></div>
+											<form action="{S_VIEWTOPIC_URL}" method="post" id="hj_set_forb">
+												<input type="hidden" name="set_forb" id="set_forb" value="1" />
+												<input type="submit" name="submit_set_forb" class="button1" value="{L_TORRENT_ACTION}" /> {L_TORRENT_INFO_HEADER_SETFORBIDDEN}<br />{L_TORRENT_STATUS}:
+												<select name="forb_val" id="forb_val">
+													{postrow.TA_FORB_FORM}
+												</select>
+												<br />{L_BLOCKED_REASON}:<br />
+												<input type="text" maxlength="255" name="forb_reason" id="forb_reason" value="{postrow.TA_FORB_FORM_REASON}" class="inputbox autowidth" size="28" />
+												<br /> <input type="checkbox" name="forb_locked" id="forb_locked" value="1"{postrow.TA_FORB_FORM_LOCKED} /> - {L_BLOCKED_LOCKED}
+												<br /> <input type="checkbox" name="forb_closed" id="forb_closed" value="1"{postrow.TA_FORB_FORM_STATUS} /> - {L_BLOCKED_CLOSED}
+											</form>
+										</td>
+
+										<!-- ENDIF -->
+
+										<!-- IF postrow.TA_STICKY_FORM -->
+										<td style="vertical-align:top;">
+											<div id="c_set_sticky" style="font-style:italic;"></div>
+											<form action="{S_VIEWTOPIC_URL}" method="post" id="hj_set_sticky">
+												<input type="hidden" name="set_sticky" id="set_sticky" value="1" />
+												<input type="submit" name="submit_set_sticky" class="button1" value="{L_TORRENT_ACTION}" /> {L_TORRENT_INFO_HEADER_SETSTICKY}
+												<br /><input type="text" name="torrent_time_limit" id="torrent_time_limit" size="3" maxlength="3" value="{postrow.TA_STICKY_FORM_LEFT_DAYS}" class="inputbox autowidth" /> - {L_STICKY_DESCR}
+												<br /><input type="checkbox" name="as_sticky" id="as_sticky" value="1"{postrow.TA_STICKY_FORM_STICKY} /> - {L_TORRENT_INFO_HEADER_STICKY}
+												<!-- IF postrow.TA_STICKY_FORM_LEFT --><br /><div id="sticky_left">{L_STICKY_EXPIRE}: {postrow.TA_STICKY_FORM_LEFT}</div><!-- ELSE --><div id="sticky_left"></div><!-- ENDIF -->
+											</form>
+										</td>
+									</tr>
+									<!-- ENDIF -->
+								</table>
+
+							</div>
+						</div>
+						<!-- ENDIF -->
+					</div>
+
+				</td>
+			</tr>
+		</table>
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF postrow.TORRENT_INFO_OPT -->
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<table style="width:100%;" cellspacing="1">
+			<tr class="bg1">
+				<td align="center"><a name="opt"></a> {postrow.TORRENT_INFO_OPT}<!-- IF postrow.S_HAS_TORRENT_EXPLAIN -->&nbsp;<span id="c_torrent_close">[<a onclick="javascript:toggle_block('c_torrent_stat');" href="javascript:;" title="{L_CLOSE}">x</a>]</span><!-- ENDIF --></td>
+			</tr>
+			<tr class="bg1" id="c_torrent_stat">
+				<td>
+					<!-- IF postrow.S_HAS_TORRENT_EXPLAIN -->
+					<style type="text/css">
+						a.my_ath:link, a.my_ath:visited
+						{
+							font-weight: normal;
+							color: #105289 !important;
+							float: left;
+							border-bottom-width: 1px;
+							border-bottom-style: dotted;
+							text-decoration: none;
+							text-transform: uppercase;
+						}
+					</style>
+					<script src="{PPKBB3CKER_ADDONS}js/dataTables.min.js" type="text/javascript"></script>
+					<script src="{PPKBB3CKER_ADDONS}js/dataTables.ext.js" type="text/javascript"></script>
+
+					<script type="text/javascript">
+                        // <![CDATA[
+                        jQuery(document).ready(function($){
+                            $('#tt_info').dataTable({
+                                    "iDisplayLength": {postrow.S_MUA_COUNTLIST_DEFAULT},
+                                //"bSort": false,
+                                "bPaginate": true,
+                                "sPaginationType": "full_numbers",
+                                "aLengthMenu": [[{postrow.S_MUA_COUNTLIST}], [{postrow.S_MUA_COUNTLIST}]],
+                            "aoColumns": [<!-- BEGIN headers -->{"sType": "num-html"}<!-- IF not headers.S_LAST_ROW -->, <!-- ENDIF --><!-- END headers -->],
+                                "oLanguage":
+                            {
+                                "sLengthMenu": "{L_DT_SLENGTHMENU}",
+                                "sZeroRecords": "{L_DT_SZERORECORDS}",
+                                "sInfo": "{L_DT_SINFO}",
+                                "sInfoEmpty": "{L_DT_SINFOEMTPY}",
+                                "sInfoFiltered": "{L_DT_SINFOFILTERED}",
+                                "sSearch": "{L_DT_SSEARCH}",
+                                "oPaginate":
+                                {
+                                    "sNext": "{L_DT_SNEXT}",
+                                    "sPrevious": "{L_DT_SPREVIOUS}",
+                                    "sFirst": "{L_DT_SFIRST}",
+                                    "sLast": "{L_DT_SLAST}"
+                                }
+                            }
+                        });
+                        });
+                        function fnShowHide( iCol )
+                        {
+                            var oTable = jQuery('#tt_info').dataTable();
+                            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                            oTable.fnSetColumnVis( iCol, bVis ? false : true );
+                        }
+                        // ]]>
+					</script>
+
+					<table class="table1" width="100%" cellpadding="0" cellspacing="1" id="tt_info">
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_FILELIST -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th class="my_th"><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN filelist_option -->
+						<!-- IF postrow.filelist_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{filelist_option.TORRENT_FILE}</span>{filelist_option.TORRENT_FILE}</td>
+							<td><span style="display:none;">{filelist_option.TORRENT_BSIZE}</span>{filelist_option.TORRENT_SIZE}</td>
+						</tr>
+						<!-- END filelist_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_FINISHED -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN finished_option -->
+						<!-- IF postrow.finished_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{finished_option.TORRENT_CUSER}</span>{finished_option.TORRENT_USER}</td>
+							<td><span style="display:none;">{finished_option.TORRENT_BUP}</span>{finished_option.TORRENT_UP}</td>
+							<td><span style="display:none;">{finished_option.TORRENT_BDOWN}</span>{finished_option.TORRENT_DOWN}</td>
+							<td><span style="display:none;">{finished_option.TORRENT_NOWSEED}</span>{finished_option.TORRENT_NOWSEED}</td>
+							<td><span style="display:none;">{finished_option.TORRENT_RATIO}</span>{finished_option.TORRENT_RATIO}</td>
+							<td><span style="display:none;">{finished_option.TORRENT_SDOWNTIME}</span>{finished_option.TORRENT_DOWNTIME}</td>
+						</tr>
+						<!-- END finished_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_SEED -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN seed_option -->
+						<!-- IF postrow.seed_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{seed_option.TORRENT_CUSER}</span>{seed_option.TORRENT_USER}</td>
+							<td><span style="display:none;">{seed_option.TORRENT_BUP}</span>{seed_option.TORRENT_UP}</td>
+							<td><span style="display:none;">{seed_option.TORRENT_BUPSP}</span>{seed_option.TORRENT_UPSP}</td>
+							<td><span style="display:none;">{seed_option.TORRENT_BDOWN}</span>{seed_option.TORRENT_DOWN}</td>
+							<td><span style="display:none;">{seed_option.TORRENT_BDOWNSP}</span>{seed_option.TORRENT_DOWNSP}</td>
+							<td><span style="display:none;">{seed_option.TORRENT_RATIO}</span>{seed_option.TORRENT_RATIO}</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{seed_option.TORRENT_SSTART}</span>{seed_option.TORRENT_START}</td><!-- ENDIF -->
+							<td><span style="display:none;">{seed_option.TORRENT_COMPLETED}</span>{seed_option.TORRENT_COMPLETED}%</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{seed_option.TORRENT_UCONN}</span>{seed_option.TORRENT_UCONN}</td>
+							<td><span style="display:none;">{seed_option.TORRENT_NIP}</span>{seed_option.TORRENT_IP}</td>
+							<td><span style="display:none;">{seed_option.TORRENT_PORT}</span>{seed_option.TORRENT_PORT}</td>
+							<td><span style="display:none;">{seed_option.TORRENT_AGENT}</span>{seed_option.TORRENT_AGENT}</td><!-- ENDIF -->
+						</tr>
+						<!-- END seed_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_LEECH -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN leech_option -->
+						<!-- IF postrow.leech_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{leech_option.TORRENT_CUSER}</span>{leech_option.TORRENT_USER}</td>
+							<td><span style="display:none;">{leech_option.TORRENT_BUP}</span>{leech_option.TORRENT_UP}</td>
+							<td><span style="display:none;">{leech_option.TORRENT_BUPSP}</span>{leech_option.TORRENT_UPSP}</td>
+							<td><span style="display:none;">{leech_option.TORRENT_BDOWN}</span>{leech_option.TORRENT_DOWN}</td>
+							<td><span style="display:none;">{leech_option.TORRENT_BDOWNSP}</span>{leech_option.TORRENT_DOWNSP}</td>
+							<td><span style="display:none;">{leech_option.TORRENT_RATIO}</span>{leech_option.TORRENT_RATIO}</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{leech_option.TORRENT_SSTART}</span>{leech_option.TORRENT_START}</td><!-- ENDIF -->
+							<td><span style="display:none;">{leech_option.TORRENT_COMPLETED}</span>{leech_option.TORRENT_COMPLETED}%</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{leech_option.TORRENT_UCONN}</span>{leech_option.TORRENT_UCONN}</td>
+							<td><span style="display:none;">{leech_option.TORRENT_NIP}</span>{leech_option.TORRENT_IP}</td>
+							<td><span style="display:none;">{leech_option.TORRENT_PORT}</span>{leech_option.TORRENT_PORT}</td>
+							<td><span style="display:none;">{leech_option.TORRENT_AGENT}</span>{leech_option.TORRENT_AGENT}</td><!-- ENDIF -->
+						</tr>
+						<!-- END leech_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_THANKS -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN thanks_option -->
+						<!-- IF postrow.thanks_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{thanks_option.TORRENT_CUSER}</span>{thanks_option.TORRENT_USER}</td>
+							<td><span style="display:none;">{thanks_option.TORRENT_BUP}</span>{thanks_option.TORRENT_UP}</td>
+							<td><span style="display:none;">{thanks_option.TORRENT_BDOWN}</span>{thanks_option.TORRENT_DOWN}</td>
+							<td><span style="display:none;">{thanks_option.TORRENT_COMPLETED}</span>{thanks_option.TORRENT_COMPLETED}%</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{thanks_option.TORRENT_SSTART}</span>{thanks_option.TORRENT_START}</td>
+							<td><span style="display:none;">{thanks_option.TORRENT_SLAST}</span>{thanks_option.TORRENT_LAST}</td>
+							<td><span style="display:none;">{thanks_option.TORRENT_SEND}</span>{thanks_option.TORRENT_END}</td><!-- ENDIF -->
+							<td><span style="display:none;">{thanks_option.TORRENT_RATIO}</span>{thanks_option.TORRENT_RATIO}</td>
+							<td><span style="display:none;">{thanks_option.TORRENT_STADDED}</span>{thanks_option.TORRENT_TADDED}</td>
+						</tr>
+						<!-- END thanks_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_DOWNLOADS -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN downloads_option -->
+						<!-- IF postrow.downloads_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{downloads_option.TORRENT_CUSER}</span>{downloads_option.TORRENT_USER}</td>
+							<td><span style="display:none;">{downloads_option.TORRENT_BUP}</span>{downloads_option.TORRENT_UP}</td>
+							<td><span style="display:none;">{downloads_option.TORRENT_BDOWN}</span>{downloads_option.TORRENT_DOWN}</td>
+							<td><span style="display:none;">{downloads_option.TORRENT_COMPLETED}</span>{downloads_option.TORRENT_COMPLETED}%</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{downloads_option.TORRENT_SSTART}</span>{downloads_option.TORRENT_START}</td>
+							<td><span style="display:none;">{downloads_option.TORRENT_SLAST}</span>{downloads_option.TORRENT_LAST}</td>
+							<td><span style="display:none;">{downloads_option.TORRENT_SEND}</span>{downloads_option.TORRENT_END}</td><!-- ENDIF -->
+							<td><span style="display:none;">{downloads_option.TORRENT_RATIO}</span>{downloads_option.TORRENT_RATIO}</td>
+							<td><span style="display:none;">{downloads_option.TORRENT_SDOWNLOADED}</span>{downloads_option.TORRENT_DOWNLOADED}</td>
+						</tr>
+						<!-- END downloads_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_HISTORY -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN history_option -->
+						<!-- IF postrow.history_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{history_option.TORRENT_CUSER}</span>{history_option.TORRENT_USER}</td>
+							<td><span style="display:none;">{history_option.TORRENT_BUP}</span>{history_option.TORRENT_UP}</td>
+							<td><span style="display:none;">{history_option.TORRENT_BDOWN}</span>{history_option.TORRENT_DOWN}</td>
+							<td><span style="display:none;">{history_option.TORRENT_COMPLETED}</span>{history_option.TORRENT_COMPLETED}%</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{history_option.TORRENT_SSTART}</span>{history_option.TORRENT_START}</td>
+							<td><span style="display:none;">{history_option.TORRENT_SLAST}</span>{history_option.TORRENT_LAST}</td>
+							<td><span style="display:none;">{history_option.TORRENT_SEND}</span>{history_option.TORRENT_END}</td><!-- ENDIF -->
+							<td><span style="display:none;">{history_option.TORRENT_RATIO}</span>{history_option.TORRENT_RATIO}</td>
+						</tr>
+						<!-- END history_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_LEAVE -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN leave_option -->
+						<!-- IF postrow.leave_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{leave_option.TORRENT_CUSER}</span>{leave_option.TORRENT_USER}</td>
+							<td><span style="display:none;">{leave_option.TORRENT_BUP}</span>{leave_option.TORRENT_UP}</td>
+							<td><span style="display:none;">{leave_option.TORRENT_BDOWN}</span>{leave_option.TORRENT_DOWN}</td>
+							<td><span style="display:none;">{leave_option.TORRENT_COMPLETED}</span>{leave_option.TORRENT_COMPLETED}%</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{leave_option.TORRENT_SSTART}</span>{leave_option.TORRENT_START}</td>
+							<td><span style="display:none;">{leave_option.TORRENT_SLAST}</span>{leave_option.TORRENT_LAST}</td>
+							<td><span style="display:none;">{leave_option.TORRENT_SEND}</span>{leave_option.TORRENT_END}</td><!-- ENDIF -->
+							<td><span style="display:none;">{leave_option.TORRENT_RATIO}</span>{leave_option.TORRENT_RATIO}</td>
+						</tr>
+						<!-- END leave_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+						<!-- IF postrow.S_HAS_TORRENT_EXPLAIN_REMOTE -->
+						<thead>
+						<tr>
+							<!-- BEGIN headers --><th><a class="my_ath" href="javascript:;">{headers.VALUE}</a></th><!-- END headers -->
+						</tr>
+						</thead>
+						<tbody>
+						<!-- BEGIN remote_option -->
+						<!-- IF postrow.remote_option.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td><span style="display:none;">{remote_option.TORRENT_RTRACKURL}</span>{remote_option.TORRENT_RTRACKURL}</td>
+							<td><span style="display:none;">{remote_option.TORRENT_SNANNOUNCE}</span>{remote_option.TORRENT_NANNOUNCE}</td>
+							<!-- IF postrow.S_IS_ADMOD --><td><span style="display:none;">{remote_option.TORRENT_AMESSAGE}</span>{remote_option.TORRENT_AMESSAGE}</td>
+							<td><span style="display:none;">{remote_option.TORRENT_SAINTERVAL}</span>{remote_option.TORRENT_AINTERVAL}</td>
+							<td><span style="display:none;">{remote_option.TORRENT_ERRCOUNT}</span>{remote_option.TORRENT_ERRCOUNT}</td><!-- ENDIF -->
+							<td><span style="display:none;">{remote_option.TORRENT_SEEDERS}</span>{remote_option.TORRENT_SEEDERS}</td>
+							<td><span style="display:none;">{remote_option.TORRENT_LEECHERS}</span>{remote_option.TORRENT_LEECHERS}</td>
+							<td><span style="display:none;">{remote_option.TORRENT_TCOMPLETED}</span>{remote_option.TORRENT_TCOMPLETED}</td>
+							<td><span style="display:none;">{remote_option.TORRENT_PEERS}</span>{remote_option.TORRENT_PEERS}</td>
+						</tr>
+						<!-- END remote_option -->
+						</tbody>
+						<!-- ENDIF -->
+
+					</table>
+
+					<!-- IF S_REMSEEDS -->
+					<table width="100%">
+						<tr>
+							<td class="row2" align="center">{S_REMSEEDS}</td>
+						</tr>
+					</table>
+					<!-- ENDIF -->
+
+					<!-- IF S_REMCOMPLETED -->
+					<table width="100%">
+						<tr >
+							<td  class="row2" align="center">{S_REMCOMPLETED}</td>
+						</tr>
+					</table>
+					<!-- ENDIF -->
+
+					<!-- IF S_REMLEECHS -->
+					<table width="100%">
+						<tr>
+							<td class="row2" align="center">{S_REMLEECHS}</td>
+						</tr>
+					</table>
+					<!-- ENDIF -->
+
+					<!-- IF S_TORRENT_FOOTER -->
+					<table width="100%">
+						<tr>
+							<td class="row2" align="center"><strong>{L_DT_HIDE}</strong>: {S_TORRENT_FOOTER}</td>
+						</tr>
+					</table>
+					<!-- ENDIF -->
+					<!-- ENDIF -->
+				</td>
+			</tr>
+		</table>
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+
+<hr class="divider" />
+<!-- END postrow -->
+<!-- IF S_QUICK_REPLY -->
+<!-- INCLUDE quickreply_editor.html -->
+<!-- ENDIF -->
+<!-- IF S_NUM_POSTS > 1 or PREVIOUS_PAGE -->
+<form id="viewtopic" method="post" action="{S_TOPIC_ACTION}">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
+		<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+		<!-- IF not S_IS_BOT -->
+		<label>{L_DISPLAY_POSTS}: {S_SELECT_SORT_DAYS}</label>
+		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label> <label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
+		<!-- ENDIF -->
+	</fieldset>
+
+</form>
+<hr />
+<!-- ENDIF -->
+
+<div class="topic-actions">
+	<div class="buttons">
+		<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
+		<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->"><a href="{U_POST_REPLY_TOPIC}" title="<!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF -->"><span></span><!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED_SHORT}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF --></a></div>
+		<!-- ENDIF -->
+	</div>
+
+	<!-- IF PAGINATION or TOTAL_POSTS -->
+	<div class="pagination">
+		{TOTAL_POSTS}
+		<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+	</div>
+	<!-- ENDIF -->
+</div>
+<!-- IF .similar -->
+<!-- INCLUDE similar_topics.html -->
+<!-- ENDIF -->
+<!-- INCLUDE jumpbox.html -->
+
+<!-- IF S_TOPIC_MOD -->
+<form method="post" action="{S_MOD_ACTION}">
+	<fieldset class="quickmod">
+		<label for="quick-mod-select">{L_QUICK_MOD}:</label> {S_TOPIC_MOD} <input type="submit" value="{L_GO}" class="button2" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+<h3><!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --></h3>
+<p>{LOGGED_IN_USER_LIST}</p>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

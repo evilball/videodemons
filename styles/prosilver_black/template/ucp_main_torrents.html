@@ -1,0 +1,25 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_TITLE}</h2>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+<table width="100%" cellspacing="1" cellpadding="0">
+<!-- IF ERROR -->
+	<tr class="bg2">
+		<td colspan="5" align="center"><span class="genmed error">{ERROR}</span></td>
+	</tr>
+<!-- ENDIF -->
+	<tr class="bg1">
+		<td align="center"><a name="opt"></a>.: {TORRENT_INFO_OPT} :.</td>
+	</tr>
+	<tr class="bg1">
+		<td>
+			<!-- INCLUDE mua_torrents_explain.html -->
+		</td>
+	</tr>
+</table>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE ucp_footer.html -->

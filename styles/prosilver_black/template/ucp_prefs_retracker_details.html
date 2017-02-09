@@ -1,0 +1,77 @@
+<!-- INCLUDE ucp_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+
+/**
+* Mark/unmark checkboxes
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+// ]]>
+</script>
+
+<h2>{L_TITLE}</h2>
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<fieldset>
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+<!-- IF S_SET_RTRACK -->
+	<p>{L_ZONE_RTRACK_EXPLAIN}</p>
+		<dl>
+			<dt><b>{L_ZONE_RTRACK_URL}</b></dt>
+			<dd><b>{L_DELETE}</b> [<a title="{L_MARK_ALL}" href="#" onclick="marklist('ucp', 'rtrack_delete', true); return false;">+</a>/<a title="{L_UNMARK_ALL}" href="#" onclick="marklist('ucp', 'rtrack_delete', false); return false;">-</a>]</dd>
+		</dl>
+	<!-- BEGIN rtracks -->
+		<dl>
+			<dt><input type="text" class="inputbox" name="rtrack_url[{rtracks.COUNT}]" size="40" value="{rtracks.URL}" title="" /></dt>
+			<dd>
+				<!-- IF rtracks.URL -->
+				<input type="checkbox" name="rtrack_delete[{rtracks.COUNT}]" value="1" />
+				<!-- ELSE -->
+				<b>{L_ADD}</b>
+				<!-- ENDIF -->
+			</dd>
+		</dl>
+		<hr />
+	<!-- END rtracks -->
+
+<!-- ELSE -->
+{L_RTRACK_DISABLED}
+<!-- ENDIF -->
+	</fieldset>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- IF S_SET_RTRACK -->
+<fieldset class="submit-buttons">
+	{S_HIDDEN_FIELD}{S_HIDDEN_FIELDS}<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	{S_FORM_TOKEN}
+</fieldset>
+<!-- ENDIF -->
+</form>
+<!-- INCLUDE ucp_footer.html -->
