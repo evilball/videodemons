@@ -19,6 +19,12 @@
 #</IfModule>
 # PPK END CGP
 
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/robots\.txt$
+RewriteCond %{REQUEST_URI} !^.*announce.*$
+RewriteCond %{HTTP:X-Forwarded-proto} !^https$
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 <Files "config.php">
 Order Allow,Deny
 Deny from All
