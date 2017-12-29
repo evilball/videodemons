@@ -1427,7 +1427,15 @@ function get_user_avatar($avatar, $avatar_type, $avatar_width, $avatar_height, $
 	}
 
 	$avatar_img .= $avatar;
-	return '<img src="' . (str_replace(' ', '%20', $avatar_img)) . '" width="' . $avatar_width . '" height="' . $avatar_height . '" alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
+	if (empty($avatar_width) and empty($avatar_height)) {
+        return '<img src="' . (str_replace(' ', '%20', $avatar_img)) . '" width="55%" alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
+	} else {
+        return '<img src="' . (str_replace(' ', '%20', $avatar_img)) . '" width="' . $avatar_width . '" height="' . $avatar_height . '" alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
+	}
+}
+
+function get_user_avatar_with_dynamic_width($avatar, $avatar_type) {
+    return get_user_avatar($avatar, $avatar_type, null, null);
 }
 
 ?>
